@@ -1,0 +1,59 @@
+{
+  "name": "pulse-dashboard",
+  "displayName": "Pulse Dashboard",
+  "description": "A VS Code extension to monitor application metrics and logs",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:Pulse.openDashboard"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "pulse.openDashboard",
+        "title": "Open Pulse Dashboard"
+      }
+    ],
+    "configuration": {
+      "title": "Pulse Dashboard",
+      "properties": {
+        "pulse.prometheusUrl": {
+          "type": "string",
+          "default": "http://localhost:9090",
+          "description": "URL of the Prometheus server"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "webpack --config webpack.config.js && webpack --config webpack.config.webview.js",
+    "watch": "webpack --watch --config webpack.config.js && webpack --watch --config webpack.config.webview.js",
+    "vscode:prepublish": "npm run build",
+    "test": "vscode-test"
+  },
+  "dependencies": {
+    "@observablehq/plot": "^0.6.17",
+    "axios": "^1.7.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.2.0",
+    "vscode": "^1.1.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.23",
+    "@types/react-dom": "^18.2.0",
+    "@types/vscode": "^1.75.0",
+    "css-loader": "^6.0.0",
+    "npm-run-all": "^4.1.5",
+    "style-loader": "^3.0.0",
+    "ts-loader": "^9.0.0",
+    "typescript": "^5.0.0",
+    "webpack": "^5.0.0",
+    "webpack-cli": "^5.0.0"
+  }
+}

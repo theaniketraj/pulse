@@ -1,0 +1,33 @@
+/* Global styles for the dashboard */
+.app {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+
+.metric-chart {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.log-viewer {
+  border: 1px solid #ccc;
+  padding: 10px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.alert-panel {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.alert {
+  color: red;
+  font-weight: bold;
+}
