@@ -39,7 +39,6 @@
   },
   "dependencies": {
     "@babel/core": "^7.27.4",
-    "@babel/preset-react": "^7.27.1",
     "@observablehq/plot": "^0.6.17",
     "axios": "^1.7.0",
     "babel-loader": "^10.0.0",
@@ -48,6 +47,8 @@
     "vscode": "^1.1.0"
   },
   "devDependencies": {
+    "@babel/preset-react": "^7.27.1",
+    "@babel/preset-typescript": "^7.27.1",
     "@types/react": "^18.3.23",
     "@types/react-dom": "^18.2.0",
     "@types/vscode": "^1.75.0",
