@@ -38,8 +38,11 @@
     "test": "vscode-test"
   },
   "dependencies": {
+    "@babel/core": "^7.27.4",
+    "@babel/preset-react": "^7.27.1",
     "@observablehq/plot": "^0.6.17",
     "axios": "^1.7.0",
+    "babel-loader": "^10.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.2.0",
     "vscode": "^1.1.0"

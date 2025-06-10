@@ -1,4 +1,6 @@
 node_modules/
 dist/
 webview/build/
-.vscode-test/
+.vscode
+webview/node_modules/
+# Logs

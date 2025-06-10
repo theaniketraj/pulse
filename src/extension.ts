@@ -1,6 +1,6 @@
 // Main entry point for the VS Code extension
 import * as vscode from 'vscode';
-import { PulseView } from './PulseView';
+import { PulseView } from './pulseView';
 
 // Called when the extension is activated (e.g., when a command is executed)
 export function activate(context: vscode.ExtensionContext) {
