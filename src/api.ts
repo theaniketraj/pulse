@@ -72,3 +72,21 @@ export class PulseView {
     }
   }
 }
+
+// Defines the message types for communication between extension and Webview
+export interface WebviewMessage {
+  command: string;
+  data?: any;
+}
+
+// Example message types
+export const MessageTypes = {
+  FETCH_METRICS: 'fetchMetrics',
+  UPDATE_METRICS: 'updateMetrics',
+  TRIGGER_ALERT: 'triggerAlert'
+};
+
+// Function to send a message to the Webview
+export function sendMessageToWebview(webview: vscode.Webview, message: WebviewMessage) {
+  webview.postMessage(message);
+}

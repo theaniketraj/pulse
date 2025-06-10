@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import MessageTypes, { sendMessageToWebview } from '../api';
+import { sendMessageToWebview, MessageTypes } from '../api';
 
 // Processes metrics and triggers alerts if thresholds are exceeded
 export function processAlerts(metrics: any, webview: vscode.Webview) {
