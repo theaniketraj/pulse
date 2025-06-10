@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as Plot from '@observable/plothq/plot';
+import * as Plot from '@observablehq/plot';
 
 // Component to render metric charts
 interface MetricChartProps {
