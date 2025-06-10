@@ -1,16 +1,35 @@
 {
   "name": "pulse-dashboard",
   "displayName": "Pulse Dashboard",
-  "description": "A VS Code extension to monitor application metrics and logs",
-  "version": "0.0.1",
+  "description": "Monitor application metrics and logs in real-time within Visual Studio Code.",
+  "version": "0.1.0",
+  "publisher": "theaniketraj",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/theaniketraj/pulse.git"
+  },
+  "bugs": {
+    "url": "https://github.com/theaniketraj/pulse/issues"
+  },
+  "homepage": "https://github.com/theaniketraj/pulse/blob/main/README.md",
+  "icon": "icon.png",
   "engines": {
-    "vscode": "^1.75.0"
+    "vscode": "^1.94.0"
   },
   "categories": [
+    "Programming Languages",
+    "Visualization",
     "Other"
   ],
+  "keywords": [
+    "observability",
+    "metrics",
+    "logs",
+    "dashboard",
+    "prometheus"
+  ],
   "activationEvents": [
-    "onCommand:Pulse.openDashboard"
+    "onCommand:pulse.openDashboard"
   ],
   "main": "./dist/extension.js",
   "contributes": {
@@ -19,45 +38,49 @@
         "command": "pulse.openDashboard",
         "title": "Open Pulse Dashboard"
       }
-    ],
-    "configuration": {
-      "title": "Pulse Dashboard",
-      "properties": {
-        "pulse.prometheusUrl": {
-          "type": "string",
-          "default": "http://localhost:9090",
-          "description": "URL of the Prometheus server"
-        }
+    ]
+  },
+  "configuration": {
+    "title": "Pulse Dashboard",
+    "properties": {
+      "pulse.prometheusUrl": {
+        "type": "string",
+        "default": "http://localhost:9090",
+        "description": "URL of the Prometheus server."
       }
     }
   },
   "scripts": {
-    "build": "webpack --config webpack.config.js && webpack --config webpack.config.webview.js",
-    "watch": "webpack --watch --config webpack.config.js && webpack --watch --config webpack.config.webview.js",
+    "build": "npm-run-all build:extension build:webview",
+    "build:extension": "webpack --config webpack.config.js",
+    "build:webview": "webpack --config webpack.config.webview.js",
+    "watch": "npm-run-all --parallel watch:extension watch:webview",
+    "watch:extension": "webpack --watch --config webpack.config.js",
+    "watch:webview": "webpack --watch --config webpack.config.webview.js",
     "vscode:prepublish": "npm run build",
-    "test": "vscode-test"
+    "test": "jest"
   },
   "dependencies": {
-    "@babel/core": "^7.27.4",
-    "@observablehq/plot": "^0.6.17",
-    "axios": "^1.7.0",
-    "babel-loader": "^10.0.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.2.0",
-    "vscode": "^1.1.0"
+    "axios": "^1.7.7",
+    "react-dom": "^18.3.1",
+    "@observablehq/plot": "^0.6.17"
   },
   "devDependencies": {
+    "@babel/core": "^7.27.4",
     "@babel/preset-react": "^7.27.1",
     "@babel/preset-typescript": "^7.27.1",
+    "babel-loader": "^10.0.0",
     "@types/react": "^18.3.23",
-    "@types/react-dom": "^18.2.0",
-    "@types/vscode": "^1.75.0",
-    "css-loader": "^6.0.0",
-    "npm-run-all": "^4.1.5",
-    "style-loader": "^3.0.0",
-    "ts-loader": "^9.0.0",
-    "typescript": "^5.0.0",
-    "webpack": "^5.0.0",
-    "webpack-cli": "^5.0.0"
+    "@types/react-dom": "^18.3.23",
+    "@types/vscode": "^1.94.0",
+    "css-loader": "^7.1.2",
+    "style-loader": "^4.0.0",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.6.3",
+    "webpack": "^5.95.0",
+    "webpack-cli": "^5.1.4",
+    "jest": "^29.7.0",
+    "@types/jest": "^29.5.14",
+    "vscode-test": "^0.4.3"
   }
 }
