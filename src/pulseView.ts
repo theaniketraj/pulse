@@ -15,7 +15,7 @@ export class PulseView {
     this._extensionPath = extensionPath;
 
     // Set the Webview content (HTML with React bundle)
-    this._panel.webview.html = getWebviewContent(this._panel.webview, extensionPath);
+    this._panel.webview.html = getWebviewContent(this._panel.webview, vscode.Uri.file(extensionPath));
 
     // Handle messages from the Webview (e.g., fetch metrics)
     this._panel.webview.onDidReceiveMessage(

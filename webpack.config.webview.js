@@ -1,12 +1,13 @@
 const path = require('path');
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: './webview/src/index.tsx',
   target: 'web',
   output: {
     path: path.resolve(__dirname, 'webview/build'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    devtoolModuleFilenameTemplate: '[absolute-resource-path]'
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js']
@@ -28,5 +29,9 @@ module.exports = {
     contentBase: path.join(__dirname, 'webview/public'),
     port: 3000,
     hot: true
-  }
+  },
+  devtool: 'source-map',
+  optimization: {
+    minimize: true
+  },
 };

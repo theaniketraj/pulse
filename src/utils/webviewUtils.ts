@@ -1,13 +1,14 @@
-import * as vscode from 'vscode';
-import * as path from 'path';
+import * as vscode from "vscode";
 
-// Generates HTML content for the Webview
-export function getWebviewContent(webview: vscode.Webview, extensionPath: string): string {
+export function getWebviewContent(
+  webview: vscode.Webview,
+  extensionUri: vscode.Uri
+): string {
   const scriptUri = webview.asWebviewUri(
-    vscode.Uri.file(path.join(extensionPath, 'webview', 'build', 'bundle.js'))
+    vscode.Uri.joinPath(extensionUri, "webview", "build", "bundle.js")
   );
   const styleUri = webview.asWebviewUri(
-    vscode.Uri.file(path.join(extensionPath, 'webview', 'build', 'styles.css'))
+    vscode.Uri.joinPath(extensionUri, "webview", "build", "styles.css")
   );
 
   return `
@@ -16,7 +17,7 @@ export function getWebviewContent(webview: vscode.Webview, extensionPath: string
     <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src ${webview.cspSource}; script-src ${webview.cspSource};">
+      <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src ${webview.cspSource} 'unsafe-inline'; script-src ${webview.cspSource} 'unsafe-eval';">
       <link rel="stylesheet" href="${styleUri}">
       <title>Pulse Dashboard</title>
     </head>
