@@ -4,9 +4,11 @@ import App from './App';
 
 // Acquire VS Code API once
 const vscode = acquireVsCodeApi();
+const rootElement = document.getElementById('root');
+const root = createRoot(rootElement!);
+root.render(<App vscode={vscode} />);
 
 console.log('Rendering Pulse Dashboard');
-const rootElement = document.getElementById('root');
 function acquireVsCodeApi(): any {
   // @ts-ignore
   return window.acquireVsCodeApi();
