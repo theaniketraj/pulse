@@ -1,12 +1,19 @@
 import * as React from 'react';
-import Dashboard from './components/Dashboard';
 
-// Main app component for the dashboard
-const App: React.FC = () => {
+interface AppProps {
+  vscode: any; // Replace with proper type if using TypeScript
+}
+
+const App: React.FC<AppProps> = ({ vscode }) => {
+  React.useEffect(() => {
+    // Example: Post message to extension
+    vscode.postMessage({ command: 'fetchMetrics' });
+  }, [vscode]);
+
   return (
-    <div className="app">
+    <div>
       <h1>Pulse Dashboard</h1>
-      <Dashboard />
+      {/* Add your dashboard content */}
     </div>
   );
 };
