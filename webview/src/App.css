@@ -10,6 +10,10 @@
   gap: 20px;
 }
 
+.html {
+  scroll-behavior: smooth;
+}
+
 .metric-chart {
   border: 1px solid #ccc;
   padding: 10px;

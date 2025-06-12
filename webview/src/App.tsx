@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './styles.css';
+import './App.css';
 
 interface AppProps {
   vscode: any; // Replace with proper type if using TypeScript
