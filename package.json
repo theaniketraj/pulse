@@ -31,7 +31,7 @@
   ],
   "main": "./dist/extension.js",
   "activationEvents": [
-    "onCommand:pulse.openDashboard"
+    "*"
   ],
   "contributes": {
     "commands": [
@@ -39,15 +39,15 @@
         "command": "pulse.openDashboard",
         "title": "Open Pulse Dashboard"
       }
-    ]
-  },
-  "configuration": {
-    "title": "Pulse Dashboard",
-    "properties": {
-      "pulse.prometheusUrl": {
-        "type": "string",
-        "default": "http://localhost:9090",
-        "description": "URL of the Prometheus server."
+    ],
+    "configuration": {
+      "title": "Pulse Dashboard",
+      "properties": {
+        "pulse.prometheusUrl": {
+          "type": "string",
+          "default": "http://localhost:9090",
+          "description": "URL of the Prometheus server."
+        }
       }
     }
   },
