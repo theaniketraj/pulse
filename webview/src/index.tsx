@@ -5,7 +5,7 @@ import App from './App';
 // Acquire VS Code API once
 const vscode = acquireVsCodeApi();
 const rootElement = document.getElementById('root');
-if (!rootElement) {
+if (rootElement) {
   const root = createRoot(rootElement);
   root.render(<App vscode={vscode} />);
 }
