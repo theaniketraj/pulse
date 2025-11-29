@@ -50,6 +50,19 @@ export class PulseView {
               this._panel.webview.postMessage({ command: 'alertError', message: error.message });
             }
             break;
+
+          case 'fetchLogs':
+            // Mock log data for now as Prometheus doesn't have a standard logs endpoint
+            // In a real scenario, this would connect to Loki or another log source
+            const mockLogs = [
+              `[INFO] Application started at ${new Date().toISOString()}`,
+              `[INFO] Connected to database`,
+              `[WARN] High memory usage detected`,
+              `[ERROR] Connection timeout to service-b`,
+              `[INFO] Request processed in 45ms`
+            ];
+            this._panel.webview.postMessage({ command: 'updateLogs', data: mockLogs });
+            break;
         }
       },
       undefined,

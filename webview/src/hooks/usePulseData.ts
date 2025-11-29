@@ -13,8 +13,9 @@ export function usePulseData(vscode: any) {
         setLoading(true);
         setError(null);
 
-        // Request metrics from the extension
+        // Request metrics and logs from the extension
         vscode.postMessage({ command: 'fetchMetrics', query: 'up' });
+        vscode.postMessage({ command: 'fetchLogs' });
 
         // Handle messages from the extension
         const handleMessage = (event: MessageEvent) => {
@@ -22,6 +23,8 @@ export function usePulseData(vscode: any) {
             if (message.command === 'updateMetrics') {
                 setMetrics(message.data);
                 setLoading(false);
+            } else if (message.command === 'updateLogs') {
+                setLogs(message.data);
             } else if (message.command === 'error') {
                 setError(message.message);
                 setLoading(false);
