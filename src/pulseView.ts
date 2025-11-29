@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
 import { getWebviewContent } from './utils/webviewUtils';
+import { PrometheusApi } from './api';
 
 // Class to manage the Webview panel for the Pulse dashboard
 export class PulseView {
@@ -19,11 +20,20 @@ export class PulseView {
 
     // Handle messages from the Webview (e.g., fetch metrics)
     this._panel.webview.onDidReceiveMessage(
-      message => {
+      async message => {
         switch (message.command) {
           case 'fetchMetrics':
-            // TODO: Call data fetching logic
-            this._panel.webview.postMessage({ command: 'updateMetrics', data: {} });
+            try {
+              const config = vscode.workspace.getConfiguration('pulse');
+              const prometheusUrl = config.get<string>('prometheusUrl') || 'http://localhost:9090';
+              const api = new PrometheusApi(prometheusUrl);
+
+              const data = await api.query(message.query);
+              this._panel.webview.postMessage({ command: 'updateMetrics', data });
+            } catch (error: any) {
+              vscode.window.showErrorMessage(`Pulse: Failed to fetch metrics. ${error.message}`);
+              console.error(error);
+            }
             break;
         }
       },
