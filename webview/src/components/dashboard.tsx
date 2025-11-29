@@ -11,12 +11,12 @@ interface DashboardProps {
 
 // Main dashboard component
 const Dashboard: React.FC<DashboardProps> = ({ vscode }) => {
-  const { metrics, logs } = usePulseData(vscode);
+  const { metrics, logs, loading, error } = usePulseData(vscode);
   const { alerts } = useAlerts();
 
   return (
     <div className="dashboard">
-      <MetricChart metrics={metrics} />
+      <MetricChart metrics={metrics} loading={loading} error={error} />
       <LogViewer logs={logs} />
       <AlertPanel alerts={alerts} />
     </div>

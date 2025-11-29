@@ -1,7 +1,9 @@
 /* Global styles for the dashboard */
 .app {
   padding: 20px;
-  font-family: Arial, sans-serif;
+  font-family: var(--vscode-font-family, Arial, sans-serif);
+  color: var(--vscode-editor-foreground);
+  background-color: var(--vscode-editor-background);
 }
 
 .dashboard {
@@ -10,28 +12,37 @@
   gap: 20px;
 }
 
-.html {
-  scroll-behavior: smooth;
+.metric-chart {
+  border: 1px solid var(--vscode-panel-border);
+  padding: 10px;
+  background-color: var(--vscode-editor-background);
+  color: var(--vscode-editor-foreground);
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.metric-chart {
-  border: 1px solid #ccc;
-  padding: 10px;
+.metric-chart.error {
+  color: var(--vscode-errorForeground);
+  border-color: var(--vscode-errorForeground);
 }
 
 .log-viewer {
-  border: 1px solid #ccc;
+  border: 1px solid var(--vscode-panel-border);
   padding: 10px;
   max-height: 300px;
   overflow-y: auto;
+  background-color: var(--vscode-editor-background);
 }
 
 .alert-panel {
-  border: 1px solid #ccc;
+  border: 1px solid var(--vscode-panel-border);
   padding: 10px;
+  background-color: var(--vscode-editor-background);
 }
 
 .alert {
-  color: red;
+  color: var(--vscode-errorForeground);
   font-weight: bold;
 }
