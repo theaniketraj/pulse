@@ -5,9 +5,13 @@ import AlertPanel from './AlertPanel';
 import { usePulseData } from '../hooks/usePulseData';
 import { useAlerts } from '../hooks/useAlerts';
 
+interface DashboardProps {
+  vscode: any;
+}
+
 // Main dashboard component
-const Dashboard: React.FC = () => {
-  const { metrics, logs } = usePulseData();
+const Dashboard: React.FC<DashboardProps> = ({ vscode }) => {
+  const { metrics, logs } = usePulseData(vscode);
   const { alerts } = useAlerts();
 
   return (
