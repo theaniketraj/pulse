@@ -40,9 +40,43 @@
   border: 1px solid var(--vscode-panel-border);
   padding: 10px;
   background-color: var(--vscode-editor-background);
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.alert-panel.error {
+  color: var(--vscode-errorForeground);
+  border-color: var(--vscode-errorForeground);
 }
 
 .alert {
-  color: var(--vscode-errorForeground);
+  margin-bottom: 10px;
+  padding: 8px;
+  border-left: 4px solid var(--vscode-activityBar-foreground);
+  background-color: var(--vscode-editor-inactiveSelectionBackground);
+}
+
+.alert.firing {
+  border-left-color: var(--vscode-errorForeground);
+}
+
+.alert.pending {
+  border-left-color: var(--vscode-charts-yellow);
+}
+
+.alert-header {
+  display: flex;
+  justify-content: space-between;
   font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.alert-state {
+  font-size: 0.8em;
+  opacity: 0.8;
+}
+
+.alert-details {
+  font-size: 0.9em;
+  opacity: 0.9;
 }

@@ -33,6 +33,21 @@ export class PulseView {
             } catch (error: any) {
               vscode.window.showErrorMessage(`Pulse: Failed to fetch metrics. ${error.message}`);
               console.error(error);
+              this._panel.webview.postMessage({ command: 'error', message: error.message });
+            }
+            break;
+
+          case 'fetchAlerts':
+            try {
+              const config = vscode.workspace.getConfiguration('pulse');
+              const prometheusUrl = config.get<string>('prometheusUrl') || 'http://localhost:9090';
+              const api = new PrometheusApi(prometheusUrl);
+
+              const data = await api.getAlerts();
+              this._panel.webview.postMessage({ command: 'updateAlerts', data });
+            } catch (error: any) {
+              console.error('Failed to fetch alerts:', error);
+              this._panel.webview.postMessage({ command: 'alertError', message: error.message });
             }
             break;
         }

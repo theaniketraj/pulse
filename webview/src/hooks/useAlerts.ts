@@ -1,21 +1,39 @@
 import * as React from 'react';
 
 // Hook to manage alerts
-export function useAlerts() {
+export function useAlerts(vscode: any) {
     const [alerts, setAlerts] = React.useState<Array<{ message: string; value: number }>>([]);
+    const [loading, setLoading] = React.useState<boolean>(false);
+    const [error, setError] = React.useState<string | null>(null);
 
     React.useEffect(() => {
+        if (!vscode) return;
+
+        setLoading(true);
+        vscode.postMessage({ command: 'fetchAlerts' });
+
         // Handle alert messages from the extension
         const handleMessage = (event: MessageEvent) => {
             const message = event.data;
-            if (message.command === 'triggerAlert') {
-                setAlerts(prev => [...prev, message.data]);
+            if (message.command === 'updateAlerts') {
+                // Transform Prometheus alerts response to our format
+                const rawAlerts = message.data?.data?.alerts || [];
+                const formattedAlerts = rawAlerts.map((alert: any) => ({
+                    message: alert.labels.alertname || 'Unknown Alert',
+                    value: alert.state,
+                    details: alert.annotations?.description || alert.annotations?.summary
+                }));
+                setAlerts(formattedAlerts);
+                setLoading(false);
+            } else if (message.command === 'alertError') {
+                setError(message.message);
+                setLoading(false);
             }
         };
 
         window.addEventListener('message', handleMessage);
         return () => window.removeEventListener('message', handleMessage);
-    }, []);
+    }, [vscode]);
 
-    return { alerts };
+    return { alerts, loading, error };
 }
