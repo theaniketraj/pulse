@@ -8,26 +8,31 @@ interface AlertPanelProps {
 }
 
 const AlertPanel: React.FC<AlertPanelProps> = ({ alerts, loading, error }) => {
-  if (loading) return <div className="alert-panel">Loading alerts...</div>;
-  if (error) return <div className="alert-panel error">Error: {error}</div>;
+  if (loading) return <div className="alert-status">Loading alerts...</div>;
+  if (error) return <div className="alert-status error">Error: {error}</div>;
 
   return (
     <div className="alert-panel">
-      <h2>Alerts</h2>
       {alerts.length === 0 ? (
-        <p>No active alerts</p>
+        <div className="alert-empty">
+          <span className="codicon codicon-check"></span>
+          No active alerts. System is healthy.
+        </div>
       ) : (
-        <ul>
+        <div className="alert-list">
           {alerts.map((alert, index) => (
-            <li key={index} className={`alert ${alert.value === 1 ? 'firing' : 'pending'}`}>
-              <div className="alert-header">
-                <span className="alert-name">{alert.message}</span>
-                <span className="alert-state">{alert.value === 1 ? 'FIRING' : 'PENDING'}</span>
+            <div key={index} className={`alert-card ${alert.value === 1 ? 'firing' : 'pending'}`}>
+              <div className="alert-indicator"></div>
+              <div className="alert-content">
+                <div className="alert-header">
+                  <span className="alert-name">{alert.message}</span>
+                  <span className="alert-badge">{alert.value === 1 ? 'FIRING' : 'PENDING'}</span>
+                </div>
+                {alert.details && <div className="alert-details">{alert.details}</div>}
               </div>
-              {alert.details && <div className="alert-details">{alert.details}</div>}
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );
