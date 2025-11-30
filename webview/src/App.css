@@ -1,82 +1,173 @@
-/* Global styles for the dashboard */
+/* Pulse Dashboard Design System */
+:root {
+  /* Core Colors */
+  --pulse-primary: #3b82f6;
+  /* Electric Blue */
+  --pulse-primary-glow: rgba(59, 130, 246, 0.5);
+  --pulse-success: #10b981;
+  --pulse-warning: #f59e0b;
+  --pulse-error: #ef4444;
+  --pulse-bg-card: var(--vscode-editor-background);
+  /* Fallback */
+  --pulse-border: var(--vscode-widget-border);
+
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+
+  /* Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+}
+
+/* Global Reset & Base */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(
+    --vscode-font-family,
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif
+  );
+  color: var(--vscode-editor-foreground);
+  background-color: transparent;
+  /* Let VS Code theme shine through */
+}
+
 .app {
-  padding: 20px;
-  font-family: var(--vscode-font-family, Arial, sans-serif);
-  color: var(--vscode-editor-foreground);
-  background-color: var(--vscode-editor-background);
-}
-
-.dashboard {
-  display: grid;
+  padding: var(--spacing-md);
+  max-width: 1600px;
   grid-template-columns: 2fr 1fr;
-  gap: 20px;
+  /* Main Chart (2/3) | Logs (1/3) */
+  grid-template-rows: auto auto 1fr;
+  /* KPI | Main | Alerts */
+  gap: var(--spacing-md);
+  flex: 1;
+  min-height: 0;
+  /* Prevent overflow issues */
 }
 
-.metric-chart {
-  border: 1px solid var(--vscode-panel-border);
-  padding: 10px;
+/* Card Component Style */
+.card {
   background-color: var(--vscode-editor-background);
-  color: var(--vscode-editor-foreground);
-  min-height: 400px;
+  /* Or a slightly lighter/darker shade */
+  border: 1px solid var(--pulse-border);
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.metric-chart.error {
-  color: var(--vscode-errorForeground);
-  border-color: var(--vscode-errorForeground);
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border-color: var(--pulse-primary);
+}
+
+.card-header {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-bottom: 1px solid var(--vscode-widget-border);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--vscode-descriptionForeground);
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.card-body {
+  padding: var(--spacing-md);
+  flex: 1;
+  overflow: auto;
+  position: relative;
+}
+
+/* Specific Areas */
+.area-chart {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+  min-height: 350px;
+}
+
+.area-logs {
+  grid-column: 2 / 3;
+  grid-row: 2 / 4;
+  /* Span down to cover alerts height if needed, or just 2/3 */
+  max-height: 100%;
+}
+
+.area-alerts {
+  grid-column: 1 / 2;
+  grid-row: 3 / 4;
+}
+
+/* KPI Section (Placeholder for now) */
+.kpi-section {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
+}
+
+.kpi-card {
+  background: linear-gradient(
+    145deg,
+    var(--vscode-editor-background),
+    rgba(255, 255, 255, 0.03)
+  );
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--pulse-border);
+}
+
+.kpi-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--pulse-primary);
+}
+
+.kpi-label {
+  font-size: 12px;
+  color: var(--vscode-descriptionForeground);
+}
+
+/* Component Overrides */
+.metric-chart {
+  width: 100%;
+  height: 100%;
+  border: none;
+  /* Remove old border */
+  padding: 0;
+  background: transparent;
 }
 
 .log-viewer {
-  border: 1px solid var(--vscode-panel-border);
-  padding: 10px;
-  max-height: 300px;
-  overflow-y: auto;
-  background-color: var(--vscode-editor-background);
+  border: none;
+  padding: 0;
+  font-family: "Fira Code", "Consolas", monospace;
+  font-size: 12px;
+}
+
+.log-entry {
+  padding: 4px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .alert-panel {
-  border: 1px solid var(--vscode-panel-border);
-  padding: 10px;
-  background-color: var(--vscode-editor-background);
-  max-height: 400px;
-  overflow-y: auto;
-}
-
-.alert-panel.error {
-  color: var(--vscode-errorForeground);
-  border-color: var(--vscode-errorForeground);
-}
-
-.alert {
-  margin-bottom: 10px;
-  padding: 8px;
-  border-left: 4px solid var(--vscode-activityBar-foreground);
-  background-color: var(--vscode-editor-inactiveSelectionBackground);
-}
-
-.alert.firing {
-  border-left-color: var(--vscode-errorForeground);
-}
-
-.alert.pending {
-  border-left-color: var(--vscode-charts-yellow);
-}
-
-.alert-header {
-  display: flex;
-  justify-content: space-between;
-  font-weight: bold;
-  margin-bottom: 4px;
-}
-
-.alert-state {
-  font-size: 0.8em;
-  opacity: 0.8;
-}
-
-.alert-details {
-  font-size: 0.9em;
-  opacity: 0.9;
+  border: none;
+  padding: 0;
 }
