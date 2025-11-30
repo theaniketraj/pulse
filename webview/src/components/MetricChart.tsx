@@ -11,9 +11,29 @@ interface MetricChartProps {
 const MetricChart: React.FC<MetricChartProps> = ({ metrics, loading, error }) => {
   const ref = React.useRef<HTMLDivElement>(null);
   const containerRef = React.useRef<HTMLDivElement>(null);
+  const [width, setWidth] = React.useState<number>(0);
+
+  // Handle resize
+  React.useEffect(() => {
+    if (!containerRef.current) return;
+
+    const resizeObserver = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.contentRect.width > 0) {
+          setWidth(entry.contentRect.width);
+        }
+      }
+    });
+
+    resizeObserver.observe(containerRef.current);
+
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, []);
 
   React.useEffect(() => {
-    if (loading || error || !metrics?.data?.result) {
+    if (loading || error || !metrics?.data?.result || width === 0) {
       if (ref.current) ref.current.innerHTML = ''; // Clear chart
       return;
     }
@@ -34,9 +54,6 @@ const MetricChart: React.FC<MetricChartProps> = ({ metrics, loading, error }) =>
 
       // Clear previous chart
       ref.current.innerHTML = '';
-
-      // Get container width for responsiveness
-      const width = containerRef.current?.clientWidth || 600;
 
       plot = Plot.plot({
         marks: [
@@ -117,7 +134,7 @@ const MetricChart: React.FC<MetricChartProps> = ({ metrics, loading, error }) =>
         ref.current.removeChild(plot);
       }
     };
-  }, [metrics, loading, error]);
+  }, [metrics, loading, error, width]);
 
   return (
     <div ref={containerRef} className="metric-chart-container" style={{ width: '100%', height: '100%' }}>
