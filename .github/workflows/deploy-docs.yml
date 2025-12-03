@@ -42,10 +42,15 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
+      - name: Create directory structure
+        run: |
+          mkdir -p _pages/pulse
+          cp -r docs/.vitepress/dist/* _pages/pulse/
+          
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: docs/.vitepress/dist
+          path: _pages
 
   deploy:
     environment:
