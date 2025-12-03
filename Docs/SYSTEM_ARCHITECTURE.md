@@ -1,3 +1,49 @@
+# Architecture
+
+## Overview
+
+Pulse Dashboard is a VS Code extension that provides real-time monitoring of application metrics and logs from Prometheus, integrated directly into the editor.
+
+```mermaid
+flowchart TD
+    subgraph "VS Code Extension Host (Node.js)"
+        Ext[extension.ts] -->|Activates| PV[pulseView.ts]
+        PV -->|Uses| API[api.ts]
+        PV -->|Manages| Panel[WebviewPanel]
+
+        subgraph "Data Layer"
+            API -->|HTTP GET| Prom[Prometheus Server]
+            AP[alertProcessor.ts] -->|Process| API
+        end
+    end
+
+    subgraph "Webview (React/Browser)"
+        Panel ---|IPC Messages| App[App.tsx]
+        App -->|Renders| Dash[Dashboard.tsx]
+
+        subgraph "Components"
+            Dash --> Chart[MetricChart.tsx]
+            Dash --> Logs[LogViewer.tsx]
+            Dash --> Alerts[AlertPanel.tsx]
+        end
+
+        subgraph "Hooks"
+            Chart -->|usePulseData| Hook1[usePulseData.ts]
+            Logs -->|usePulseData| Hook1
+            Alerts -->|useAlerts| Hook2[useAlerts.ts]
+        end
+    end
+
+    Hook1 -.->|postMessage| PV
+    Hook2 -.->|postMessage| PV
+    PV -.->|updateMetrics/Logs| Hook1
+    PV -.->|updateAlerts| Hook2
+```
+
+## Architecture Layers
+
+### 1. Extension Layer (`src/extension.ts`)
+
 - Entry point for VS Code extension
 - Registers `pulse.openDashboard` command
 - Manages extension lifecycle (activate/deactivate)

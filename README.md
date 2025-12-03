@@ -62,7 +62,7 @@ Pulse Dashboard is built with a modular architecture separating the VS Code exte
 - **Webview**: Renders the UI using React, Recharts/Observable Plot, and custom hooks.
 - **Data Flow**: The extension polls Prometheus and sends data to the webview via IPC.
 
-For a deep dive, check out [ARCHITECTURE.md](docs/ARCHITECTURE.md).
+For a deep dive, check out [SYSTEM_ARCHITECTURE.md](./docs/SYSTEM_ARCHITECTURE.md).
 
 ## Development
 
@@ -89,11 +89,11 @@ We welcome contributions! To get started with local development:
 4. **Launch Extension**:
    Press `F5` in VS Code to open the Extension Development Host.
 
-See [DEVELOPMENT.md](docs/DEVELOPMENT.md) for detailed instructions.
+See [DEVELOPMENT.md](./docs/DEVELOPMENT.md) for detailed instructions.
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
+Please read [CONTRIBUTING.md](./docs/CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
 
 ## Security
 
