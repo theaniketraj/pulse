@@ -39,10 +39,14 @@ jobs:
       - name: Build documentation
         run: npm run docs:build
 
-      - name: Prepare files for GitHub Pages
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Prepare deployment directory
         run: |
           mkdir -p _site/pulse
           cp -r docs/.vitepress/dist/* _site/pulse/
+          touch _site/.nojekyll
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
