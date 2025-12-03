@@ -32,13 +32,19 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Fix case sensitivity for index.md
+      - name: Fix case sensitivity for markdown files
         run: |
           cd Docs
-          if [ -f "INDEX.md" ]; then
-            cp INDEX.md index.md
-            echo "Created lowercase index.md from INDEX.md"
-          fi
+          # Rename all uppercase .md files to lowercase
+          for file in *.md; do
+            if [ -f "$file" ]; then
+              lowercase=$(echo "$file" | tr '[:upper:]' '[:lower:]')
+              if [ "$file" != "$lowercase" ]; then
+                mv "$file" "$lowercase"
+                echo "Renamed $file to $lowercase"
+              fi
+            fi
+          done
           cd ..
 
       - name: Build documentation
