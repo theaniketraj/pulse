@@ -8,7 +8,7 @@
 ✅ Enhanced debugging added  
 ✅ Mock Prometheus server running
 
-## 🧪 Testing Steps
+## Testing Steps
 
 ### 1. Open Extension Development Window
 
@@ -23,7 +23,7 @@ code --extensionDevelopmentPath=. --new-window
 - **Open Developer Console**: `Help` → `Toggle Developer Tools` → `Console`
 - **Look for logs**:
 
-  ```pgsql
+  ```bash
   🚀 Pulse Dashboard extension activated
   ✅ Command "pulse.openDashboard" registered successfully
   ```
@@ -64,7 +64,7 @@ If the command palette doesn't show the command, try:
 2. Type: `>pulse.openDashboard`
 3. Press Enter
 
-## 🐛 Common Issues & Solutions
+## Common Issues & Solutions
 
 ### Issue: Extension Not Activating
 
@@ -93,11 +93,11 @@ If the command palette doesn't show the command, try:
 - Verify React components compile correctly
 - Check browser console for JavaScript errors
 
-## 🔍 Debug Information to Collect
+## Debug Information to Collect
 
 ### Extension Host Console
 
-```pgsql
+```bash
 🚀 Pulse Dashboard extension activated
 ✅ Command "pulse.openDashboard" registered successfully
 📊 Opening Pulse Dashboard... (when command executed)
@@ -115,7 +115,7 @@ If the command palette doesn't show the command, try:
 - Select `Inspect Element`
 - Check Console tab for React/JavaScript errors
 
-## 🎯 Expected Results
+## Expected Results
 
 1. **On VS Code startup**: Popup "Pulse Dashboard extension is now active!"
 2. **In Command Palette**: "Open Pulse Dashboard" command visible
@@ -123,7 +123,7 @@ If the command palette doesn't show the command, try:
 4. **Dashboard content**: Shows "Pulse Dashboard" header
 5. **Network activity**: Requests to localhost:9090 for metrics
 
-## 🆘 If All Else Fails
+## If All Else Fails
 
 Try this minimal test:
 
@@ -133,7 +133,7 @@ Try this minimal test:
 4. Package the extension: `vsce package`
 5. Install the generated .vsix file
 
-## 📞 Next Steps
+## Next Steps
 
 If the command still doesn't appear after following these steps, please share:
 

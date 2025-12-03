@@ -108,7 +108,7 @@ case 'fetchNewData':
 2. Add webview message sender in React hook:
 
 ```typescript
-vscode.postMessage({ command: 'fetchNewData', query: 'your_query' });
+vscode.postMessage({ command: "fetchNewData", query: "your_query" });
 ```
 
 3. Handle response in component
@@ -133,11 +133,11 @@ Tests located in `src/test/`:
 
 ```typescript
 // api.test.ts
-describe('PrometheusApi', () => {
-  it('should fetch alerts', async () => {
-    const api = new PrometheusApi('http://localhost:9090');
+describe("PrometheusApi", () => {
+  it("should fetch alerts", async () => {
+    const api = new PrometheusApi("http://localhost:9090");
     const alerts = await api.getAlerts();
-    expect(alerts.status).toBe('success');
+    expect(alerts.status).toBe("success");
   });
 });
 ```
@@ -166,8 +166,8 @@ Both use TypeScript loader and handle CSS/SCSS.
 Use `console.log()` for extension debugging:
 
 ```typescript
-console.log('🚀 Pulse Dashboard extension activated');
-console.error('Error message', error);
+console.log("🚀 Pulse Dashboard extension activated");
+console.error("Error message", error);
 ```
 
 View logs in:
@@ -245,4 +245,4 @@ Check:
 - **Webpack**: Industry standard bundler
 - **TypeScript**: Type safety and better DX
 
-See [ARCHITECTURE.md](ARCHITECTURE.md) for details.
+See [SYSTEM_ARCHITECTURE.md](SYSTEM_ARCHITECTURE.md) for details.

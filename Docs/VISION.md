@@ -4,7 +4,7 @@
 
 By bringing observability directly into the editor, Pulse solves the friction of context switching and makes performance data an active part of the development lifecycle.
 
-## 🚀 The Vision
+## The Vision
 
 ### 1. The "Single Pane of Glass" for Developers
 
@@ -47,6 +47,6 @@ While there are heavy-duty extensions for specific cloud providers (AWS, Azure) 
 
 ---
 
-## 🌟 Conclusion
+## Conclusion
 
 Completing and releasing Pulse isn't just about shipping code; it's about providing a tool that **respects the developer's time and focus**. It empowers the community to build better, faster software by making observability accessible and immediate.

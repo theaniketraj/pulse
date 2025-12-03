@@ -8,7 +8,7 @@
 
 <!-- ![Pulse Dashboard Demo](https://raw.githubusercontent.com/theaniketraj/pulse/main/docs/images/demo.gif) -->
 
-## 🚀 Key Features
+## Key Features
 
 - **Real-Time Metrics**: Visualize critical system and application metrics (CPU, Memory, Request Latency) with dynamic, auto-updating charts.
 - **Live Log Stream**: View application logs in a terminal-like interface with syntax highlighting and filtering.
@@ -16,7 +16,7 @@
 - **Seamless Integration**: Works out-of-the-box with any Prometheus-compatible data source.
 - **Modern UI**: A premium, responsive design that adapts to your VS Code theme and layout.
 
-## 📦 Installation
+## Installation
 
 ### From VS Code Marketplace
 
@@ -34,7 +34,7 @@ npm install
 npm run build
 ```
 
-## ⚙️ Configuration
+## Configuration
 
 Pulse Dashboard connects to a Prometheus server to fetch data. By default, it looks for a local instance.
 
@@ -48,13 +48,13 @@ Pulse Dashboard connects to a Prometheus server to fetch data. By default, it lo
    }
    ```
 
-## 🎮 Usage
+## Usage
 
 1. Open the **Command Palette** (`Ctrl+Shift+P`).
 2. Run the command: `Open Pulse Dashboard`.
 3. The dashboard will open in a new panel, displaying your configured metrics and logs.
 
-## 🏗️ Architecture
+## Architecture
 
 Pulse Dashboard is built with a modular architecture separating the VS Code extension host from the React-based webview.
 
@@ -64,7 +64,7 @@ Pulse Dashboard is built with a modular architecture separating the VS Code exte
 
 For a deep dive, check out [ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
-## 🛠️ Development
+## Development
 
 We welcome contributions! To get started with local development:
 
@@ -91,18 +91,18 @@ We welcome contributions! To get started with local development:
 
 See [DEVELOPMENT.md](docs/DEVELOPMENT.md) for detailed instructions.
 
-## 🤝 Contributing
+## Contributing
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
 
-## 🔒 Security
+## Security
 
 For security concerns, please refer to [SECURITY.md](SECURITY.md).
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-_Built with ❤️ by [Aniket Raj](https://github.com/theaniketraj)_
+_Built with ❤️ by [Aniket Raj](https://theaniketraj.netlify.app)_

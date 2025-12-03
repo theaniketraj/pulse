@@ -59,6 +59,7 @@ Dashboard loads metrics and alerts from Prometheus automatically.
 ### View Metrics
 
 1. Dashboard displays KPIs automatically:
+
    - Request Rate
    - Error Rate
    - Average Latency
@@ -107,7 +108,7 @@ Check `processAlerts()` in `src/data/alertProcessor.ts` for threshold rules.
 
 ### Prometheus Uptime
 
-```promql
+```bash
 up{job="prometheus"}
 ```
 
@@ -127,7 +128,7 @@ http_request_duration_seconds
 
 ## Next Steps
 
-- Read [ARCHITECTURE.md](ARCHITECTURE.md) for technical details
+- Read [SYSTEM_ARCHITECTURE.md](SYSTEM_ARCHITECTURE.md) for technical details
 - See [DEVELOPMENT.md](DEVELOPMENT.md) to contribute
 - Check [API.md](API.md) for extension API reference
 - Browse [COMPONENTS.md](COMPONENTS.md) for UI component docs
