@@ -1,5 +1,18 @@
 /* Mobile Responsive Improvements for Pulse Docs */
 
+/* Force footer to display on all pages */
+.VPFooter {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.VPDoc .VPFooter {
+  margin-top: 64px;
+  padding-top: 32px;
+  border-top: 1px solid var(--vp-c-divider);
+}
+
 /* Compact navbar - reduce font size by 10% to fit content without scrollbar */
 .VPNav {
   font-size: 0.9em;
