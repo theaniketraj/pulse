@@ -60,18 +60,22 @@ jobs:
           echo "=== Fixing links ==="
           for file in *.md; do
             if [ -f "$file" ]; then
-              # Replace uppercase .md references with lowercase (without .md extension for VitePress)
-              perl -i -pe 's|\.\/SYSTEM_ARCHITECTURE|./system_architecture|g' "$file"
-              perl -i -pe 's|\.\/DEVELOPMENT|./development|g' "$file"
-              perl -i -pe 's|\.\/API|./api|g' "$file"
-              perl -i -pe 's|\.\/COMPONENTS|./components|g' "$file"
-              perl -i -pe 's|\.\/GETTING_STARTED|./getting_started|g' "$file"
-              perl -i -pe 's|\.\/QUICKSTART|./quickstart|g' "$file"
-              perl -i -pe 's|\.\/INTRODUCTION|./introduction|g' "$file"
-              perl -i -pe 's|\.\/CONTRIBUTING|./contributing|g' "$file"
-              perl -i -pe 's|\.\/TESTING|./testing|g' "$file"
-              perl -i -pe 's|\.\/TROUBLESHOOTING|./troubleshooting|g' "$file"
-              perl -i -pe 's|\.\/VISION|./vision|g' "$file"
+              # Replace uppercase .md references with lowercase
+              # Format: [TEXT](SYSTEM_ARCHITECTURE.md) -> [TEXT](system_architecture.md)
+              perl -i -pe 's/SYSTEM_ARCHITECTURE\.md/system_architecture.md/g' "$file"
+              perl -i -pe 's/DEVELOPMENT\.md/development.md/g' "$file"
+              perl -i -pe 's/API\.md/api.md/g' "$file"
+              perl -i -pe 's/COMPONENTS\.md/components.md/g' "$file"
+              perl -i -pe 's/GETTING_STARTED\.md/getting_started.md/g' "$file"
+              perl -i -pe 's/QUICKSTART\.md/quickstart.md/g' "$file"
+              perl -i -pe 's/INTRODUCTION\.md/introduction.md/g' "$file"
+              perl -i -pe 's/CONTRIBUTING\.md/contributing.md/g' "$file"
+              perl -i -pe 's/TESTING\.md/testing.md/g' "$file"
+              perl -i -pe 's/TROUBLESHOOTING\.md/troubleshooting.md/g' "$file"
+              perl -i -pe 's/VISION\.md/vision.md/g' "$file"
+              perl -i -pe 's/PROJECT_STRUCTURE\.md/project_structure.md/g' "$file"
+              perl -i -pe 's/CODE_OF_CONDUCT\.md/code_of_conduct.md/g' "$file"
+              perl -i -pe 's/SECURITY\.md/security.md/g' "$file"
               echo "Fixed links in $file"
             fi
           done
