@@ -1,3 +1,12 @@
+---
+title: Pulse Troubleshooting Guide
+description: Common issues and solutions for Pulse VS Code extension - debugging, connection problems, and error fixes.
+head:
+  - - meta
+    - name: keywords
+      content: troubleshooting, debugging, error fixes, common issues, problem solving, support
+---
+
 # 🔧 Pulse Extension Troubleshooting Guide
 
 ## Current Status

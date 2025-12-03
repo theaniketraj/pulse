@@ -1,3 +1,12 @@
+---
+title: Pulse UI Components
+description: Documentation for Pulse UI components - MetricChart, AlertPanel, LogViewer, and Dashboard architecture.
+head:
+  - - meta
+    - name: keywords
+      content: UI components, React components, MetricChart, AlertPanel, LogViewer, component documentation
+---
+
 # Components Reference
 
 ## Overview

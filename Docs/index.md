@@ -1,5 +1,19 @@
 ---
 layout: home
+title: Pulse - Real-time Observability for VS Code
+titleTemplate: false
+description: Monitor application metrics, logs, and alerts directly in Visual Studio Code. Integrated with Prometheus for seamless developer experience.
+
+head:
+  - - meta
+    - name: keywords
+      content: VS Code extension, Prometheus monitoring, real-time metrics, developer observability, application monitoring, logs viewer, alerts dashboard
+  - - meta
+    - property: og:title
+      content: Pulse - Real-time Observability for VS Code
+  - - meta
+    - property: og:description
+      content: Monitor application metrics, logs, and alerts directly in Visual Studio Code. Integrated with Prometheus for seamless developer experience.
 
 hero:
   name: "Pulse"

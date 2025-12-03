@@ -1,3 +1,12 @@
+---
+title: Pulse Quickstart Guide
+description: Quick start guide to get Pulse running in minutes - installation, setup, and first monitoring session.
+head:
+  - - meta
+    - name: keywords
+      content: quickstart, quick setup, fast installation, Pulse tutorial, monitoring guide
+---
+
 # Quick Start Guide
 
 ## Installation

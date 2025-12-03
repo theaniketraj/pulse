@@ -1,3 +1,12 @@
+---
+title: Pulse Development Guide
+description: Developer guide for contributing to Pulse - setup instructions, development workflow, testing, and debugging.
+head:
+  - - meta
+    - name: keywords
+      content: development guide, contributing, VS Code extension development, webpack, React development, debugging
+---
+
 # Development Guide
 
 ## Prerequisites

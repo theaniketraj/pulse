@@ -1,3 +1,12 @@
+---
+title: Pulse API Reference
+description: Complete API documentation for Pulse VS Code extension - commands, configuration options, and programmatic usage.
+head:
+  - - meta
+    - name: keywords
+      content: API reference, extension API, VS Code commands, configuration API, developer documentation
+---
+
 # API Reference
 
 ## Extension Commands

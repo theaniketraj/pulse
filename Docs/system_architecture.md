@@ -1,3 +1,12 @@
+---
+title: Pulse System Architecture
+description: Technical architecture of Pulse VS Code extension - webview components, Prometheus integration, data flow, and system design.
+head:
+  - - meta
+    - name: keywords
+      content: system architecture, technical design, VS Code webview, Prometheus API, React components, extension architecture
+---
+
 # Architecture
 
 ## Overview

@@ -1,3 +1,12 @@
+---
+title: What is Pulse?
+description: Learn about Pulse, a VS Code extension that brings real-time observability, metrics, logs, and alerts directly to your development environment.
+head:
+  - - meta
+    - name: keywords
+      content: Pulse introduction, VS Code observability, developer monitoring tools, application insights, Prometheus integration
+---
+
 # What is Pulse?
 
 **Pulse** is a developer-first observability tool designed to bring real-time application insights directly into your Visual Studio Code environment.

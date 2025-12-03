@@ -9,8 +9,24 @@ export default defineConfig({
   lastUpdated: true,
 
   head: [
-    ["link", { rel: "icon", href: "/icon.png" }],
+    ["link", { rel: "icon", href: "/pulse/icon.png" }],
     ["meta", { name: "theme-color", content: "#3b82f6" }],
+    ["meta", { name: "author", content: "Aniket Raj" }],
+    ["meta", { name: "keywords", content: "VS Code extension, Prometheus, observability, monitoring, metrics, logs, alerts, developer tools, real-time monitoring, application monitoring" }],
+    ["meta", { property: "og:type", content: "website" }],
+    ["meta", { property: "og:title", content: "Pulse - Real-time Observability for VS Code" }],
+    ["meta", { property: "og:description", content: "Monitor application metrics, logs, and alerts directly in Visual Studio Code. Integrated with Prometheus for seamless developer experience." }],
+    ["meta", { property: "og:url", content: "https://theaniketraj.github.io/pulse/" }],
+    ["meta", { property: "og:image", content: "https://theaniketraj.github.io/pulse/icon.png" }],
+    ["meta", { property: "og:site_name", content: "Pulse" }],
+    ["meta", { name: "twitter:card", content: "summary_large_image" }],
+    ["meta", { name: "twitter:title", content: "Pulse - Real-time Observability for VS Code" }],
+    ["meta", { name: "twitter:description", content: "Monitor application metrics, logs, and alerts directly in Visual Studio Code. Integrated with Prometheus for seamless developer experience." }],
+    ["meta", { name: "twitter:image", content: "https://theaniketraj.github.io/pulse/icon.png" }],
+    ["meta", { name: "twitter:creator", content: "@theaniketraj" }],
+    ["link", { rel: "canonical", href: "https://theaniketraj.github.io/pulse/" }],
+    ["meta", { name: "robots", content: "index, follow" }],
+    ["meta", { name: "googlebot", content: "index, follow" }],
   ],
 
   themeConfig: {
