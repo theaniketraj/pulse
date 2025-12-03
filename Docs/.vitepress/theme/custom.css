@@ -9,32 +9,42 @@
   filter: brightness(1.2);
 }
 
-/* Hero logo glow effect */
+/* Hero logo glow effect with smooth transitions */
+.VPHero .image-container,
+.VPHero .VPImage {
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  will-change: transform;
+}
+
 .VPHero .image-container img,
 .VPHero .VPImage {
-  transition: all 0.3s ease;
-  filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.3));
+  transition: filter 0.6s ease;
+  filter: drop-shadow(0 0 35px rgba(59, 130, 246, 0.4)) 
+          drop-shadow(0 0 70px rgba(59, 130, 246, 0.2));
 }
 
-/* Light theme glow */
-.VPHero .image-container img:hover,
-.VPHero .VPImage:hover {
-  filter: drop-shadow(0 0 30px rgba(59, 130, 246, 0.5)) drop-shadow(0 0 60px rgba(59, 130, 246, 0.3));
-  transform: scale(1.02);
+/* Light theme hover glow */
+.VPHero .image-container:hover img,
+.VPHero .image-container:hover .VPImage {
+  filter: drop-shadow(0 0 50px rgba(59, 130, 246, 0.6)) 
+          drop-shadow(0 0 100px rgba(59, 130, 246, 0.4))
+          drop-shadow(0 0 150px rgba(59, 130, 246, 0.2));
 }
 
-/* Dark theme glow - more intense */
+/* Dark theme glow - more intense and larger */
 .dark .VPHero .image-container img,
 .dark .VPHero .VPImage {
-  filter: drop-shadow(0 0 25px rgba(96, 165, 250, 0.4)) drop-shadow(0 0 50px rgba(59, 130, 246, 0.2));
+  filter: drop-shadow(0 0 45px rgba(96, 165, 250, 0.5)) 
+          drop-shadow(0 0 90px rgba(59, 130, 246, 0.3))
+          drop-shadow(0 0 135px rgba(37, 99, 235, 0.15));
 }
 
-.dark .VPHero .image-container img:hover,
-.dark .VPHero .VPImage:hover {
-  filter: drop-shadow(0 0 40px rgba(96, 165, 250, 0.6)) 
-          drop-shadow(0 0 80px rgba(59, 130, 246, 0.4))
-          drop-shadow(0 0 120px rgba(37, 99, 235, 0.2));
-  transform: scale(1.02);
+.dark .VPHero .image-container:hover img,
+.dark .VPHero .image-container:hover .VPImage {
+  filter: drop-shadow(0 0 60px rgba(96, 165, 250, 0.7)) 
+          drop-shadow(0 0 120px rgba(59, 130, 246, 0.5))
+          drop-shadow(0 0 180px rgba(37, 99, 235, 0.3))
+          drop-shadow(0 0 240px rgba(29, 78, 216, 0.15));
 }
 
 /* Improve readability on mobile devices */
