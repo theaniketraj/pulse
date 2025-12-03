@@ -50,17 +50,17 @@ jobs:
           for file in *.md; do
             if [ -f "$file" ]; then
               # Replace uppercase .md references with lowercase (without .md extension for VitePress)
-              sed -i 's|\.\/SYSTEM_ARCHITECTURE|./system_architecture|g' "$file"
-              sed -i 's|\.\/DEVELOPMENT|./development|g' "$file"
-              sed -i 's|\.\/API|./api|g' "$file"
-              sed -i 's|\.\/COMPONENTS|./components|g' "$file"
-              sed -i 's|\.\/GETTING_STARTED|./getting_started|g' "$file"
-              sed -i 's|\.\/QUICKSTART|./quickstart|g' "$file"
-              sed -i 's|\.\/INTRODUCTION|./introduction|g' "$file"
-              sed -i 's|\.\/CONTRIBUTING|./contributing|g' "$file"
-              sed -i 's|\.\/TESTING|./testing|g' "$file"
-              sed -i 's|\.\/TROUBLESHOOTING|./troubleshooting|g' "$file"
-              sed -i 's|\.\/VISION|./vision|g' "$file"
+              perl -i -pe 's|\.\/SYSTEM_ARCHITECTURE|./system_architecture|g' "$file"
+              perl -i -pe 's|\.\/DEVELOPMENT|./development|g' "$file"
+              perl -i -pe 's|\.\/API|./api|g' "$file"
+              perl -i -pe 's|\.\/COMPONENTS|./components|g' "$file"
+              perl -i -pe 's|\.\/GETTING_STARTED|./getting_started|g' "$file"
+              perl -i -pe 's|\.\/QUICKSTART|./quickstart|g' "$file"
+              perl -i -pe 's|\.\/INTRODUCTION|./introduction|g' "$file"
+              perl -i -pe 's|\.\/CONTRIBUTING|./contributing|g' "$file"
+              perl -i -pe 's|\.\/TESTING|./testing|g' "$file"
+              perl -i -pe 's|\.\/TROUBLESHOOTING|./troubleshooting|g' "$file"
+              perl -i -pe 's|\.\/VISION|./vision|g' "$file"
               echo "Fixed links in $file"
             fi
           done
