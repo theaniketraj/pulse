@@ -77,7 +77,7 @@ export default defineConfig({
 
     footer: {
       message: 'Released under the MIT License.',
-      copyright: 'Copyright © 2025 Aniket Raj'
+      copyright: 'Copyright © 2025 <a href="https://theaniketraj.netlify.app" target="_blank">Aniket Raj</a>'
     },
 
     search: {

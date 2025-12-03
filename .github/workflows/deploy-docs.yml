@@ -33,7 +33,7 @@ jobs:
         run: npm ci
 
       - name: Build documentation
-        run: npm run docs:build
+        run: npx vitepress build Docs
 
       - name: Debug - Show build output structure
         run: |
