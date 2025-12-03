@@ -4,4 +4,5 @@ webview/build/
 .vscode
 webview/node_modules/
 tmp/
+_site/
 # Logs
