@@ -13,9 +13,15 @@ export function usePulseData(vscode: any) {
         setLoading(true);
         setError(null);
 
-        // Request metrics and logs from the extension
+        // Initial fetch
         vscode.postMessage({ command: 'fetchMetrics', query: 'up' });
         vscode.postMessage({ command: 'fetchLogs' });
+
+        // Auto-refresh every 5 seconds
+        const interval = setInterval(() => {
+            vscode.postMessage({ command: 'fetchMetrics', query: 'up' });
+            vscode.postMessage({ command: 'fetchLogs' });
+        }, 5000);
 
         // Handle messages from the extension
         const handleMessage = (event: MessageEvent) => {
@@ -32,7 +38,10 @@ export function usePulseData(vscode: any) {
         };
 
         window.addEventListener('message', handleMessage);
-        return () => window.removeEventListener('message', handleMessage);
+        return () => {
+            window.removeEventListener('message', handleMessage);
+            clearInterval(interval);
+        };
     }, [vscode]);
 
     return { metrics, logs, loading, error };

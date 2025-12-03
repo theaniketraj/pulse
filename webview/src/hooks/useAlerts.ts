@@ -10,7 +10,14 @@ export function useAlerts(vscode: any) {
         if (!vscode) return;
 
         setLoading(true);
+
+        // Initial fetch
         vscode.postMessage({ command: 'fetchAlerts' });
+
+        // Auto-refresh every 5 seconds
+        const interval = setInterval(() => {
+            vscode.postMessage({ command: 'fetchAlerts' });
+        }, 5000);
 
         // Handle alert messages from the extension
         const handleMessage = (event: MessageEvent) => {
@@ -32,7 +39,10 @@ export function useAlerts(vscode: any) {
         };
 
         window.addEventListener('message', handleMessage);
-        return () => window.removeEventListener('message', handleMessage);
+        return () => {
+            window.removeEventListener('message', handleMessage);
+            clearInterval(interval);
+        };
     }, [vscode]);
 
     return { alerts, loading, error };
