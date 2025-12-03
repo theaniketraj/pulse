@@ -1,4 +1,4 @@
-// Test script for core Pulse Dashboard functionality
+// Test script for core Pulse functionality
 // Run this with: node test-functionality.js
 
 const axios = require('axios');
@@ -62,7 +62,7 @@ async function testAlertThresholds() {
 }
 
 async function runTests() {
-  console.log('🧪 Starting Pulse Dashboard functionality tests...\n');
+  console.log('🧪 Starting Pulse functionality tests...\n');
   
   await testPrometheusConnection();
   await testMetricQueries();
@@ -71,7 +71,7 @@ async function runTests() {
   console.log('\n✨ Tests completed!');
   console.log('\n📝 Next steps:');
   console.log('1. Open VS Code with: code --extensionDevelopmentPath=.');
-  console.log('2. Press Ctrl+Shift+P and run "Open Pulse Dashboard"');
+  console.log('2. Press Ctrl+Shift+P and run "Open Pulse"');
   console.log('3. Check the developer console for any errors');
   console.log('4. Verify the dashboard loads and displays data');
 }

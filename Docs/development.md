@@ -71,7 +71,7 @@ pulse/
 1. Open project in VS Code
 2. Press `F5` to launch Extension Development Host
 3. Extension loads in new window
-4. Open Command Palette (Ctrl+Shift+P) and run "Open Pulse Dashboard"
+4. Open Command Palette (Ctrl+Shift+P) and run "Open Pulse"
 
 ### Hot Reload
 
@@ -166,7 +166,7 @@ Both use TypeScript loader and handle CSS/SCSS.
 Use `console.log()` for extension debugging:
 
 ```typescript
-console.log("🚀 Pulse Dashboard extension activated");
+console.log("🚀 Pulse extension activated");
 console.error("Error message", error);
 ```
 

@@ -15,7 +15,7 @@ npm run build
 
 1. Open VS Code
 2. Press `Ctrl+Shift+X` (Extensions)
-3. Search for "Pulse Dashboard"
+3. Search for "Pulse"
 4. Click Install
 
 Or install from GitHub releases (VSIX file)
@@ -41,7 +41,7 @@ Search for `pulse.prometheusUrl`:
 ### 1. Open Dashboard
 
 - **Command Palette** (`Ctrl+Shift+P`)
-- Type: `Open Pulse Dashboard`
+- Type: `Open Pulse`
 - Press Enter
 
 ### 2. Wait for Data

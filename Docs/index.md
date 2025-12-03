@@ -2,7 +2,7 @@
 layout: home
 
 hero:
-  name: "Pulse Dashboard"
+  name: "Pulse"
   text: "Real-time Observability for VS Code"
   tagline: Monitor metrics, logs, and alerts without leaving your editor.
   image:

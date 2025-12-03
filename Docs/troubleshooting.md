@@ -1,4 +1,4 @@
-# 🔧 Pulse Dashboard Extension Troubleshooting Guide
+# 🔧 Pulse Extension Troubleshooting Guide
 
 ## Current Status
 
@@ -19,19 +19,19 @@ code --extensionDevelopmentPath=. --new-window
 
 ### 2. Check Extension Activation
 
-- **Look for popup message**: "Pulse Dashboard extension is now active!"
+- **Look for popup message**: "Pulse extension is now active!"
 - **Open Developer Console**: `Help` → `Toggle Developer Tools` → `Console`
 - **Look for logs**:
 
   ```bash
-  🚀 Pulse Dashboard extension activated
+  🚀 Pulse extension activated
   ✅ Command "pulse.openDashboard" registered successfully
   ```
 
 ### 3. Test Command Palette
 
 - Press `Ctrl+Shift+P` (Windows) or `Cmd+Shift+P` (Mac)
-- Type: `Open Pulse Dashboard`
+- Type: `Open Pulse`
 - **Expected**: Command should appear in the list
 
 ### 4. If Command Still Missing
@@ -53,7 +53,7 @@ code --extensionDevelopmentPath=. --new-window
 #### Option C: Check Extension List
 
 1. Go to Extensions panel (`Ctrl+Shift+X`)
-2. Search for "Pulse Dashboard"
+2. Search for "Pulse"
 3. Verify it shows as "Development Extension"
 
 ### 5. Manual Command Execution
@@ -98,16 +98,16 @@ If the command palette doesn't show the command, try:
 ### Extension Host Console
 
 ```bash
-🚀 Pulse Dashboard extension activated
+🚀 Pulse extension activated
 ✅ Command "pulse.openDashboard" registered successfully
-📊 Opening Pulse Dashboard... (when command executed)
+📊 Opening Pulse... (when command executed)
 ```
 
 ### VS Code Output Panel
 
 - Go to `View` → `Output`
 - Select `Log (Extension Host)` from dropdown
-- Look for Pulse Dashboard related logs
+- Look for Pulse related logs
 
 ### Browser Console (for webview)
 
@@ -117,10 +117,10 @@ If the command palette doesn't show the command, try:
 
 ## Expected Results
 
-1. **On VS Code startup**: Popup "Pulse Dashboard extension is now active!"
-2. **In Command Palette**: "Open Pulse Dashboard" command visible
+1. **On VS Code startup**: Popup "Pulse extension is now active!"
+2. **In Command Palette**: "Open Pulse" command visible
 3. **When executed**: Dashboard panel opens beside editor
-4. **Dashboard content**: Shows "Pulse Dashboard" header
+4. **Dashboard content**: Shows "Pulse" header
 5. **Network activity**: Requests to localhost:9090 for metrics
 
 ## If All Else Fails

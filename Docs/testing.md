@@ -1,6 +1,6 @@
-# Testing Pulse Dashboard Locally
+# Testing Pulse Locally
 
-This guide will help you test the Pulse Dashboard extension with a real, local Prometheus instance.
+This guide will help you test the Pulse extension with a real, local Prometheus instance.
 
 ## Prerequisites
 
@@ -68,7 +68,7 @@ In the new **Extension Development Host** window:
 ## Step 4: Open the Dashboard
 
 1. Open the Command Palette (`Ctrl+Shift+P` or `Cmd+Shift+P`).
-2. Run the command: `Pulse Dashboard: Open Pulse Dashboard`.
+2. Run the command: `Pulse: Open Pulse`.
 3. The dashboard should open in a new panel.
 
 ## Step 5: Verification

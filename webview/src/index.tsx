@@ -10,7 +10,7 @@ if (rootElement) {
   root.render(<App vscode={vscode} />);
 }
 
-console.log('Rendering Pulse Dashboard');
+console.log('Rendering Pulse');
 function acquireVsCodeApi(): any {
   // @ts-ignore
   return window.acquireVsCodeApi();

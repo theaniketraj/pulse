@@ -2,7 +2,7 @@
 
 ## Overview
 
-Pulse Dashboard UI is built with React components organized by functionality.
+Pulse UI is built with React components organized by functionality.
 
 ## Component Tree
 
@@ -56,7 +56,7 @@ Main layout component that orchestrates the dashboard UI.
 
 ```bash
 ┌─────────────────────────────────────┐
-│ Pulse Dashboard    [●Live]          │
+│ Pulse    [●Live]          │
 ├─────────────────────────────────────┤
 │ [KPI] [KPI] [KPI] [KPI]             │
 ├──────────────────┬──────────────────┤

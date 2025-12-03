@@ -4,12 +4,12 @@
 
 ### `pulse.openDashboard`
 
-Opens the Pulse Dashboard in a new webview panel.
+Opens the Pulse in a new webview panel.
 
 **Usage:**
 
 ```bash
-Command Palette → "Open Pulse Dashboard"
+Command Palette → "Open Pulse"
 ```
 
 or programmatically:

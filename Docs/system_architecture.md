@@ -2,7 +2,7 @@
 
 ## Overview
 
-Pulse Dashboard is a VS Code extension that provides real-time monitoring of application metrics and logs from Prometheus, integrated directly into the editor.
+Pulse is a VS Code extension that provides real-time monitoring of application metrics and logs from Prometheus, integrated directly into the editor.
 
 ```mermaid
 flowchart TD

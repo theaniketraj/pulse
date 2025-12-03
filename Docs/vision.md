@@ -1,6 +1,6 @@
 # Why Pulse?
 
-**Pulse Dashboard** is more than just a VS Code extension; it is a developer productivity tool designed to bridge the gap between **writing code** and **monitoring its behavior**.
+**Pulse** is more than just a VS Code extension; it is a developer productivity tool designed to bridge the gap between **writing code** and **monitoring its behavior**.
 
 By bringing observability directly into the editor, Pulse solves the friction of context switching and makes performance data an active part of the development lifecycle.
 

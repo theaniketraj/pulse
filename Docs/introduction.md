@@ -1,6 +1,6 @@
-# What is Pulse Dashboard?
+# What is Pulse?
 
-**Pulse Dashboard** is a developer-first observability tool designed to bring real-time application insights directly into your Visual Studio Code environment.
+**Pulse** is a developer-first observability tool designed to bring real-time application insights directly into your Visual Studio Code environment.
 
 ## The Problem
 
@@ -15,9 +15,9 @@ This friction breaks your flow and slows down the feedback loop.
 
 ## The Solution
 
-Pulse Dashboard integrates these essential observability signals right where you work. By connecting directly to your local or remote Prometheus instance, Pulse provides a unified view of your application's health without you ever leaving the editor.
+Pulse integrates these essential observability signals right where you work. By connecting directly to your local or remote Prometheus instance, Pulse provides a unified view of your application's health without you ever leaving the editor.
 
-![Pulse Dashboard Demo](/icon.png)
+![Pulse Demo](/icon.png)
 
 ## Key Capabilities
 

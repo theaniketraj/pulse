@@ -15,7 +15,7 @@ export default defineConfig({
 
   themeConfig: {
     logo: "/icon.png",
-    siteTitle: "Pulse Dashboard",
+    siteTitle: "Pulse",
 
     nav: [
       { text: "Guide", link: "/getting_started" },

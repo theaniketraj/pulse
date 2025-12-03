@@ -1,6 +1,6 @@
-# Getting Started with Pulse Dashboard
+# Getting Started with Pulse
 
-Welcome to Pulse Dashboard! This guide will take you from installation to monitoring your first application in minutes.
+Welcome to Pulse! This guide will take you from installation to monitoring your first application in minutes.
 
 ## Prerequisites
 
@@ -21,7 +21,7 @@ Before you begin, ensure you have:
 
 1. Open VS Code.
 2. Go to the **Extensions** view (`Ctrl+Shift+X`).
-3. Search for `Pulse Dashboard`.
+3. Search for `Pulse`.
 4. Click **Install**.
 
 ### Option B: Build from Source
@@ -60,7 +60,7 @@ By default, Pulse tries to connect to `http://localhost:9090`. If your Prometheu
 1. **Open the Dashboard**:
 
    - Press `Ctrl+Shift+P` to open the Command Palette.
-   - Type `Pulse: Open Pulse Dashboard` and press Enter.
+   - Type `Pulse: Open Pulse` and press Enter.
 
 2. **Explore the UI**:
 
@@ -79,9 +79,9 @@ By default, Pulse tries to connect to `http://localhost:9090`. If your Prometheu
 - **"Connection Refused"**: Ensure your Prometheus server is running and the URL in settings is correct.
 - **Empty Charts**: Check if your Prometheus instance is actually scraping data. You can verify this by visiting `http://localhost:9090/targets`.
 
-# Getting Started with Pulse Dashboard
+# Getting Started with Pulse
 
-Welcome to Pulse Dashboard! This guide will take you from installation to monitoring your first application in minutes.
+Welcome to Pulse! This guide will take you from installation to monitoring your first application in minutes.
 
 ## Prerequisites
 
@@ -102,7 +102,7 @@ Before you begin, ensure you have:
 
 1. Open VS Code.
 2. Go to the **Extensions** view (`Ctrl+Shift+X`).
-3. Search for `Pulse Dashboard`.
+3. Search for `Pulse`.
 4. Click **Install**.
 
 ### Option B: Build from Source
@@ -141,7 +141,7 @@ By default, Pulse tries to connect to `http://localhost:9090`. If your Prometheu
 1. **Open the Dashboard**:
 
    - Press `Ctrl+Shift+P` to open the Command Palette.
-   - Type `Pulse: Open Pulse Dashboard` and press Enter.
+   - Type `Pulse: Open Pulse` and press Enter.
 
 2. **Explore the UI**:
 

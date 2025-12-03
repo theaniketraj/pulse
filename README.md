@@ -1,12 +1,12 @@
-# Pulse Dashboard
+# Pulse
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Version](https://img.shields.io/visual-studio-marketplace/v/theaniketraj.pulse-dashboard)](https://marketplace.visualstudio.com/items?itemName=theaniketraj.pulse-dashboard)
-[![Installs](https://img.shields.io/visual-studio-marketplace/i/theaniketraj.pulse-dashboard)](https://marketplace.visualstudio.com/items?itemName=theaniketraj.pulse-dashboard)
+[![Version](https://img.shields.io/visual-studio-marketplace/v/theaniketraj.pulse)](https://marketplace.visualstudio.com/items?itemName=theaniketraj.pulse)
+[![Installs](https://img.shields.io/visual-studio-marketplace/i/theaniketraj.pulse)](https://marketplace.visualstudio.com/items?itemName=theaniketraj.pulse)
 
-**Pulse Dashboard** is a powerful Visual Studio Code extension that brings real-time application observability directly into your editor. Integrated seamlessly with Prometheus, it allows developers to monitor metrics, view logs, and track alerts without ever leaving their coding environment.
+**Pulse** is a powerful Visual Studio Code extension that brings real-time application observability directly into your editor. Integrated seamlessly with Prometheus, it allows developers to monitor metrics, view logs, and track alerts without ever leaving their coding environment.
 
-<!-- ![Pulse Dashboard Demo](https://raw.githubusercontent.com/theaniketraj/pulse/main/docs/images/demo.gif) -->
+<!-- ![Pulse Demo](https://raw.githubusercontent.com/theaniketraj/pulse/main/docs/images/demo.gif) -->
 
 ## Key Features
 
@@ -22,7 +22,7 @@
 
 1. Open **VS Code**.
 2. Go to the **Extensions** view (`Ctrl+Shift+X`).
-3. Search for **"Pulse Dashboard"**.
+3. Search for **"Pulse"**.
 4. Click **Install**.
 
 ### From Source
@@ -36,7 +36,7 @@ npm run build
 
 ## Configuration
 
-Pulse Dashboard connects to a Prometheus server to fetch data. By default, it looks for a local instance.
+Pulse connects to a Prometheus server to fetch data. By default, it looks for a local instance.
 
 1. Open **Settings** (`Ctrl+,`).
 2. Search for `pulse.prometheusUrl`.
@@ -51,12 +51,12 @@ Pulse Dashboard connects to a Prometheus server to fetch data. By default, it lo
 ## Usage
 
 1. Open the **Command Palette** (`Ctrl+Shift+P`).
-2. Run the command: `Open Pulse Dashboard`.
+2. Run the command: `Open Pulse`.
 3. The dashboard will open in a new panel, displaying your configured metrics and logs.
 
 ## Architecture
 
-Pulse Dashboard is built with a modular architecture separating the VS Code extension host from the React-based webview.
+Pulse is built with a modular architecture separating the VS Code extension host from the React-based webview.
 
 - **Extension Host**: Handles configuration, commands, and API communication (Node.js).
 - **Webview**: Renders the UI using React, Recharts/Observable Plot, and custom hooks.

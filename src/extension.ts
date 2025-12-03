@@ -5,14 +5,14 @@ import { PulseView } from './pulseView';
 // Called when the extension is activated (e.g., when a command is executed)
 export function activate(context: vscode.ExtensionContext) {
   // Log activation for debugging
-  console.log('🚀 Pulse Dashboard extension activated');
+  console.log('🚀 Pulse extension activated');
   
   // Show a message to confirm activation
-  vscode.window.showInformationMessage('Pulse Dashboard extension is now active!');
+  vscode.window.showInformationMessage('Pulse extension is now active!');
 
   // Register the command to open the Pulse dashboard
   const openDashboard = vscode.commands.registerCommand('pulse.openDashboard', () => {
-    console.log('📊 Opening Pulse Dashboard...');
+    console.log('📊 Opening Pulse...');
     // Create a new webview panel for the dashboard
     PulseView.createOrShow(context);
   });
@@ -25,5 +25,5 @@ export function activate(context: vscode.ExtensionContext) {
 
 // Called when the extension is deactivated
 export function deactivate() {
-  console.log('Pulse Dashboard extension deactivated');
+  console.log('Pulse extension deactivated');
 }

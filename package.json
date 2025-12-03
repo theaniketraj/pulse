@@ -1,6 +1,6 @@
 {
-  "name": "pulse-dashboard",
-  "displayName": "Pulse Dashboard",
+  "name": "pulse",
+  "displayName": "Pulse",
   "description": "Monitor application metrics and logs in real-time within Visual Studio Code.",
   "version": "0.1.0",
   "publisher": "theaniketraj",
@@ -37,11 +37,11 @@
     "commands": [
       {
         "command": "pulse.openDashboard",
-        "title": "Open Pulse Dashboard"
+        "title": "Open Pulse"
       }
     ],
     "configuration": {
-      "title": "Pulse Dashboard",
+      "title": "Pulse",
       "properties": {
         "pulse.prometheusUrl": {
           "type": "string",

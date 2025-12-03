@@ -11,7 +11,7 @@ Use this section to tell people about which versions of your project are current
 
 ## Reporting a Vulnerability
 
-We take security seriously. If you discover a security vulnerability within Pulse Dashboard, please do **not** create a public GitHub issue.
+We take security seriously. If you discover a security vulnerability within Pulse, please do **not** create a public GitHub issue.
 
 Instead, please report it via email to `security@example.com` (Replace with actual email or private contact method).
 
