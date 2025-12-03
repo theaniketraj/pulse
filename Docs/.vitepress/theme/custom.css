@@ -1,5 +1,20 @@
 /* Mobile Responsive Improvements for Pulse Docs */
 
+/* Compact navbar - reduce font size by 10% to fit content without scrollbar */
+.VPNav {
+  font-size: 0.9em;
+}
+
+.VPNavBar .title {
+  font-size: 0.9em;
+}
+
+.VPNavBarMenu .VPLink,
+.VPNavBarMenuLink {
+  font-size: 0.9em;
+  padding: 0 10px;
+}
+
 /* Seamless transparent scrollbar merged with theme */
 ::-webkit-scrollbar {
   width: 10px;
