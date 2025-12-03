@@ -15,10 +15,10 @@ head:
 
 Modern development often involves a constant cycle of context switching:
 
-1.  Write code in VS Code.
-2.  Switch to a terminal to check logs.
-3.  Switch to a browser (Grafana/Prometheus) to check metrics.
-4.  Switch back to VS Code to fix issues.
+1. Write code in VS Code.
+2. Switch to a terminal to check logs.
+3. Switch to a browser (Grafana/Prometheus) to check metrics.
+4. Switch back to VS Code to fix issues.
 
 This friction breaks your flow and slows down the feedback loop.
 

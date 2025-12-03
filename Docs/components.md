@@ -65,7 +65,7 @@ Main layout component that orchestrates the dashboard UI.
 
 ```bash
 ┌─────────────────────────────────────┐
-│ Pulse    [●Live]          │
+│ Pulse    [●Live]          │         │
 ├─────────────────────────────────────┤
 │ [KPI] [KPI] [KPI] [KPI]             │
 ├──────────────────┬──────────────────┤

@@ -186,7 +186,7 @@ View logs in:
 
 ## Publishing
 
-### Prerequisites
+### Prerequisites for Publishing
 
 - VSCode Marketplace account
 - Personal Access Token (PAT)

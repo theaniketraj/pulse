@@ -7,7 +7,7 @@ head:
       content: troubleshooting, debugging, error fixes, common issues, problem solving, support
 ---
 
-# 🔧 Pulse Extension Troubleshooting Guide
+# Pulse Extension Troubleshoot Guide
 
 ## Current Status
 
