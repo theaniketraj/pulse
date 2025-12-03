@@ -114,14 +114,14 @@ up{job="prometheus"}
 
 ### System Metrics
 
-```promql
+```bash
 node_cpu_seconds_total
 node_memory_MemAvailable_bytes
 ```
 
 ### Application Metrics
 
-```promql
+```bash
 http_requests_total
 http_request_duration_seconds
 ```
