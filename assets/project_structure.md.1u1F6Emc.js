@@ -1,0 +1,32 @@
+import{_ as n,c as e,o as a,ag as t}from"./chunks/framework.D21Xwze2.js";const h=JSON.parse('{"title":"Project Structure","description":"","frontmatter":{},"headers":[],"relativePath":"project_structure.md","filePath":"project_structure.md","lastUpdated":null}'),o={name:"project_structure.md"};function i(p,s,c,r,l,d){return a(),e("div",null,[...s[0]||(s[0]=[t(`<h1 id="project-structure" tabindex="-1">Project Structure <a class="header-anchor" href="#project-structure" aria-label="Permalink to &quot;Project Structure&quot;">​</a></h1><p>This document provides an overview of the file structure for the Pulse Dashboard project to help new contributors navigate the codebase.</p><div class="language- vp-adaptive-theme"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki shiki-themes github-light github-dark vp-code" tabindex="0"><code><span class="line"><span>pulse/</span></span>
+<span class="line"><span>├── .vscode/                # VS Code workspace configuration</span></span>
+<span class="line"><span>├── docs/                   # Documentation files</span></span>
+<span class="line"><span>├── src/                    # Extension Source Code (Node.js)</span></span>
+<span class="line"><span>│   ├── data/               # Data processing logic</span></span>
+<span class="line"><span>│   │   ├── alertProcessor.ts  # Alert threshold evaluation</span></span>
+<span class="line"><span>│   │   └── fetchMetrics.ts    # Metric fetching logic</span></span>
+<span class="line"><span>│   ├── test/               # Extension unit tests</span></span>
+<span class="line"><span>│   ├── utils/              # Utility functions</span></span>
+<span class="line"><span>│   ├── api.ts              # Prometheus API client</span></span>
+<span class="line"><span>│   ├── extension.ts        # Extension entry point (activates extension)</span></span>
+<span class="line"><span>│   └── pulseView.ts        # Webview panel manager (IPC handling)</span></span>
+<span class="line"><span>├── webview/                # Webview Source Code (React)</span></span>
+<span class="line"><span>│   ├── src/</span></span>
+<span class="line"><span>│   │   ├── components/     # UI Components</span></span>
+<span class="line"><span>│   │   │   ├── AlertPanel.tsx   # Displays active alerts</span></span>
+<span class="line"><span>│   │   │   ├── dashboard.tsx    # Main dashboard layout</span></span>
+<span class="line"><span>│   │   │   ├── LogViewer.tsx    # Log stream viewer</span></span>
+<span class="line"><span>│   │   │   └── MetricChart.tsx  # Metric visualization chart</span></span>
+<span class="line"><span>│   │   ├── hooks/          # Custom React Hooks</span></span>
+<span class="line"><span>│   │   │   ├── useAlerts.ts     # Manages alert state</span></span>
+<span class="line"><span>│   │   │   └── usePulseData.ts  # Manages metrics and logs state</span></span>
+<span class="line"><span>│   │   ├── App.css         # Global styles and design system</span></span>
+<span class="line"><span>│   │   ├── App.tsx         # Root React component</span></span>
+<span class="line"><span>│   │   └── index.tsx       # React entry point</span></span>
+<span class="line"><span>│   └── tsconfig.json       # Webview TypeScript config</span></span>
+<span class="line"><span>├── contributing.md         # Contribution guidelines</span></span>
+<span class="line"><span>├── README.md               # Main project documentation</span></span>
+<span class="line"><span>├── security.md             # Security policy</span></span>
+<span class="line"><span>├── package.json            # Project metadata and scripts</span></span>
+<span class="line"><span>├── webpack.config.js       # Webpack config for Extension</span></span>
+<span class="line"><span>└── webpack.config.webview.js # Webpack config for Webview</span></span></code></pre></div><h2 id="key-directories" tabindex="-1">Key Directories <a class="header-anchor" href="#key-directories" aria-label="Permalink to &quot;Key Directories&quot;">​</a></h2><h3 id="src-extension" tabindex="-1"><code>src/</code> (Extension) <a class="header-anchor" href="#src-extension" aria-label="Permalink to &quot;\`src/\` (Extension)&quot;">​</a></h3><p>Contains the &quot;backend&quot; logic of the VS Code extension. It runs in the Node.js extension host environment.</p><ul><li><strong><code>extension.ts</code></strong>: The starting point. Registers commands and providers.</li><li><strong><code>pulseView.ts</code></strong>: The bridge between VS Code and the React UI. It handles message passing (IPC).</li><li><strong><code>api.ts</code></strong>: Handles all HTTP communication with the Prometheus server.</li></ul><h3 id="webview-frontend" tabindex="-1"><code>webview/</code> (Frontend) <a class="header-anchor" href="#webview-frontend" aria-label="Permalink to &quot;\`webview/\` (Frontend)&quot;">​</a></h3><p>Contains the &quot;frontend&quot; UI logic. It runs in a secure browser context (iframe) within VS Code.</p><ul><li><strong><code>components/</code></strong>: Reusable UI parts. <code>MetricChart</code> uses <code>@observablehq/plot</code> for rendering.</li><li><strong><code>hooks/</code></strong>: Encapsulates data fetching and state management logic.</li><li><strong><code>App.css</code></strong>: Contains the CSS variables and styles for the premium UI look.</li></ul><h3 id="docs" tabindex="-1"><code>docs/</code> <a class="header-anchor" href="#docs" aria-label="Permalink to &quot;\`docs/\`&quot;">​</a></h3><p>Contains detailed documentation for specific aspects of the project (Architecture, API, Testing, etc.).</p>`,12)])])}const g=n(o,[["render",i]]);export{h as __pageData,g as default};
