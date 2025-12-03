@@ -30,7 +30,10 @@ export default defineConfig({
   ],
 
   themeConfig: {
-    logo: "/icon.png",
+    logo: {
+      light: "/icon-light.png",
+      dark: "/icon-dark.png",
+    },
     siteTitle: "Pulse",
 
     nav: [

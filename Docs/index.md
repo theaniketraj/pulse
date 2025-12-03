@@ -20,7 +20,8 @@ hero:
   text: "Real-time Observability for VS Code"
   tagline: Monitor metrics, logs, and alerts without leaving your editor.
   image:
-    src: /icon.png
+    light: /icon-light.png
+    dark: /icon-dark.png
     alt: Pulse Logo
   actions:
     - theme: brand
