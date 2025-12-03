@@ -35,6 +35,10 @@ jobs:
       - name: Fix case sensitivity for markdown files
         run: |
           cd Docs
+          
+          echo "=== Files before rename ==="
+          ls -la *.md
+          
           # Rename all uppercase .md files to lowercase
           for file in *.md; do
             if [ -f "$file" ]; then
@@ -46,7 +50,14 @@ jobs:
             fi
           done
           
+          echo "=== Files after rename ==="
+          ls -la *.md
+          
+          echo "=== Checking for uppercase links in quickstart.md ==="
+          grep -n "SYSTEM_ARCHITECTURE\|DEVELOPMENT\|API\|COMPONENTS\|GETTING_STARTED" quickstart.md || echo "No uppercase links found"
+          
           # Fix internal links to use lowercase filenames
+          echo "=== Fixing links ==="
           for file in *.md; do
             if [ -f "$file" ]; then
               # Replace uppercase .md references with lowercase (without .md extension for VitePress)
@@ -64,6 +75,10 @@ jobs:
               echo "Fixed links in $file"
             fi
           done
+          
+          echo "=== Checking for uppercase links in quickstart.md after fix ==="
+          grep -n "SYSTEM_ARCHITECTURE\|DEVELOPMENT\|API\|COMPONENTS\|GETTING_STARTED" quickstart.md || echo "No uppercase links found"
+          
           cd ..
 
       - name: Build documentation
