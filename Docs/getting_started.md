@@ -7,17 +7,6 @@ head:
       content: Pulse installation, VS Code extension setup, Prometheus configuration, monitoring setup, getting started guide
 ---
 
----
-title: Getting Started with Pulse
-description: Complete guide to installing and configuring Pulse VS Code extension for real-time application monitoring with Prometheus.
-head:
-
-- - meta
-  - name: keywords
-      content: Pulse installation, VS Code extension setup, Prometheus configuration, monitoring setup, getting started guide
-
----
-
 # Getting Started with Pulse
 
 Welcome to Pulse! This guide will take you from installation to monitoring your first application in minutes.
