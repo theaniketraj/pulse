@@ -32,6 +32,15 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Fix case sensitivity for index.md
+        run: |
+          cd Docs
+          if [ -f "INDEX.md" ]; then
+            cp INDEX.md index.md
+            echo "Created lowercase index.md from INDEX.md"
+          fi
+          cd ..
+
       - name: Build documentation
         run: npx vitepress build Docs
 
