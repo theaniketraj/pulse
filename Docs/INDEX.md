@@ -11,7 +11,7 @@ hero:
   actions:
     - theme: brand
       text: Get Started
-      link: /GETTING_STARTED
+      link: /getting_started
     - theme: alt
       text: View on GitHub
       link: https://github.com/theaniketraj/pulse

@@ -54,7 +54,6 @@ export default defineConfig({
         items: [
           { text: "System Overview", link: "/system_architecture" },
           { text: "Components", link: "/components" },
-          { text: "Data Flow", link: "/system_architecture#data-flow" },
         ],
       },
       {
