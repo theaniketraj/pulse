@@ -11,11 +11,13 @@ head:
 
 ## Current Status
 
+```bash
 [] Extension built successfully  
 [] Package.json configuration fixed  
 [] Activation event set to "\*" (activates on startup)  
 [] Enhanced debugging added  
 [] Mock Prometheus server running
+```
 
 ## Testing Steps
 
