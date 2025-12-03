@@ -18,9 +18,9 @@ export default defineConfig({
     siteTitle: "Pulse Dashboard",
 
     nav: [
-      { text: "Guide", link: "/GETTING_STARTED" },
-      { text: "Architecture", link: "/SYSTEM_ARCHITECTURE" },
-      { text: "API", link: "/API" },
+      { text: "Guide", link: "/getting_started" },
+      { text: "Architecture", link: "/system_architecture" },
+      { text: "API", link: "/api" },
       {
         text: "v0.1.0",
         items: [
@@ -28,7 +28,7 @@ export default defineConfig({
             text: "Changelog",
             link: "https://github.com/theaniketraj/pulse/releases",
           },
-          { text: "Contributing", link: "/CONTRIBUTING" },
+          { text: "Contributing", link: "/contributing" },
         ],
       },
     ],
@@ -37,40 +37,40 @@ export default defineConfig({
       {
         text: "Introduction",
         items: [
-          { text: "What is Pulse?", link: "/INTRODUCTION" },
-          { text: "Vision & Roadmap", link: "/VISION" },
+          { text: "What is Pulse?", link: "/introduction" },
+          { text: "Vision & Roadmap", link: "/vision" },
         ],
       },
       {
         text: "Guides",
         items: [
-          { text: "Installation", link: "/GETTING_STARTED#installation" },
-          { text: "Configuration", link: "/GETTING_STARTED#configuration" },
-          { text: "Troubleshooting", link: "/TROUBLESHOOTING" },
+          { text: "Installation", link: "/getting_started#installation" },
+          { text: "Configuration", link: "/getting_started#configuration" },
+          { text: "Troubleshooting", link: "/troubleshooting" },
         ],
       },
       {
         text: "Architecture",
         items: [
-          { text: "System Overview", link: "/SYSTEM_ARCHITECTURE" },
-          { text: "Components", link: "/COMPONENTS" },
-          { text: "Data Flow", link: "/SYSTEM_ARCHITECTURE#data-flow" },
+          { text: "System Overview", link: "/system_architecture" },
+          { text: "Components", link: "/components" },
+          { text: "Data Flow", link: "/system_architecture#data-flow" },
         ],
       },
       {
         text: "Reference",
         items: [
-          { text: "Extension API", link: "/API" },
-          { text: "Project Structure", link: "/PROJECT_STRUCTURE" },
+          { text: "Extension API", link: "/api" },
+          { text: "Project Structure", link: "/project_structure" },
         ],
       },
       {
         text: "Contributing",
         items: [
-          { text: "Development Guide", link: "/DEVELOPMENT" },
-          { text: "Testing", link: "/TESTING" },
-          { text: "Code of Conduct", link: "/CODE_OF_CONDUCT" },
-          { text: "Security", link: "/SECURITY" },
+          { text: "Development Guide", link: "/development" },
+          { text: "Testing", link: "/testing" },
+          { text: "Code of Conduct", link: "/code_of_conduct" },
+          { text: "Security", link: "/security" },
         ],
       },
     ],
