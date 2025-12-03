@@ -39,10 +39,15 @@ jobs:
       - name: Build documentation
         run: npm run docs:build
 
+      - name: Prepare files for GitHub Pages
+        run: |
+          mkdir -p _site/pulse
+          cp -r docs/.vitepress/dist/* _site/pulse/
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: docs/.vitepress/dist
+          path: _site
 
   deploy:
     environment:
