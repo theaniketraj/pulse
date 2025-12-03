@@ -35,6 +35,13 @@ jobs:
       - name: Build documentation
         run: npx vitepress build Docs
 
+      - name: Fix index.html filename (GitHub Pages expects lowercase)
+        run: |
+          if [ -f "Docs/.vitepress/dist/INDEX.html" ]; then
+            mv Docs/.vitepress/dist/INDEX.html Docs/.vitepress/dist/index.html
+            echo "Renamed INDEX.html to index.html"
+          fi
+
       - name: Debug - Show build output structure
         run: |
           echo "=== Build output directory structure ==="
