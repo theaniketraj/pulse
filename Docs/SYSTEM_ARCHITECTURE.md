@@ -4,18 +4,40 @@
 
 Pulse Dashboard is a VS Code extension that provides real-time monitoring of application metrics and logs from Prometheus, integrated directly into the editor.
 
-```text
-Extension Host (Node.js)
-├── extension.ts (Entry point)
-├── pulseView.ts (Webview manager)
-├── api.ts (Prometheus client)
-├── data/
-│   ├── alertProcessor.ts
-│   └── fetchMetrics.ts
-└── utils/
+```mermaid
+graph TD
+    subgraph "VS Code Extension Host (Node.js)"
+        Ext[extension.ts] -->|Activates| PV[pulseView.ts]
+        PV -->|Uses| API[api.ts]
+        PV -->|Manages| Panel[WebviewPanel]
 
-React Webview (Browser Context)
-└── React App + Components
+        subgraph "Data Layer"
+            API -->|HTTP GET| Prom[Prometheus Server]
+            AP[alertProcessor.ts] -->|Process| API
+        end
+    end
+
+    subgraph "Webview (React/Browser)"
+        Panel ---|IPC Messages| App[App.tsx]
+        App -->|Renders| Dash[Dashboard.tsx]
+
+        subgraph "Components"
+            Dash --> Chart[MetricChart.tsx]
+            Dash --> Logs[LogViewer.tsx]
+            Dash --> Alerts[AlertPanel.tsx]
+        end
+
+        subgraph "Hooks"
+            Chart -->|usePulseData| Hook1[usePulseData.ts]
+            Logs -->|usePulseData| Hook1
+            Alerts -->|useAlerts| Hook2[useAlerts.ts]
+        end
+    end
+
+    Hook1 -.->|postMessage| PV
+    Hook2 -.->|postMessage| PV
+    PV -.->|updateMetrics/Logs| Hook1
+    PV -.->|updateAlerts| Hook2
 ```
 
 ## Architecture Layers
@@ -84,14 +106,14 @@ Components update and re-render
 
 ## Key Dependencies
 
-| Package | Purpose |
-|---------|---------|
-| `axios` | HTTP client for Prometheus API calls |
-| `@observablehq/plot` | Data visualization library |
-| `react` & `react-dom` | UI framework |
-| `@types/vscode` | VS Code API types |
-| `webpack` | Module bundler |
-| `typescript` | Type safety |
+| Package               | Purpose                              |
+| --------------------- | ------------------------------------ |
+| `axios`               | HTTP client for Prometheus API calls |
+| `@observablehq/plot`  | Data visualization library           |
+| `react` & `react-dom` | UI framework                         |
+| `@types/vscode`       | VS Code API types                    |
+| `webpack`             | Module bundler                       |
+| `typescript`          | Type safety                          |
 
 ## Configuration
 
