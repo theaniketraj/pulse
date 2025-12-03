@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
+  base: '/pulse/',
   title: "Pulse",
   description: "Real-time Observability for VS Code",
   lang: 'en-US',
