@@ -47,4 +47,4 @@ Never miss a critical issue. The Alerts Panel shows you firing and pending Prome
 
 ---
 
-Ready to get started? Check out the [Quick Start Guide](GETTING_STARTED.md).
+Ready to get started? Check out the [Quick Start Guide](getting_started.md).

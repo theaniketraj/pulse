@@ -29,9 +29,9 @@ pulse/
 │   │   ├── App.tsx         # Root React component
 │   │   └── index.tsx       # React entry point
 │   └── tsconfig.json       # Webview TypeScript config
-├── CONTRIBUTING.md         # Contribution guidelines
+├── contributing.md         # Contribution guidelines
 ├── README.md               # Main project documentation
-├── SECURITY.md             # Security policy
+├── security.md             # Security policy
 ├── package.json            # Project metadata and scripts
 ├── webpack.config.js       # Webpack config for Extension
 └── webpack.config.webview.js # Webpack config for Webview

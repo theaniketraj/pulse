@@ -24,7 +24,7 @@ The following is a set of guidelines for contributing to Pulse Dashboard. These 
    - Run `npm run watch` to start the build in watch mode.
    - Press `F5` in VS Code to launch the Extension Development Host.
 
-For more details, see [DEVELOPMENT.md](./DEVELOPMENT.md).
+For more details, see [development.md](./development.md).
 
 ## Reporting Bugs
 

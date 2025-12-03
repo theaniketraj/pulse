@@ -128,10 +128,10 @@ http_request_duration_seconds
 
 ## Next Steps
 
-- Read [SYSTEM_ARCHITECTURE.md](SYSTEM_ARCHITECTURE.md) for technical details
-- See [DEVELOPMENT.md](DEVELOPMENT.md) to contribute
-- Check [API.md](API.md) for extension API reference
-- Browse [COMPONENTS.md](COMPONENTS.md) for UI component docs
+- Read [system_architecture.md](system_architecture.md) for technical details
+- See [development.md](development.md) to contribute
+- Check [api.md](api.md) for extension API reference
+- Browse [components.md](components.md) for UI component docs
 
 ## Getting Help
 
@@ -164,4 +164,4 @@ npm run test       # Run tests
 npm run build      # Production build
 ```
 
-See [DEVELOPMENT.md](DEVELOPMENT.md) for details.
+See [development.md](development.md) for details.

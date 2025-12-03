@@ -165,4 +165,4 @@ By default, Pulse tries to connect to `http://localhost:9090`. If your Prometheu
 
 - Customize your metrics in `src/data/fetchMetrics.ts`.
 - Set up custom alert rules in your Prometheus configuration.
-- Read the [Architecture Guide](SYSTEM_ARCHITECTURE.md) to understand how it works under the hood.
+- Read the [Architecture Guide](system_architecture.md) to understand how it works under the hood.

@@ -245,4 +245,4 @@ Check:
 - **Webpack**: Industry standard bundler
 - **TypeScript**: Type safety and better DX
 
-See [SYSTEM_ARCHITECTURE.md](SYSTEM_ARCHITECTURE.md) for details.
+See [system_architecture.md](system_architecture.md) for details.
