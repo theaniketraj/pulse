@@ -6,7 +6,7 @@
 
 **Pulse Dashboard** is a powerful Visual Studio Code extension that brings real-time application observability directly into your editor. Integrated seamlessly with Prometheus, it allows developers to monitor metrics, view logs, and track alerts without ever leaving their coding environment.
 
-![Pulse Dashboard Demo](https://raw.githubusercontent.com/theaniketraj/pulse/main/docs/images/demo.gif)
+<!-- ![Pulse Dashboard Demo](https://raw.githubusercontent.com/theaniketraj/pulse/main/docs/images/demo.gif) -->
 
 ## 🚀 Key Features
 

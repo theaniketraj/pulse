@@ -3,4 +3,5 @@ dist/
 webview/build/
 .vscode
 webview/node_modules/
+tmp/
 # Logs
