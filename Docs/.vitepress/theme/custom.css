@@ -1,5 +1,14 @@
 /* Mobile Responsive Improvements for Pulse Docs */
 
+/* Theme-aware logo styling */
+.VPImage.logo {
+  transition: opacity 0.3s ease;
+}
+
+.dark .VPImage.logo {
+  filter: brightness(1.2);
+}
+
 /* Improve readability on mobile devices */
 @media (max-width: 768px) {
   /* Adjust base font size for better readability */
