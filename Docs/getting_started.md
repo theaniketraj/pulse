@@ -55,7 +55,7 @@ By default, Pulse tries to connect to `http://localhost:9090`. If your Prometheu
 2. Search for `Pulse`.
 3. Edit **Pulse: Prometheus Url** to match your server (e.g., `http://my-server:9090`).
 
-## 🎮 Your First Dashboard
+## Your First Dashboard
 
 1. **Open the Dashboard**:
 
@@ -136,7 +136,7 @@ By default, Pulse tries to connect to `http://localhost:9090`. If your Prometheu
 2. Search for `Pulse`.
 3. Edit **Pulse: Prometheus Url** to match your server (e.g., `http://my-server:9090`).
 
-## 🎮 Your First Dashboard
+## Your First Dashboard
 
 1. **Open the Dashboard**:
 
@@ -161,7 +161,7 @@ By default, Pulse tries to connect to `http://localhost:9090`. If your Prometheu
 - **Empty Charts**: Check if your Prometheus instance is actually scraping data. You can verify this by visiting `http://localhost:9090/targets`.
 - **Extension Not Loading**: Check the "Developer Tools" in VS Code (`Help > Toggle Developer Tools`) for any console errors.
 
-## 📚 Next Steps
+## Next Steps
 
 - Customize your metrics in `src/data/fetchMetrics.ts`.
 - Set up custom alert rules in your Prometheus configuration.
