@@ -3,6 +3,7 @@ import * as vscode from "vscode";
 import { VitalsView } from "./vitalsView";
 import { CustomGitHubAuth } from "./auth/customGitHubAuth";
 import { AuthWall } from "./auth/authWall";
+import { vitalsApi } from "./api/vitalsApi";
 
 // Called when the extension is activated (e.g., when a command is executed)
 export async function activate(context: vscode.ExtensionContext) {
@@ -15,6 +16,14 @@ export async function activate(context: vscode.ExtensionContext) {
   if (authStatus.isSignedIn && authStatus.authCompleted) {
     // Returning user - show brief confirmation
     console.log(`✅ Signed in as: ${authStatus.user?.login}`);
+    
+    // Log extension activation for signed-in users
+    if (authStatus.user) {
+      vitalsApi.logEvent(
+        authStatus.user.id.toString(),
+        'extension_activated'
+      ).catch(err => console.error('Failed to log event:', err));
+    }
   } else {
     // New user or not authenticated - show auth wall after a brief delay
     setTimeout(() => {
@@ -33,6 +42,15 @@ export async function activate(context: vscode.ExtensionContext) {
       
       if (!isAuthenticated) {
         return;
+      }
+      
+      // Log dashboard opened event
+      const user = await CustomGitHubAuth.getCurrentUser(context);
+      if (user) {
+        vitalsApi.logEvent(
+          user.id.toString(),
+          'dashboard_opened'
+        ).catch(err => console.error('Failed to log event:', err));
       }
       
       // Create a new webview panel for the dashboard

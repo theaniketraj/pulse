@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import { CustomGitHubAuth } from './customGitHubAuth';
+import { vitalsApi } from '../api/vitalsApi';
 
 export class AuthWall {
   private static readonly AUTH_WALL_KEY = 'vitals.authWall.completed';
@@ -8,10 +9,27 @@ export class AuthWall {
    * Check if user has completed authentication
    */
   static async isAuthenticated(context: vscode.ExtensionContext): Promise<boolean> {
+    // Check if token exists and is valid
     const isSignedIn = await CustomGitHubAuth.isSignedIn(context);
-    const authCompleted = context.globalState.get<boolean>(this.AUTH_WALL_KEY, false);
+    if (!isSignedIn) {
+      return false;
+    }
     
-    return isSignedIn && authCompleted;
+    // If signed in, verify we have user data (confirms valid session)
+    const user = await CustomGitHubAuth.getCurrentUser(context);
+    if (!user) {
+      // Token exists but invalid - clear it
+      await this.reset(context);
+      return false;
+    }
+    
+    // Valid session found - ensure completion flag is set
+    const authCompleted = context.globalState.get<boolean>(this.AUTH_WALL_KEY, false);
+    if (!authCompleted) {
+      await context.globalState.update(this.AUTH_WALL_KEY, true);
+    }
+    
+    return true;
   }
 
   /**
@@ -68,6 +86,17 @@ export class AuthWall {
 
     // Mark authentication as completed
     await context.globalState.update(this.AUTH_WALL_KEY, true);
+
+    // Log sign-in event to backend
+    try {
+      await vitalsApi.logEvent(
+        user.id.toString(),
+        'user_signed_in',
+        { username: user.login }
+      );
+    } catch (error) {
+      console.error('Failed to log sign-in event:', error);
+    }
 
     // Show success message
     await vscode.window.showInformationMessage(

@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import * as crypto from 'crypto';
 import { SecureStorage } from './secureStorage';
+import { vitalsApi } from '../api/vitalsApi';
 
 export interface GitHubUser {
   id: number;
@@ -62,6 +63,9 @@ export class CustomGitHubAuth {
 
       // Store access token securely
       await context.secrets.store(this.TOKEN_KEY, accessToken);
+      
+      // Clear OAuth state to prevent re-authentication loop
+      await context.globalState.update('oauth.state', undefined);
 
       // Fetch user details
       const user = await this.fetchUserDetails(accessToken);
@@ -69,6 +73,24 @@ export class CustomGitHubAuth {
       if (user) {
         this.currentUser = user;
         await context.globalState.update(this.USER_KEY, user);
+        
+        // Mark authentication as completed (prevents re-prompt)
+        await context.globalState.update('vitals.authWall.completed', true);
+        
+        // Sync user to backend
+        try {
+          const githubId = String(user.id);
+          console.log('Syncing user to backend:', githubId, user.login);
+          await vitalsApi.createUser(
+            githubId,
+            user.login,
+            user.email
+          );
+          console.log('✅ User synced to backend');
+        } catch (error) {
+          console.error('Failed to sync user to backend:', error);
+        }
+        
         vscode.window.showInformationMessage(`Welcome, ${user.name || user.login}! 🎉`);
       }
 

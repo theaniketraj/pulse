@@ -38,13 +38,14 @@ export class VitalsView {
                 data,
               });
             } catch (error: any) {
-              vscode.window.showErrorMessage(
-                `Vitals: Failed to fetch metrics. ${error.message}`
-              );
-              console.error(error);
+              const errorMsg = error.code === 'ECONNREFUSED' 
+                ? 'Cannot connect to Prometheus. Please ensure Prometheus is running at the configured URL.'
+                : error.message;
+              
+              console.error('Prometheus fetch error:', error);
               this._panel.webview.postMessage({
                 command: "error",
-                message: error.message,
+                message: errorMsg,
               });
             }
             break;
