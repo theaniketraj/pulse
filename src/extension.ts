@@ -2,29 +2,24 @@
 import * as vscode from "vscode";
 import { VitalsView } from "./vitalsView";
 import { CustomGitHubAuth } from "./auth/customGitHubAuth";
+import { AuthWall } from "./auth/authWall";
 
 // Called when the extension is activated (e.g., when a command is executed)
 export async function activate(context: vscode.ExtensionContext) {
   // Log activation for debugging
   console.log("🚀 Vitals extension activated");
 
-  // Show a message to confirm activation (only if signed in)
-  const isInitialSignedIn = await CustomGitHubAuth.isSignedIn(context);
-  if (isInitialSignedIn) {
-    const user = await CustomGitHubAuth.getCurrentUser(context);
-    vscode.window.showInformationMessage(`Vitals is active! Signed in as ${user?.login} ✅`);
+  // Check authentication status
+  const authStatus = await AuthWall.checkStatus(context);
+  
+  if (authStatus.isSignedIn && authStatus.authCompleted) {
+    // Returning user - show brief confirmation
+    console.log(`✅ Signed in as: ${authStatus.user?.login}`);
   } else {
-    vscode.window.showInformationMessage(
-      'Vitals is active! Configure GitHub OAuth and sign in to access features.',
-      'Configure',
-      'Sign In'
-    ).then(selection => {
-      if (selection === 'Configure') {
-        vscode.commands.executeCommand('vitals.configureCredentials');
-      } else if (selection === 'Sign In') {
-        vscode.commands.executeCommand('vitals.openDashboard');
-      }
-    });
+    // New user or not authenticated - show auth wall after a brief delay
+    setTimeout(() => {
+      AuthWall.showAuthWall(context);
+    }, 1000);
   }
 
   // Register the command to open the Vitals dashboard
@@ -33,31 +28,33 @@ export async function activate(context: vscode.ExtensionContext) {
     async () => {
       console.log("📊 Opening Vitals...");
       
-      // Check if user is signed in
-      const isSignedIn = await CustomGitHubAuth.isSignedIn(context);
+      // Enforce authentication wall
+      const isAuthenticated = await AuthWall.enforce(context);
       
-      if (!isSignedIn) {
-        // Prompt for GitHub sign-in
-        const user = await CustomGitHubAuth.signIn(context);
-        
-        if (!user) {
-          vscode.window.showWarningMessage(
-            'GitHub authentication is required to use Vitals'
-          );
-          return;
-        }
+      if (!isAuthenticated) {
+        return;
       }
       
       // Create a new webview panel for the dashboard
       VitalsView.createOrShow(context);
     }
-  );
+  );  
 
   // Register sign-out command
   const signOut = vscode.commands.registerCommand(
     "vitals.signOut",
     async () => {
-      await CustomGitHubAuth.signOut(context);
+      const confirm = await vscode.window.showWarningMessage(
+        'Are you sure you want to sign out? You will need to authenticate again to use Vitals.',
+        { modal: true },
+        'Sign Out',
+        'Cancel'
+      );
+      
+      if (confirm === 'Sign Out') {
+        await AuthWall.reset(context);
+        vscode.window.showInformationMessage('Successfully signed out from Vitals');
+      }
     }
   );
 
@@ -65,13 +62,29 @@ export async function activate(context: vscode.ExtensionContext) {
   const showStatus = vscode.commands.registerCommand(
     "vitals.showStatus",
     async () => {
-      const user = await CustomGitHubAuth.getCurrentUser(context);
-      if (user) {
+      const status = await AuthWall.checkStatus(context);
+      
+      if (status.isSignedIn && status.user) {
         vscode.window.showInformationMessage(
-          `Signed in as: ${user.name || user.login} (@${user.login})`
-        );
+          `✅ Signed in as: ${status.user.name || status.user.login} (@${status.user.login})`,
+          'Open Dashboard',
+          'Sign Out'
+        ).then(selection => {
+          if (selection === 'Open Dashboard') {
+            vscode.commands.executeCommand('vitals.openDashboard');
+          } else if (selection === 'Sign Out') {
+            vscode.commands.executeCommand('vitals.signOut');
+          }
+        });
       } else {
-        vscode.window.showInformationMessage('Not signed in to Vitals');
+        vscode.window.showInformationMessage(
+          '❌ Not signed in to Vitals',
+          'Sign In'
+        ).then(selection => {
+          if (selection === 'Sign In') {
+            vscode.commands.executeCommand('vitals.openDashboard');
+          }
+        });
       }
     }
   );
@@ -84,19 +97,31 @@ export async function activate(context: vscode.ExtensionContext) {
     }
   );
 
+  // Register sign in command (for returning users who signed out)
+  const signIn = vscode.commands.registerCommand(
+    "vitals.signIn",
+    async () => {
+      const isAuthenticated = await AuthWall.showAuthWall(context);
+      if (isAuthenticated) {
+        vscode.window.showInformationMessage(
+          'Successfully signed in! What would you like to do?',
+          'Open Dashboard',
+          'View Status'
+        ).then(selection => {
+          if (selection === 'Open Dashboard') {
+            vscode.commands.executeCommand('vitals.openDashboard');
+          } else if (selection === 'View Status') {
+            vscode.commands.executeCommand('vitals.showStatus');
+          }
+        });
+      }
+    }
+  );
+
   // Add the commands to the extension's context subscriptions
-  context.subscriptions.push(openDashboard, signOut, showStatus, configureCredentials);
+  context.subscriptions.push(openDashboard, signOut, showStatus, configureCredentials, signIn);
 
   console.log('✅ Commands registered successfully');
-  
-  // Check authentication status on activation
-  const isSignedIn = await CustomGitHubAuth.isSignedIn(context);
-  if (isSignedIn) {
-    const user = await CustomGitHubAuth.getCurrentUser(context);
-    console.log(`✅ Signed in as: ${user?.login}`);
-  } else {
-    console.log('ℹ️ Not signed in. Authentication required to use Vitals.');
-  }
 }
 
 // Called when the extension is deactivated
