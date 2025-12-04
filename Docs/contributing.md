@@ -1,8 +1,8 @@
-# Contributing to Pulse
+# Contributing to Vitals
 
 First off, thanks for taking the time to contribute! 🎉
 
-The following is a set of guidelines for contributing to Pulse. These are mostly guidelines, not rules. Use your best judgment, and feel free to propose changes to this document in a pull request.
+The following is a set of guidelines for contributing to Vitals. These are mostly guidelines, not rules. Use your best judgment, and feel free to propose changes to this document in a pull request.
 
 ## Development Setup
 
@@ -15,7 +15,7 @@ The following is a set of guidelines for contributing to Pulse. These are mostly
 2. **Installation**:
 
    ```bash
-   git clone https://github.com/theaniketraj/pulse.git
+   git clone https://github.com/theaniketraj/vitals.git
    cd pulse
    npm install
    ```
@@ -28,7 +28,7 @@ For more details, see [development.md](./development.md).
 
 ## Reporting Bugs
 
-Bugs are tracked as [GitHub issues](https://github.com/theaniketraj/pulse/issues).
+Bugs are tracked as [GitHub issues](https://github.com/theaniketraj/vitals/issues).
 
 When filing an issue, please include:
 
@@ -40,7 +40,7 @@ When filing an issue, please include:
 
 ## Suggesting Enhancements
 
-Enhancement suggestions are tracked as [GitHub issues](https://github.com/theaniketraj/pulse/issues).
+Enhancement suggestions are tracked as [GitHub issues](https://github.com/theaniketraj/vitals/issues).
 
 When suggesting an enhancement, please include:
 

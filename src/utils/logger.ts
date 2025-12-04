@@ -1,8 +1,8 @@
 // Simple logging utility for debugging
 export function log(message: string, ...args: any[]) {
-  console.log(`[Pulse] ${message}`, ...args);
+  console.log(`[Vitals] ${message}`, ...args);
 }
 
 export function error(message: string, ...args: any[]) {
-  console.error(`[Pulse] ERROR: ${message}`, ...args);
+  console.error(`[Vitals] ERROR: ${message}`, ...args);
 }

@@ -1,6 +1,6 @@
 ---
-title: Pulse UI Components
-description: Documentation for Pulse UI components - MetricChart, AlertPanel, LogViewer, and Dashboard architecture.
+title: Vitals UI Components
+description: Documentation for Vitals UI components - MetricChart, AlertPanel, LogViewer, and Dashboard architecture.
 head:
   - - meta
     - name: keywords
@@ -11,7 +11,7 @@ head:
 
 ## Overview
 
-Pulse UI is built with React components organized by functionality.
+Vitals UI is built with React components organized by functionality.
 
 ## Component Tree
 
@@ -65,7 +65,7 @@ Main layout component that orchestrates the dashboard UI.
 
 ```bash
 ┌─────────────────────────────────────┐
-│ Pulse    [●Live]          │         │
+│ Vitals    [●Live]          │         │
 ├─────────────────────────────────────┤
 │ [KPI] [KPI] [KPI] [KPI]             │
 ├──────────────────┬──────────────────┤

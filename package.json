@@ -1,17 +1,17 @@
 {
-  "name": "pulse",
-  "displayName": "Pulse",
+  "name": "vitals",
+  "displayName": "Vitals",
   "description": "Monitor application metrics and logs in real-time within Visual Studio Code.",
   "version": "0.1.0",
   "publisher": "theaniketraj",
   "repository": {
     "type": "git",
-    "url": "https://github.com/theaniketraj/pulse.git"
+    "url": "https://github.com/theaniketraj/vitals.git"
   },
   "bugs": {
-    "url": "https://github.com/theaniketraj/pulse/issues"
+    "url": "https://github.com/theaniketraj/vitals/issues"
   },
-  "homepage": "https://github.com/theaniketraj/pulse/blob/main/README.md",
+  "homepage": "https://github.com/theaniketraj/vitals/blob/main/README.md",
   "icon": "icon.png",
   "engines": {
     "vscode": "^1.94.0"
@@ -22,7 +22,7 @@
     "Other"
   ],
   "keywords": [
-    "pulse",
+    "vitals",
     "observability",
     "metrics",
     "logs",
@@ -36,14 +36,14 @@
   "contributes": {
     "commands": [
       {
-        "command": "pulse.openDashboard",
-        "title": "Open Pulse"
+        "command": "vitals.openDashboard",
+        "title": "Open Vitals"
       }
     ],
     "configuration": {
-      "title": "Pulse",
+      "title": "Vitals",
       "properties": {
-        "pulse.prometheusUrl": {
+        "vitals.prometheusUrl": {
           "type": "string",
           "default": "http://localhost:9090",
           "description": "URL of the Prometheus server."

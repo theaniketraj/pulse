@@ -6,10 +6,10 @@
         <div class="footer-column">
           <h3>About</h3>
           <ul>
-            <li><a href="/pulse/introduction">What is Pulse?</a></li>
-            <li><a href="/pulse/vision">Vision & Roadmap</a></li>
-            <li><a href="/pulse/system_architecture">Architecture</a></li>
-            <li><a href="/pulse/components">Components</a></li>
+            <li><a href="/vitals/introduction">What is Pulse?</a></li>
+            <li><a href="/vitals/vision">Vision & Roadmap</a></li>
+            <li><a href="/vitals/system_architecture">Architecture</a></li>
+            <li><a href="/vitals/components">Components</a></li>
           </ul>
         </div>
 
@@ -17,10 +17,10 @@
         <div class="footer-column">
           <h3>Documentation</h3>
           <ul>
-            <li><a href="/pulse/getting_started">Getting Started</a></li>
-            <li><a href="/pulse/api">API Reference</a></li>
-            <li><a href="/pulse/troubleshooting">Troubleshooting</a></li>
-            <li><a href="/pulse/project_structure">Project Structure</a></li>
+            <li><a href="/vitals/getting_started">Getting Started</a></li>
+            <li><a href="/vitals/api">API Reference</a></li>
+            <li><a href="/vitals/troubleshooting">Troubleshooting</a></li>
+            <li><a href="/vitals/project_structure">Project Structure</a></li>
           </ul>
         </div>
 
@@ -28,10 +28,10 @@
         <div class="footer-column">
           <h3>Contributing</h3>
           <ul>
-            <li><a href="/pulse/contributing">Contribution Guide</a></li>
-            <li><a href="/pulse/development">Development Setup</a></li>
-            <li><a href="/pulse/testing">Testing Guide</a></li>
-            <li><a href="/pulse/code_of_conduct">Code of Conduct</a></li>
+            <li><a href="/vitals/contributing">Contribution Guide</a></li>
+            <li><a href="/vitals/development">Development Setup</a></li>
+            <li><a href="/vitals/testing">Testing Guide</a></li>
+            <li><a href="/vitals/code_of_conduct">Code of Conduct</a></li>
           </ul>
         </div>
 
@@ -40,16 +40,16 @@
           <h3>Community</h3>
           <ul>
             <li><a href="https://github.com/theaniketraj/pulse" target="_blank" rel="noopener">GitHub</a></li>
-            <li><a href="https://github.com/theaniketraj/pulse/issues" target="_blank" rel="noopener">Report Issues</a></li>
-            <li><a href="https://github.com/theaniketraj/pulse/discussions" target="_blank" rel="noopener">Discussions</a></li>
-            <li><a href="/pulse/security">Security Policy</a></li>
+            <li><a href="https://github.com/theaniketraj/vitals/issues" target="_blank" rel="noopener">Report Issues</a></li>
+            <li><a href="https://github.com/theaniketraj/vitals/discussions" target="_blank" rel="noopener">Discussions</a></li>
+            <li><a href="/vitals/security">Security Policy</a></li>
           </ul>
         </div>
       </div>
 
       <!-- Bottom Bar -->
       <div class="footer-bottom">
-        <p>Released under the <a href="https://github.com/theaniketraj/pulse/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a></p>
+        <p>Released under the <a href="https://github.com/theaniketraj/vitals/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a></p>
         <p>Copyright © 2025 <a href="https://theaniketraj.netlify.app" target="_blank" rel="noopener">Aniket Raj</a></p>
       </div>
     </div>

@@ -1,15 +1,15 @@
-# Pulse ðŸ“Š
+# Vitals í³Š
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Version](https://img.shields.io/visual-studio-marketplace/v/theaniketraj.pulse)](https://marketplace.visualstudio.com/items?itemName=theaniketraj.pulse)
-[![Installs](https://img.shields.io/visual-studio-marketplace/i/theaniketraj.pulse)](https://marketplace.visualstudio.com/items?itemName=theaniketraj.pulse)
+[![Version](https://img.shields.io/visual-studio-marketplace/v/theaniketraj.vitals)](https://marketplace.visualstudio.com/items?itemName=theaniketraj.vitals)
+[![Installs](https://img.shields.io/visual-studio-marketplace/i/theaniketraj.vitals)](https://marketplace.visualstudio.com/items?itemName=theaniketraj.vitals)
 [![VS Code](https://img.shields.io/badge/VS%20Code-1.85.0%2B-blue)](https://code.visualstudio.com/)
 
 > **Real-time Observability for VS Code** - Monitor application metrics, logs, and alerts without leaving your editor.
 
-**Pulse** brings enterprise-grade observability directly into Visual Studio Code. Integrated seamlessly with Prometheus, it transforms your development environment into a powerful monitoring hub, enabling you to catch issues early and optimize performance in real-time.
+**Vitals** brings enterprise-grade observability directly into Visual Studio Code. Integrated seamlessly with Prometheus, it transforms your development environment into a powerful monitoring hub, enabling you to catch issues early and optimize performance in real-time.
 
-<!-- ![Pulse Demo](https://raw.githubusercontent.com/theaniketraj/pulse/main/docs/images/demo.gif) -->
+<!-- ![Pulse Demo](https://raw.githubusercontent.com/theaniketraj/vitals/main/docs/images/demo.gif) -->
 
 ---
 
@@ -81,7 +81,7 @@ code --install-extension pulse-0.1.0.vsix
 ### From Source
 
 ```bash
-git clone https://github.com/theaniketraj/pulse.git
+git clone https://github.com/theaniketraj/vitals.git
 cd pulse
 npm install
 npm run build
@@ -116,17 +116,17 @@ Open VS Code Settings (`Ctrl+,` or `Cmd+,`) and search for "pulse":
 
 ```json
 {
-  "pulse.prometheusUrl": "http://localhost:9090",
-  "pulse.refreshInterval": 5000,
-  "pulse.enableNotifications": true
+  "vitals.prometheusUrl": "http://localhost:9090",
+  "vitals.refreshInterval": 5000,
+  "vitals.enableNotifications": true
 }
 ```
 
-### 3. Open Pulse
+### 3. Open Vitals
 
-- **Command Palette**: `Ctrl+Shift+P` â†’ `Pulse: Open Dashboard`
+- **Command Palette**: `Ctrl+Shift+P` â†’ `Vitals: Open Dashboard`
 - **Keyboard Shortcut**: `Ctrl+Alt+P` (customize in Settings)
-- **Activity Bar**: Click the Pulse icon in the sidebar
+- **Activity Bar**: Click the Vitals icon in the sidebar
 
 ---
 
@@ -136,21 +136,21 @@ All settings are available in VS Code Settings (`Ctrl+,`):
 
 | Setting | Default | Description |
 |---------|---------|-------------|
-| `pulse.prometheusUrl` | `http://localhost:9090` | Prometheus server endpoint |
-| `pulse.refreshInterval` | `5000` | Metrics refresh interval (ms) |
-| `pulse.enableNotifications` | `true` | Show VS Code notifications for alerts |
-| `pulse.maxLogLines` | `1000` | Maximum log lines to display |
-| `pulse.theme` | `auto` | Color theme: `auto`, `light`, `dark` |
+| `vitals.prometheusUrl` | `http://localhost:9090` | Prometheus server endpoint |
+| `vitals.refreshInterval` | `5000` | Metrics refresh interval (ms) |
+| `vitals.enableNotifications` | `true` | Show VS Code notifications for alerts |
+| `vitals.maxLogLines` | `1000` | Maximum log lines to display |
+| `vitals.theme` | `auto` | Color theme: `auto`, `light`, `dark` |
 
 ### Example Configuration
 
 ```json
 {
-  "pulse.prometheusUrl": "https://prometheus.example.com",
-  "pulse.refreshInterval": 3000,
-  "pulse.enableNotifications": true,
-  "pulse.maxLogLines": 5000,
-  "pulse.metrics": [
+  "vitals.prometheusUrl": "https://prometheus.example.com",
+  "vitals.refreshInterval": 3000,
+  "vitals.enableNotifications": true,
+  "vitals.maxLogLines": 5000,
+  "vitals.metrics": [
     "node_cpu_seconds_total",
     "node_memory_MemAvailable_bytes",
     "http_request_duration_seconds"
@@ -165,7 +165,7 @@ All settings are available in VS Code Settings (`Ctrl+,`):
 ### Opening the Dashboard
 
 1. **Command Palette** (`Ctrl+Shift+P`)
-2. Type `Pulse: Open Dashboard`
+2. Type `Vitals: Open Dashboard`
 3. Press `Enter`
 
 The dashboard opens in a new webview panel showing:
@@ -259,7 +259,7 @@ For detailed architecture docs, see [SYSTEM_ARCHITECTURE.md](./Docs/system_archi
 
 ```bash
 # Clone the repository
-git clone https://github.com/theaniketraj/pulse.git
+git clone https://github.com/theaniketraj/vitals.git
 cd pulse
 
 # Install dependencies
@@ -363,7 +363,7 @@ See [VISION.md](./Docs/vision.md) for the full roadmap.
 **Solutions:**
 
 1. Verify Prometheus is running: `curl http://localhost:9090/api/v1/status/config`
-2. Check `pulse.prometheusUrl` setting matches your Prometheus endpoint
+2. Check `vitals.prometheusUrl` setting matches your Prometheus endpoint
 3. Ensure no firewall is blocking the connection
 4. Try disabling SSL verification for self-signed certificates
 
@@ -375,8 +375,8 @@ See [VISION.md](./Docs/vision.md) for the full roadmap.
 
 1. Confirm Prometheus has scraped targets: Visit `http://localhost:9090/targets`
 2. Check metrics exist: Query in Prometheus UI
-3. Verify metric names in `pulse.metrics` setting
-4. Increase `pulse.refreshInterval` for slow networks
+3. Verify metric names in `vitals.metrics` setting
+4. Increase `vitals.refreshInterval` for slow networks
 
 ### Logs Not Streaming
 
@@ -388,7 +388,7 @@ See [VISION.md](./Docs/vision.md) for the full roadmap.
 2. Verify log exporter configuration
 3. Check Pulse is configured to read from correct log source
 
-For more help, see [TROUBLESHOOTING.md](./Docs/troubleshooting.md) or [open an issue](https://github.com/theaniketraj/pulse/issues).
+For more help, see [TROUBLESHOOTING.md](./Docs/troubleshooting.md) or [open an issue](https://github.com/theaniketraj/vitals/issues).
 
 ---
 
@@ -409,8 +409,8 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 ## ðŸ“ž Support
 
 - **Documentation**: [https://theaniketraj.github.io/pulse/](https://theaniketraj.github.io/pulse/)
-- **Issues**: [GitHub Issues](https://github.com/theaniketraj/pulse/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/theaniketraj/pulse/discussions)
+- **Issues**: [GitHub Issues](https://github.com/theaniketraj/vitals/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/theaniketraj/vitals/discussions)
 - **Email**: [contact@example.com](mailto:contact@example.com)
 
 ---

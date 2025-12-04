@@ -1,6 +1,6 @@
-# Testing Pulse Locally
+# Testing Vitals Locally
 
-This guide will help you test the Pulse extension with a real, local Prometheus instance.
+This guide will help you test the Vitals extension with a real, local Prometheus instance.
 
 ## Prerequisites
 
@@ -62,13 +62,13 @@ The easiest way to run Prometheus is via Docker. We will also configure it to sc
 In the new **Extension Development Host** window:
 
 1. Open **Settings** (`Ctrl+,` or `Cmd+,`).
-2. Search for `Pulse`.
-3. Ensure `Pulse: Prometheus Url` is set to `http://localhost:9090`.
+2. Search for `Vitals`.
+3. Ensure `Vitals: Prometheus Url` is set to `http://localhost:9090`.
 
 ## Step 4: Open the Dashboard
 
 1. Open the Command Palette (`Ctrl+Shift+P` or `Cmd+Shift+P`).
-2. Run the command: `Pulse: Open Pulse`.
+2. Run the command: `Vitals: Open Vitals`.
 3. The dashboard should open in a new panel.
 
 ## Step 5: Verification

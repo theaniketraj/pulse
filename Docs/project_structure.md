@@ -1,6 +1,6 @@
 # Project Structure
 
-This document provides an overview of the file structure for the Pulse project to help new contributors navigate the codebase.
+This document provides an overview of the file structure for the Vitals project to help new contributors navigate the codebase.
 
 ```bash
 pulse/

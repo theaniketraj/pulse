@@ -1,15 +1,15 @@
 ---
-title: Getting Started with Pulse
-description: Complete guide to installing and configuring Pulse VS Code extension for real-time application monitoring with Prometheus.
+title: Getting Started with Vitals
+description: Complete guide to installing and configuring Vitals VS Code extension for real-time application monitoring with Prometheus.
 head:
   - - meta
     - name: keywords
-      content: Pulse installation, VS Code extension setup, Prometheus configuration, monitoring setup, getting started guide
+      content: Vitals installation, VS Code extension setup, Prometheus configuration, monitoring setup, getting started guide
 ---
 
-# Getting Started with Pulse
+# Getting Started with Vitals
 
-Welcome to Pulse! This guide will take you from installation to monitoring your first application in minutes.
+Welcome to Vitals! This guide will take you from installation to monitoring your first application in minutes.
 
 ## Prerequisites
 
@@ -30,7 +30,7 @@ Before you begin, ensure you have:
 
 1. Open VS Code.
 2. Go to the **Extensions** view (`Ctrl+Shift+X`).
-3. Search for `Pulse`.
+3. Search for `Vitals`.
 4. Click **Install**.
 
 ### Option B: Build from Source
@@ -38,7 +38,7 @@ Before you begin, ensure you have:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/theaniketraj/pulse.git
+   git clone https://github.com/theaniketraj/vitals.git
    cd pulse
    ```
 
@@ -58,18 +58,18 @@ Before you begin, ensure you have:
 
 ## Configuration
 
-By default, Pulse tries to connect to `http://localhost:9090`. If your Prometheus server is elsewhere:
+By default, Vitals tries to connect to `http://localhost:9090`. If your Prometheus server is elsewhere:
 
 1. Open **Settings** (`Ctrl+,`).
-2. Search for `Pulse`.
-3. Edit **Pulse: Prometheus Url** to match your server (e.g., `http://my-server:9090`).
+2. Search for `Vitals`.
+3. Edit **Vitals: Prometheus Url** to match your server (e.g., `http://my-server:9090`).
 
 ## Your First Dashboard
 
 1. **Open the Dashboard**:
 
    - Press `Ctrl+Shift+P` to open the Command Palette.
-   - Type `Pulse: Open Pulse` and press Enter.
+   - Type `Vitals: Open Vitals` and press Enter.
 
 2. **Explore the UI**:
 

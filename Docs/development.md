@@ -1,6 +1,6 @@
 ---
-title: Pulse Development Guide
-description: Developer guide for contributing to Pulse - setup instructions, development workflow, testing, and debugging.
+title: Vitals Development Guide
+description: Developer guide for contributing to Vitals - setup instructions, development workflow, testing, and debugging.
 head:
   - - meta
     - name: keywords
@@ -20,7 +20,7 @@ head:
 ### 1. Clone and Install
 
 ```bash
-git clone https://github.com/theaniketraj/pulse.git
+git clone https://github.com/theaniketraj/vitals.git
 cd pulse
 npm install
 ```
@@ -80,7 +80,7 @@ pulse/
 1. Open project in VS Code
 2. Press `F5` to launch Extension Development Host
 3. Extension loads in new window
-4. Open Command Palette (Ctrl+Shift+P) and run "Open Pulse"
+4. Open Command Palette (Ctrl+Shift+P) and run "Open Vitals"
 
 ### Hot Reload
 
@@ -159,7 +159,7 @@ Add to workspace `.vscode/settings.json`:
 
 ```json
 {
-  "pulse.prometheusUrl": "http://localhost:9090"
+  "vitals.prometheusUrl": "http://localhost:9090"
 }
 ```
 
@@ -175,7 +175,7 @@ Both use TypeScript loader and handle CSS/SCSS.
 Use `console.log()` for extension debugging:
 
 ```typescript
-console.log("🚀 Pulse extension activated");
+console.log("🚀 Vitals extension activated");
 console.error("Error message", error);
 ```
 

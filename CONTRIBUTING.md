@@ -15,7 +15,7 @@ The following is a set of guidelines for contributing to Pulse. These are mostly
 2. **Installation**:
 
    ```bash
-   git clone https://github.com/theaniketraj/pulse.git
+   git clone https://github.com/theaniketraj/vitals.git
    cd pulse
    npm install
    ```
@@ -28,7 +28,7 @@ For more details, see [DEVELOPMENT.md](docs/DEVELOPMENT.md).
 
 ## 🐛 Reporting Bugs
 
-Bugs are tracked as [GitHub issues](https://github.com/theaniketraj/pulse/issues).
+Bugs are tracked as [GitHub issues](https://github.com/theaniketraj/vitals/issues).
 
 When filing an issue, please include:
 
@@ -40,7 +40,7 @@ When filing an issue, please include:
 
 ## 💡 Suggesting Enhancements
 
-Enhancement suggestions are tracked as [GitHub issues](https://github.com/theaniketraj/pulse/issues).
+Enhancement suggestions are tracked as [GitHub issues](https://github.com/theaniketraj/vitals/issues).
 
 When suggesting an enhancement, please include:
 

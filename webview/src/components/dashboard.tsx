@@ -31,7 +31,7 @@ const Dashboard: React.FC<DashboardProps> = ({ vscode }) => {
       {/* Header Section */}
       <header className="dashboard-header">
         <div className="header-title">
-          <h1>Pulse</h1>
+          <h1>Vitals</h1>
         </div>
         <div className="live-badge">
           <span className="live-dot"></span>

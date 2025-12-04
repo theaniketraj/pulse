@@ -1,6 +1,6 @@
 ---
-title: Pulse API Reference
-description: Complete API documentation for Pulse VS Code extension - commands, configuration options, and programmatic usage.
+title: Vitals API Reference
+description: Complete API documentation for Vitals VS Code extension - commands, configuration options, and programmatic usage.
 head:
   - - meta
     - name: keywords
@@ -11,25 +11,25 @@ head:
 
 ## Extension Commands
 
-### `pulse.openDashboard`
+### `vitals.openDashboard`
 
-Opens the Pulse in a new webview panel.
+Opens the Vitals in a new webview panel.
 
 **Usage:**
 
 ```bash
-Command Palette → "Open Pulse"
+Command Palette → "Open Vitals"
 ```
 
 or programmatically:
 
 ```typescript
-vscode.commands.executeCommand('pulse.openDashboard');
+vscode.commands.executeCommand('vitals.openDashboard');
 ```
 
 ## Configuration Settings
 
-### `pulse.prometheusUrl`
+### `vitals.prometheusUrl`
 
 - **Type**: `string`
 - **Default**: `http://localhost:9090`
@@ -39,7 +39,7 @@ vscode.commands.executeCommand('pulse.openDashboard');
 
 ```json
 {
-  "pulse.prometheusUrl": "http://prometheus.example.com:9090"
+  "vitals.prometheusUrl": "http://prometheus.example.com:9090"
 }
 ```
 

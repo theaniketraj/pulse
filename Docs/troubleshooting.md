@@ -1,13 +1,13 @@
 ---
-title: Pulse Troubleshooting Guide
-description: Common issues and solutions for Pulse VS Code extension - debugging, connection problems, and error fixes.
+title: Vitals Troubleshooting Guide
+description: Common issues and solutions for Vitals VS Code extension - debugging, connection problems, and error fixes.
 head:
   - - meta
     - name: keywords
       content: troubleshooting, debugging, error fixes, common issues, problem solving, support
 ---
 
-# Pulse Extension Troubleshoot Guide
+# Vitals Extension Troubleshoot Guide
 
 ## Current Status
 
@@ -30,19 +30,19 @@ code --extensionDevelopmentPath=. --new-window
 
 ### 2. Check Extension Activation
 
-- **Look for popup message**: "Pulse extension is now active!"
+- **Look for popup message**: "Vitals extension is now active!"
 - **Open Developer Console**: `Help` → `Toggle Developer Tools` → `Console`
 - **Look for logs**:
 
   ```bash
-  🚀 Pulse extension activated
-  ✅ Command "pulse.openDashboard" registered successfully
+  🚀 Vitals extension activated
+  ✅ Command "vitals.openDashboard" registered successfully
   ```
 
 ### 3. Test Command Palette
 
 - Press `Ctrl+Shift+P` (Windows) or `Cmd+Shift+P` (Mac)
-- Type: `Open Pulse`
+- Type: `Open Vitals`
 - **Expected**: Command should appear in the list
 
 ### 4. If Command Still Missing
@@ -64,7 +64,7 @@ code --extensionDevelopmentPath=. --new-window
 #### Option C: Check Extension List
 
 1. Go to Extensions panel (`Ctrl+Shift+X`)
-2. Search for "Pulse"
+2. Search for "Vitals"
 3. Verify it shows as "Development Extension"
 
 ### 5. Manual Command Execution
@@ -72,7 +72,7 @@ code --extensionDevelopmentPath=. --new-window
 If the command palette doesn't show the command, try:
 
 1. Press `Ctrl+Shift+P`
-2. Type: `>pulse.openDashboard`
+2. Type: `>vitals.openDashboard`
 3. Press Enter
 
 ## Common Issues & Solutions
@@ -109,16 +109,16 @@ If the command palette doesn't show the command, try:
 ### Extension Host Console
 
 ```bash
-🚀 Pulse extension activated
-✅ Command "pulse.openDashboard" registered successfully
-📊 Opening Pulse... (when command executed)
+🚀 Vitals extension activated
+✅ Command "vitals.openDashboard" registered successfully
+📊 Opening Vitals... (when command executed)
 ```
 
 ### VS Code Output Panel
 
 - Go to `View` → `Output`
 - Select `Log (Extension Host)` from dropdown
-- Look for Pulse related logs
+- Look for Vitals related logs
 
 ### Browser Console (for webview)
 
@@ -128,10 +128,10 @@ If the command palette doesn't show the command, try:
 
 ## Expected Results
 
-1. **On VS Code startup**: Popup "Pulse extension is now active!"
-2. **In Command Palette**: "Open Pulse" command visible
+1. **On VS Code startup**: Popup "Vitals extension is now active!"
+2. **In Command Palette**: "Open Vitals" command visible
 3. **When executed**: Dashboard panel opens beside editor
-4. **Dashboard content**: Shows "Pulse" header
+4. **Dashboard content**: Shows "Vitals" header
 5. **Network activity**: Requests to localhost:9090 for metrics
 
 ## If All Else Fails

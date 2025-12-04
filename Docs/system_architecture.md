@@ -1,6 +1,6 @@
 ---
-title: Pulse System Architecture
-description: Technical architecture of Pulse VS Code extension - webview components, Prometheus integration, data flow, and system design.
+title: Vitals System Architecture
+description: Technical architecture of Vitals VS Code extension - webview components, Prometheus integration, data flow, and system design.
 head:
   - - meta
     - name: keywords
@@ -11,7 +11,7 @@ head:
 
 ## Overview
 
-Pulse is a VS Code extension that provides real-time monitoring of application metrics and logs from Prometheus, integrated directly into the editor.
+Vitals is a VS Code extension that provides real-time monitoring of application metrics and logs from Prometheus, integrated directly into the editor.
 
 ```mermaid
 flowchart TD
@@ -54,7 +54,7 @@ flowchart TD
 ### 1. Extension Layer (`src/extension.ts`)
 
 - Entry point for VS Code extension
-- Registers `pulse.openDashboard` command
+- Registers `vitals.openDashboard` command
 - Manages extension lifecycle (activate/deactivate)
 
 ### 2. Webview Management Layer (`src/pulseView.ts`)
@@ -92,7 +92,7 @@ flowchart TD
 ## Data Flow
 
 ```text
-User triggers "pulse.openDashboard" command
+User triggers "vitals.openDashboard" command
         ↓
 extension.ts registers command → calls PulseView.createOrShow()
         ↓
@@ -130,7 +130,7 @@ Extension reads from VS Code settings:
 
 ```json
 {
-  "pulse.prometheusUrl": "http://localhost:9090"
+  "vitals.prometheusUrl": "http://localhost:9090"
 }
 ```
 

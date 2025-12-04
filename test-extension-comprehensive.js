@@ -1,5 +1,5 @@
 /**
- * Comprehensive Test Script for Pulse VS Code Extension
+ * Comprehensive Test Script for Vitals VS Code Extension
  * 
  * This script tests:
  * - Extension activation
@@ -425,20 +425,20 @@ function testExtensionManual() {
   
   console.log('1. Extension Activation:');
   console.log('   - Open VS Code Developer Console (Help > Toggle Developer Tools)');
-  console.log('   - Look for: "🚀 Pulse extension activated"');
-  console.log('   - Verify popup message: "Pulse extension is now active!"');
+  console.log('   - Look for: "🚀 Vitals extension activated"');
+  console.log('   - Verify popup message: "Vitals extension is now active!"');
   console.log('');
   
   console.log('2. Command Registration:');
   console.log('   - Press Ctrl+Shift+P (Cmd+Shift+P on Mac)');
-  console.log('   - Search for "Open Pulse"');
+  console.log('   - Search for "Open Vitals"');
   console.log('   - Verify command appears in list');
   console.log('');
   
   console.log('3. Webview Creation:');
-  console.log('   - Run "Open Pulse" command');
+  console.log('   - Run "Open Vitals" command');
   console.log('   - Verify webview panel opens');
-  console.log('   - Check for "Pulse" header in webview');
+  console.log('   - Check for "Vitals" header in webview');
   console.log('');
   
   console.log('4. UI Components:');
@@ -450,7 +450,7 @@ function testExtensionManual() {
   
   console.log('5. Configuration:');
   console.log('   - Go to Settings (File > Preferences > Settings)');
-  console.log('   - Search for "Pulse"');
+  console.log('   - Search for "Vitals"');
   console.log('   - Verify configuration options appear');
   console.log('   - Test changing Prometheus URL');
   console.log('');
@@ -500,7 +500,7 @@ async function runAllTests() {
   console.log(`${colors.cyan}
 ╔═══════════════════════════════════════════════════════════╗
 ║                                                           ║
-║        Pulse VS Code Extension - Comprehensive Tests     ║
+║        Vitals VS Code Extension - Comprehensive Tests     ║
 ║                                                           ║
 ╚═══════════════════════════════════════════════════════════╝
 ${colors.reset}`);

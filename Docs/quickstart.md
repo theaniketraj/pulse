@@ -1,10 +1,10 @@
 ---
-title: Pulse Quickstart Guide
-description: Quick start guide to get Pulse running in minutes - installation, setup, and first monitoring session.
+title: Vitals Quickstart Guide
+description: Quick start guide to get Vitals running in minutes - installation, setup, and first monitoring session.
 head:
   - - meta
     - name: keywords
-      content: quickstart, quick setup, fast installation, Pulse tutorial, monitoring guide
+      content: quickstart, quick setup, fast installation, Vitals tutorial, monitoring guide
 ---
 
 # Quick Start Guide
@@ -14,7 +14,7 @@ head:
 ### From Source
 
 ```bash
-git clone https://github.com/theaniketraj/pulse.git
+git clone https://github.com/theaniketraj/vitals.git
 cd pulse
 npm install
 npm run build
@@ -24,7 +24,7 @@ npm run build
 
 1. Open VS Code
 2. Press `Ctrl+Shift+X` (Extensions)
-3. Search for "Pulse"
+3. Search for "Vitals"
 4. Click Install
 
 Or install from GitHub releases (VSIX file)
@@ -35,11 +35,11 @@ Set Prometheus URL in VS Code settings:
 
 **File → Preferences → Settings** (or `Ctrl+,`)
 
-Search for `pulse.prometheusUrl`:
+Search for `vitals.prometheusUrl`:
 
 ```json
 {
-  "pulse.prometheusUrl": "http://localhost:9090"
+  "vitals.prometheusUrl": "http://localhost:9090"
 }
 ```
 
@@ -50,7 +50,7 @@ Search for `pulse.prometheusUrl`:
 ### 1. Open Dashboard
 
 - **Command Palette** (`Ctrl+Shift+P`)
-- Type: `Open Pulse`
+- Type: `Open Vitals`
 - Press Enter
 
 ### 2. Wait for Data
@@ -144,8 +144,8 @@ http_request_duration_seconds
 
 ## Getting Help
 
-- **Issues**: [GitHub Issues](https://github.com/theaniketraj/pulse/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/theaniketraj/pulse/discussions)
+- **Issues**: [GitHub Issues](https://github.com/theaniketraj/vitals/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/theaniketraj/vitals/discussions)
 - **Documentation**: See `/Docs` folder
 
 ## Performance Tips
