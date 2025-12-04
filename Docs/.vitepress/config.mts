@@ -1,14 +1,20 @@
 import { defineConfig } from "vitepress";
+import { withMermaid } from "vitepress-plugin-mermaid";
 
-export default defineConfig({
-  base: "/vitals/",
-  title: "Vitals",
-  description: "Real-time Observability for VS Code",
-  lang: "en-US",
-  cleanUrls: true,
-  lastUpdated: true,
+export default withMermaid(
+  defineConfig({
+    base: "/vitals/",
+    title: "Vitals",
+    description: "Real-time Observability for VS Code",
+    lang: "en-US",
+    cleanUrls: true,
+    lastUpdated: true,
 
-  head: [
+    mermaid: {
+      theme: 'default'
+    },
+
+    head: [
     ["link", { rel: "icon", href: "/vitals/icon.png" }],
     ["meta", { name: "theme-color", content: "#3b82f6" }],
     ["meta", { name: "author", content: "Aniket Raj" }],
@@ -104,5 +110,5 @@ export default defineConfig({
       pattern: "https://github.com/theaniketraj/vitals/edit/main/Docs/:path",
       text: "Edit this page on GitHub",
     },
-  },
-});
+  })
+);

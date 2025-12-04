@@ -26,8 +26,6 @@ This friction breaks your flow and slows down the feedback loop.
 
 Vitals integrates these essential observability signals right where you work. By connecting directly to your local or remote Prometheus instance, Vitals provides a unified view of your application's health without you ever leaving the editor.
 
-![Vitals Demo](/icon.png)
-
 ## Key Capabilities
 
 ### Real-Time Metrics

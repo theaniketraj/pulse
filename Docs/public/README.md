@@ -12,11 +12,13 @@ The Vitals documentation now supports theme-aware logos that change based on lig
 Currently, both `icon-light.png` and `icon-dark.png` are copies of the original `icon.png`. To create proper theme-specific versions:
 
 ### For Light Mode (`icon-light.png`)
+
 - Use darker colors that work well on white/light backgrounds
 - Ensure good contrast against light gray backgrounds
 - Consider using black or dark blue tones
 
 ### For Dark Mode (`icon-dark.png`)
+
 - Use lighter colors that work well on dark backgrounds
 - Ensure good contrast against dark gray backgrounds
 - Consider using white or bright colors
@@ -35,6 +37,7 @@ Currently, both `icon-light.png` and `icon-dark.png` are copies of the original 
 - **Photoshop/GIMP**: Adjust brightness, contrast, and apply color filters
 - **Figma**: Create separate variants with different color schemes
 - **ImageMagick** (CLI): Batch process to invert colors:
+
   ```bash
   # Invert for dark theme
   convert icon.png -negate icon-dark.png

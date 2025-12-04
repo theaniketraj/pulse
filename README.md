@@ -208,7 +208,7 @@ The **Alerts** tab displays:
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 Vitals uses a clean, modular architecture:
 
@@ -354,7 +354,7 @@ See [VISION.md](./Docs/vision.md) for the full roadmap.
 
 ---
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Connection Issues
 
@@ -406,7 +406,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ---
 
-## 📞 Support
+## Support
 
 - **Documentation**: [https://theaniketraj.github.io/vitals/](https://theaniketraj.github.io/vitals/)
 - **Issues**: [GitHub Issues](https://github.com/theaniketraj/vitals/issues)
