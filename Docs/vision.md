@@ -12,7 +12,7 @@ By bringing observability directly into the editor, Pulse solves the friction of
 
 **The Pulse Solution**: Pulse brings that critical data _directly_ into your editor.
 
-- **Benefit**: Keep your "inner loop" of development tight (Write $\rightarrow$ Run $\rightarrow$ Observe).
+- **Benefit**: Keep your "inner loop" of development tight (Write → Run → Observe).
 - **Result**: Stay in the zone. No more Alt-Tab fatigue.
 
 ### 2. Immediate Feedback Loop

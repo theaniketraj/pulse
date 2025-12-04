@@ -1,10 +1,42 @@
 import DefaultTheme from 'vitepress/theme'
 import './custom.css'
+import Footer from './Footer.vue'
+import { h } from 'vue'
 
 export default {
   extends: DefaultTheme,
+  Layout() {
+    return h(DefaultTheme.Layout, null, {
+      'doc-after': () => h(Footer),
+      'home-features-after': () => h(Footer)
+    })
+  },
   setup() {
     if (globalThis.window !== undefined) {
+      // Hide navbar when scrolled to bottom to show full footer
+      globalThis.window.addEventListener('DOMContentLoaded', () => {
+        const handleScroll = () => {
+          const navbar = document.querySelector('.VPNav');
+          if (!navbar) return;
+
+          const scrollTop = window.scrollY || document.documentElement.scrollTop;
+          const scrollHeight = document.documentElement.scrollHeight;
+          const clientHeight = document.documentElement.clientHeight;
+          
+          // Check if scrolled within 100px of bottom
+          const isAtBottom = scrollTop + clientHeight >= scrollHeight - 100;
+          
+          if (isAtBottom) {
+            navbar.classList.add('hide-at-bottom');
+          } else {
+            navbar.classList.remove('hide-at-bottom');
+          }
+        };
+
+        document.addEventListener('scroll', handleScroll);
+        handleScroll(); // Check initial state
+      });
+
       // Add smooth mouse-following effect to hero logo
       globalThis.window.addEventListener('DOMContentLoaded', () => {
         const initLogoEffect = () => {

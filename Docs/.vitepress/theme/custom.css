@@ -1,21 +1,20 @@
 /* Mobile Responsive Improvements for Pulse Docs */
 
+/* Hide navbar when at bottom to show full footer */
+.VPNav {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  font-size: 0.9em;
+}
+
+.VPNav.hide-at-bottom {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
 /* Force footer to display on all pages */
 .VPFooter {
-  display: block !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
-.VPDoc .VPFooter {
-  margin-top: 64px;
-  padding-top: 32px;
-  border-top: 1px solid var(--vp-c-divider);
-}
-
-/* Compact navbar - reduce font size by 10% to fit content without scrollbar */
-.VPNav {
-  font-size: 0.9em;
+  display: none !important; /* Hide default footer, using custom */
 }
 
 .VPNavBar .title {

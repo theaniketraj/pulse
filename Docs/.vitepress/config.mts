@@ -96,13 +96,6 @@ export default defineConfig({
       { icon: "github", link: "https://github.com/theaniketraj/pulse" },
     ],
 
-    footer: {
-      message:
-        'Released under the <a href="https://github.com/theaniketraj/pulse/blob/main/LICENSE" target="_blank">MIT License</a>.',
-      copyright:
-        'Copyright © 2025 <a href="https://theaniketraj.netlify.app" target="_blank">Aniket Raj</a>',
-    },
-
     search: {
       provider: "local",
     },
