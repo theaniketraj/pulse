@@ -44,6 +44,18 @@ export default withMermaid(
     ["link", { rel: "canonical", href: "https://theaniketraj.github.io/vitals/" }],
     ["meta", { name: "robots", content: "index, follow" }],
     ["meta", { name: "googlebot", content: "index, follow" }],
+    ["link", { rel: "manifest", href: "/vitals/manifest.json" }],
+    ["script", { 
+      children: `
+        if ('serviceWorker' in navigator) {
+          window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/vitals/sw.js', { scope: '/vitals/' })
+              .then(registration => console.log('SW registered:', registration.scope))
+              .catch(err => console.log('SW registration failed:', err));
+          });
+        }
+      `
+    }],
   
   ],
 

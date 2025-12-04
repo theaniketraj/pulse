@@ -1,0 +1,53 @@
+{
+  "name": "Vitals - Real-time Observability for VS Code",
+  "short_name": "Vitals",
+  "description": "Monitor application metrics, logs, and alerts directly in Visual Studio Code",
+  "start_url": "/vitals/",
+  "scope": "/vitals/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3b82f6",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/vitals/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/vitals/icon-light.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/vitals/icon-dark.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "categories": [
+    "developer-tools",
+    "productivity",
+    "utilities"
+  ],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Getting Started",
+      "short_name": "Start",
+      "description": "Learn how to use Vitals",
+      "url": "/vitals/getting_started",
+      "icons": []
+    },
+    {
+      "name": "API Documentation",
+      "short_name": "API",
+      "description": "View API reference",
+      "url": "/vitals/api",
+      "icons": []
+    }
+  ]
+}
