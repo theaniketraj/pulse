@@ -17,6 +17,7 @@ _site/
 tmp/
 *.log
 .DS_Store
+commit-changes.sh
 
 # Environment
 .env
