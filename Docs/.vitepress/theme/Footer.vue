@@ -62,7 +62,7 @@
   background: var(--vp-c-bg-soft);
   border-top: 1px solid var(--vp-c-divider);
   padding: 48px 24px 32px;
-  margin-top: 48px;
+  margin: 0;
 }
 
 .footer-content {

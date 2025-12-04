@@ -7,8 +7,7 @@ export default {
   extends: DefaultTheme,
   Layout() {
     return h(DefaultTheme.Layout, null, {
-      'doc-after': () => h(Footer),
-      'home-features-after': () => h(Footer)
+      'layout-bottom': () => h(Footer)
     })
   },
   setup() {
