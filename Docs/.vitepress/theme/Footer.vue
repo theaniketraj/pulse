@@ -60,10 +60,16 @@
 
 <style scoped>
 .pulse-footer {
-  width: 100%;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
   background: var(--vp-c-bg-soft);
   border-top: 1px solid var(--vp-c-divider);
-  margin-top: 64px;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .footer-container {
