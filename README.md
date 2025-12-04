@@ -1,6 +1,6 @@
 # Theme-Aware Logo Setup
 
-The Pulse documentation now supports theme-aware logos that change based on light/dark mode.
+The Vitals documentation now supports theme-aware logos that change based on light/dark mode.
 
 ## Current Setup
 
