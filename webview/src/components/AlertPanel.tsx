@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 
 // Component to display alerts
 interface AlertPanelProps {
@@ -21,14 +21,23 @@ const AlertPanel: React.FC<AlertPanelProps> = ({ alerts, loading, error }) => {
       ) : (
         <div className="alert-list">
           {alerts.map((alert, index) => (
-            <div key={index} className={`alert-card ${alert.value === 1 ? 'firing' : 'pending'}`}>
+            <div
+              key={index}
+              className={`alert-card ${
+                alert.value === 1 ? "firing" : "pending"
+              }`}
+            >
               <div className="alert-indicator"></div>
               <div className="alert-content">
                 <div className="alert-header">
                   <span className="alert-name">{alert.message}</span>
-                  <span className="alert-badge">{alert.value === 1 ? 'FIRING' : 'PENDING'}</span>
+                  <span className="alert-badge">
+                    {alert.value === 1 ? "FIRING" : "PENDING"}
+                  </span>
                 </div>
-                {alert.details && <div className="alert-details">{alert.details}</div>}
+                {alert.details && (
+                  <div className="alert-details">{alert.details}</div>
+                )}
               </div>
             </div>
           ))}

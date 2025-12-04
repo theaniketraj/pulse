@@ -1,11 +1,11 @@
-import axios from 'axios';
-import * as vscode from 'vscode';
+import axios from "axios";
+import * as vscode from "vscode";
 
 export class PrometheusApi {
   private baseUrl: string;
 
   constructor(baseUrl: string) {
-    this.baseUrl = baseUrl.replace(/\/$/, ''); // Remove trailing slash if present
+    this.baseUrl = baseUrl.replace(/\/$/, ""); // Remove trailing slash if present
   }
 
   /**
@@ -17,13 +17,13 @@ export class PrometheusApi {
       const url = `${this.baseUrl}/api/v1/alerts`;
       const response = await axios.get(url);
 
-      if (response.data.status !== 'success') {
+      if (response.data.status !== "success") {
         throw new Error(`Prometheus API error: ${response.data.error}`);
       }
 
       return response.data;
     } catch (error: any) {
-      console.error('Failed to fetch alerts:', error);
+      console.error("Failed to fetch alerts:", error);
       if (axios.isAxiosError(error)) {
         throw new Error(`Network error: ${error.message}`);
       }
@@ -38,7 +38,7 @@ export class PrometheusApi {
    */
   public async query(query: string): Promise<any> {
     if (!query) {
-      throw new Error('Query cannot be empty');
+      throw new Error("Query cannot be empty");
     }
 
     try {
@@ -47,13 +47,13 @@ export class PrometheusApi {
         params: { query },
       });
 
-      if (response.data.status !== 'success') {
+      if (response.data.status !== "success") {
         throw new Error(`Prometheus API error: ${response.data.error}`);
       }
 
       return response.data;
     } catch (error: any) {
-      console.error('Failed to fetch metrics:', error);
+      console.error("Failed to fetch metrics:", error);
       // Re-throw with a user-friendly message if possible
       if (axios.isAxiosError(error)) {
         throw new Error(`Network error: ${error.message}`);
@@ -64,9 +64,9 @@ export class PrometheusApi {
 }
 
 export enum MessageTypes {
-  TRIGGER_ALERT = 'TRIGGER_ALERT',
-  UPDATE_METRICS = 'UPDATE_METRICS',
-  UPDATE_LOGS = 'UPDATE_LOGS'
+  TRIGGER_ALERT = "TRIGGER_ALERT",
+  UPDATE_METRICS = "UPDATE_METRICS",
+  UPDATE_LOGS = "UPDATE_LOGS",
 }
 
 export function sendMessageToWebview(webview: vscode.Webview, message: any) {

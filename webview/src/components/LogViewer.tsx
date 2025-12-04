@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 
 // Component to display logs
 interface LogViewerProps {
@@ -10,14 +10,14 @@ const LogViewer: React.FC<LogViewerProps> = ({ logs }) => {
 
   // Auto-scroll to bottom
   React.useEffect(() => {
-    logsEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    logsEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [logs]);
 
   const getLogClass = (log: string) => {
-    if (log.includes('[ERROR]')) return 'log-error';
-    if (log.includes('[WARN]')) return 'log-warn';
-    if (log.includes('[INFO]')) return 'log-info';
-    return '';
+    if (log.includes("[ERROR]")) return "log-error";
+    if (log.includes("[WARN]")) return "log-warn";
+    if (log.includes("[INFO]")) return "log-info";
+    return "";
   };
 
   return (
@@ -28,7 +28,9 @@ const LogViewer: React.FC<LogViewerProps> = ({ logs }) => {
         <div className="log-list">
           {logs.map((log, index) => (
             <div key={index} className={`log-entry ${getLogClass(log)}`}>
-              <span className="log-line-number">{(index + 1).toString().padStart(3, '0')}</span>
+              <span className="log-line-number">
+                {(index + 1).toString().padStart(3, "0")}
+              </span>
               <span className="log-content">{log}</span>
             </div>
           ))}

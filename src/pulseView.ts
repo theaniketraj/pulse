@@ -1,7 +1,7 @@
-import * as vscode from 'vscode';
-import * as path from 'path';
-import { getWebviewContent } from './utils/webviewUtils';
-import { PrometheusApi } from './api';
+import * as vscode from "vscode";
+import * as path from "path";
+import { getWebviewContent } from "./utils/webviewUtils";
+import { PrometheusApi } from "./api";
 
 // Class to manage the Webview panel for the Vitals dashboard
 export class VitalsView {
@@ -16,42 +16,61 @@ export class VitalsView {
     this._extensionPath = extensionPath;
 
     // Set the Webview content (HTML with React bundle)
-    this._panel.webview.html = getWebviewContent(this._panel.webview, vscode.Uri.file(extensionPath));
+    this._panel.webview.html = getWebviewContent(
+      this._panel.webview,
+      vscode.Uri.file(extensionPath)
+    );
 
     // Handle messages from the Webview (e.g., fetch metrics)
     this._panel.webview.onDidReceiveMessage(
-      async message => {
+      async (message) => {
         switch (message.command) {
-          case 'fetchMetrics':
+          case "fetchMetrics":
             try {
-              const config = vscode.workspace.getConfiguration('vitals');
-              const prometheusUrl = config.get<string>('prometheusUrl') || 'http://localhost:9090';
+              const config = vscode.workspace.getConfiguration("vitals");
+              const prometheusUrl =
+                config.get<string>("prometheusUrl") || "http://localhost:9090";
               const api = new PrometheusApi(prometheusUrl);
 
               const data = await api.query(message.query);
-              this._panel.webview.postMessage({ command: 'updateMetrics', data });
+              this._panel.webview.postMessage({
+                command: "updateMetrics",
+                data,
+              });
             } catch (error: any) {
-              vscode.window.showErrorMessage(`Vitals: Failed to fetch metrics. ${error.message}`);
+              vscode.window.showErrorMessage(
+                `Vitals: Failed to fetch metrics. ${error.message}`
+              );
               console.error(error);
-              this._panel.webview.postMessage({ command: 'error', message: error.message });
+              this._panel.webview.postMessage({
+                command: "error",
+                message: error.message,
+              });
             }
             break;
 
-          case 'fetchAlerts':
+          case "fetchAlerts":
             try {
-              const config = vscode.workspace.getConfiguration('vitals');
-              const prometheusUrl = config.get<string>('prometheusUrl') || 'http://localhost:9090';
+              const config = vscode.workspace.getConfiguration("vitals");
+              const prometheusUrl =
+                config.get<string>("prometheusUrl") || "http://localhost:9090";
               const api = new PrometheusApi(prometheusUrl);
 
               const data = await api.getAlerts();
-              this._panel.webview.postMessage({ command: 'updateAlerts', data });
+              this._panel.webview.postMessage({
+                command: "updateAlerts",
+                data,
+              });
             } catch (error: any) {
-              console.error('Failed to fetch alerts:', error);
-              this._panel.webview.postMessage({ command: 'alertError', message: error.message });
+              console.error("Failed to fetch alerts:", error);
+              this._panel.webview.postMessage({
+                command: "alertError",
+                message: error.message,
+              });
             }
             break;
 
-          case 'fetchLogs':
+          case "fetchLogs":
             // Mock log data for now as Prometheus doesn't have a standard logs endpoint
             // In a real scenario, this would connect to Loki or another log source
             const mockLogs = [
@@ -59,9 +78,12 @@ export class VitalsView {
               `[INFO] Connected to database`,
               `[WARN] High memory usage detected`,
               `[ERROR] Connection timeout to service-b`,
-              `[INFO] Request processed in 45ms`
+              `[INFO] Request processed in 45ms`,
             ];
-            this._panel.webview.postMessage({ command: 'updateLogs', data: mockLogs });
+            this._panel.webview.postMessage({
+              command: "updateLogs",
+              data: mockLogs,
+            });
             break;
         }
       },
@@ -70,12 +92,18 @@ export class VitalsView {
     );
 
     // Dispose the panel when closed
-    this._panel.onDidDispose(() => this.dispose(), undefined, this._disposables);
+    this._panel.onDidDispose(
+      () => this.dispose(),
+      undefined,
+      this._disposables
+    );
   }
 
   // Create or show the Webview panel
   public static createOrShow(context: vscode.ExtensionContext) {
-    const column = vscode.window.activeTextEditor ? vscode.ViewColumn.Beside : vscode.ViewColumn.One;
+    const column = vscode.window.activeTextEditor
+      ? vscode.ViewColumn.Beside
+      : vscode.ViewColumn.One;
 
     // Reuse existing panel if it exists
     if (VitalsView.currentPanel) {
@@ -85,12 +113,14 @@ export class VitalsView {
 
     // Create a new Webview panel
     const panel = vscode.window.createWebviewPanel(
-      'vitalsDashboard',
-      'Vitals Dashboard',
+      "vitalsDashboard",
+      "Vitals Dashboard",
       column,
       {
         enableScripts: true,
-        localResourceRoots: [vscode.Uri.file(path.join(context.extensionPath, 'webview', 'build'))]
+        localResourceRoots: [
+          vscode.Uri.file(path.join(context.extensionPath, "webview", "build")),
+        ],
       }
     );
 
