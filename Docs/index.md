@@ -28,8 +28,8 @@ hero:
       text: Get Started
       link: /getting_started
     - theme: alt
-      text: View on GitHub
-      link: https://github.com/theaniketraj/vitals
+      text: View on Marketplace
+      link: https://marketplace.visualstudio.com/items?itemName=theaniketraj.vitals
 
 features:
   - title: Real-Time Metrics

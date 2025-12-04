@@ -37,7 +37,18 @@
     "commands": [
       {
         "command": "vitals.openDashboard",
-        "title": "Open Vitals"
+        "title": "Open Vitals Dashboard",
+        "category": "Vitals"
+      },
+      {
+        "command": "vitals.signOut",
+        "title": "Sign Out from GitHub",
+        "category": "Vitals"
+      },
+      {
+        "command": "vitals.showStatus",
+        "title": "Show Authentication Status",
+        "category": "Vitals"
       }
     ],
     "configuration": {
