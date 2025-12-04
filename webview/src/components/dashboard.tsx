@@ -2,7 +2,7 @@ import * as React from "react";
 import MetricChart from "./MetricChart";
 import LogViewer from "./LogViewer";
 import AlertPanel from "./AlertPanel";
-import { useData } from "../hooks/useData";
+import { useVitalsData } from "../hooks/useVitalsData";
 import { useAlerts } from "../hooks/useAlerts";
 
 interface DashboardProps {
@@ -11,7 +11,7 @@ interface DashboardProps {
 
 // Main dashboard component
 const Dashboard: React.FC<DashboardProps> = ({ vscode }) => {
-  const { metrics, logs, loading, error } = useData(vscode);
+  const { metrics, logs, loading, error } = useVitalsData(vscode);
   const {
     alerts,
     loading: alertsLoading,
