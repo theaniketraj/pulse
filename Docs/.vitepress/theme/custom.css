@@ -17,6 +17,24 @@
   display: none !important; /* Hide default footer, using custom */
 }
 
+/* Remove whitespace below footer on landing page */
+.VPHome {
+  padding-bottom: 0 !important;
+}
+
+.Layout {
+  padding-bottom: 0 !important;
+}
+
+.VPContent {
+  padding-bottom: 0 !important;
+}
+
+/* Ensure footer sits at bottom with no extra space */
+.pulse-footer {
+  margin-bottom: 0 !important;
+}
+
 .VPNavBar .title {
   font-size: 0.9em;
 }
