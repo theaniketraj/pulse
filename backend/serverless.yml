@@ -1,0 +1,107 @@
+service: vitals-backend
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: us-east-1
+  stage: ${opt:stage, 'dev'}
+
+  # IAM permissions for Lambda functions
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:GetItem
+            - dynamodb:PutItem
+            - dynamodb:UpdateItem
+            - dynamodb:Query
+            - dynamodb:Scan
+          Resource:
+            - !GetAtt VitalsTable.Arn
+            - !Sub "${VitalsTable.Arn}/index/*"
+
+  # Environment variables for Lambda functions
+  environment:
+    TABLE_NAME: ${self:custom.tableName}
+    STAGE: ${self:provider.stage}
+
+custom:
+  tableName: vitals-${self:provider.stage}
+
+  # For local development
+  serverless-offline:
+    httpPort: 3001
+
+functions:
+  api:
+    handler: src/handler.main
+    events:
+      - http:
+          path: /{proxy+}
+          method: ANY
+          cors:
+            origin: "*"
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+      - http:
+          path: /
+          method: ANY
+          cors:
+            origin: "*"
+
+resources:
+  Resources:
+    # DynamoDB Table
+    VitalsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:custom.tableName}
+        BillingMode: PAY_PER_REQUEST # On-demand pricing (free tier eligible)
+        AttributeDefinitions:
+          - AttributeName: PK
+            AttributeType: S
+          - AttributeName: SK
+            AttributeType: S
+          - AttributeName: GSI1PK
+            AttributeType: S
+          - AttributeName: GSI1SK
+            AttributeType: S
+        KeySchema:
+          - AttributeName: PK
+            KeyType: HASH
+          - AttributeName: SK
+            KeyType: RANGE
+        GlobalSecondaryIndexes:
+          - IndexName: GSI1
+            KeySchema:
+              - AttributeName: GSI1PK
+                KeyType: HASH
+              - AttributeName: GSI1SK
+                KeyType: RANGE
+            Projection:
+              ProjectionType: ALL
+        StreamSpecification:
+          StreamViewType: NEW_AND_OLD_IMAGES
+        Tags:
+          - Key: Project
+            Value: Vitals
+          - Key: Environment
+            Value: ${self:provider.stage}
+
+  Outputs:
+    ApiUrl:
+      Description: "API Gateway endpoint URL"
+      Value: !Sub "https://${ApiGatewayRestApi}.execute-api.${self:provider.region}.amazonaws.com/${self:provider.stage}"
+
+    TableName:
+      Description: "DynamoDB Table Name"
+      Value: !Ref VitalsTable
+
+plugins:
+  - serverless-offline
