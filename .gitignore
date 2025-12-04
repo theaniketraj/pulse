@@ -1,10 +1,29 @@
+# Dependencies
 node_modules/
+webview/node_modules/
+
+# Build outputs
 dist/
 webview/build/
-.vscode
-webview/node_modules/
-tmp/
 _site/
-docs/.vitepress/cache/
-docs/.vitepress/dist/
+
+# VitePress (case-insensitive)
+[Dd]ocs/.vitepress/cache/
+[Dd]ocs/.vitepress/dist/
+[Dd]ocs/.vitepress/.temp/
+
+# Development
+.vscode/
+tmp/
+*.log
+.DS_Store
+
+# Environment
+.env
+.env.local
+
+# AWS
+.aws/
+backend/.serverless/
+
 # Logs
