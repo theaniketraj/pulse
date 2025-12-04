@@ -65,6 +65,6 @@ jobs:
       - name: Debug - Show deployment summary
         run: |
           echo "=== Deployment completed ==="
-          echo "Expected URL: https://theaniketraj.github.io/pulse/"
+          echo "Expected URL: https://theaniketraj.github.io/vitals/"
           echo "Files deployed from: Docs/.vitepress/dist"
           echo "Target branch: gh-pages"
