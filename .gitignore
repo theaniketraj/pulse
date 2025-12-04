@@ -5,4 +5,6 @@ webview/build/
 webview/node_modules/
 tmp/
 _site/
+docs/.vitepress/cache/
+docs/.vitepress/dist/
 # Logs

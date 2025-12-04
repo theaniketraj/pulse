@@ -11,7 +11,18 @@ export default withMermaid(
     lastUpdated: true,
 
     mermaid: {
-      theme: 'default'
+      theme: 'default',
+      startOnLoad: true,
+      flowchart: {
+        useMaxWidth: true,
+        htmlLabels: true,
+        curve: 'basis'
+      },
+      securityLevel: 'loose'
+    },
+
+    mermaidPlugin: {
+      class: "mermaid my-class",
     },
 
     head: [
