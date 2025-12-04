@@ -33,6 +33,7 @@ export default withMermaid(
     ["link", { rel: "canonical", href: "https://theaniketraj.github.io/vitals/" }],
     ["meta", { name: "robots", content: "index, follow" }],
     ["meta", { name: "googlebot", content: "index, follow" }],
+  
   ],
 
   themeConfig: {
@@ -110,5 +111,6 @@ export default withMermaid(
       pattern: "https://github.com/theaniketraj/vitals/edit/main/Docs/:path",
       text: "Edit this page on GitHub",
     },
+  },
   })
 );
