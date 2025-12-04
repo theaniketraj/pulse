@@ -6,6 +6,7 @@
           <h3>🍪 Cookie Consent</h3>
           <p>
             We use cookies to improve your experience and collect anonymous usage statistics.
+            You can change your preference anytime.
             <a href="/vitals/USAGE_STATISTICS.html" class="learn-more">Learn more</a>
           </p>
         </div>
@@ -31,6 +32,7 @@ import { analytics } from './analytics'
 const CONSENT_KEY = 'vitals-cookie-consent'
 const CONSENT_TIMESTAMP_KEY = 'vitals-cookie-consent-timestamp'
 const CONSENT_DURATION = 365 * 24 * 60 * 60 * 1000 // 1 year in milliseconds
+const DECLINE_REPROMPT_DURATION = 7 * 24 * 60 * 60 * 1000 // Re-prompt after 7 days if declined
 
 const { isDark } = useData()
 const showBanner = ref(false)
@@ -40,14 +42,31 @@ function isConsentValid(): boolean {
   const consentTimestamp = localStorage.getItem(CONSENT_TIMESTAMP_KEY)
   if (!consentTimestamp) return false
   
+  const consent = localStorage.getItem(CONSENT_KEY)
   const elapsed = Date.now() - Number.parseInt(consentTimestamp)
-  return elapsed < CONSENT_DURATION
+  
+  // If user accepted, consent lasts 1 year
+  if (consent === 'true') {
+    return elapsed < CONSENT_DURATION
+  }
+  
+  // If user declined, re-prompt after 7 days
+  if (consent === 'false') {
+    return elapsed < DECLINE_REPROMPT_DURATION
+  }
+  
+  return false
 }
 
 // Check if consent was already given
 function checkConsent(): boolean {
   const consent = localStorage.getItem(CONSENT_KEY)
-  return consent !== null && isConsentValid()
+  
+  // No consent recorded - show banner
+  if (consent === null) return false
+  
+  // Check if consent is still valid based on accept/decline
+  return isConsentValid()
 }
 
 // Accept cookies

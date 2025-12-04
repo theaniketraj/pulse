@@ -7,8 +7,8 @@ Comprehensive cookie consent and analytics implementation for Vitals documentati
 ### Cookie Consent Banner
 
 - **Theme-Aware**: Automatically matches light/dark theme
-- **One-Time Display**: Shows only once for new visitors
-- **Persistent**: Consent stored for 1 year
+- **Smart Re-prompting**: Re-asks users who declined after 7 days
+- **Persistent Accept**: Accepted consent stored for 1 year
 - **Privacy-First**: Easy opt-out, no tracking without consent
 
 ### Analytics Tracking
@@ -168,9 +168,12 @@ export default {
 
 ### Cookie Lifetime
 
-- **Consent Duration**: 365 days
-- **Auto-Renewal**: On each visit if consented
-- **Expiry Behavior**: Re-prompt after 1 year
+- **Accept Duration**: 365 days (1 year)
+- **Decline Duration**: 7 days (re-prompt after)
+- **Auto-Renewal**: On each visit if accepted
+- **Expiry Behavior**: 
+  - Accepted: Re-prompt after 1 year
+  - Declined: Re-prompt after 7 days
 
 ## Privacy Compliance
 

@@ -18,6 +18,7 @@ tmp/
 *.log
 .DS_Store
 commit-changes.sh
+test-consent.html
 
 # Environment
 .env

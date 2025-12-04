@@ -53,6 +53,16 @@ We use collected data to:
 
 ## Opting Out
 
+### Documentation Site (Cookie Consent)
+
+You can decline cookie collection on the documentation site:
+
+- **Decline**: Click "Decline" on the consent banner
+- **Re-prompt**: If you change your mind, you'll be asked again in 7 days
+- **Accept Later**: You can accept cookies when re-prompted
+
+### Extension (Telemetry)
+
 You can disable usage statistics collection at any time:
 
 1. Open VS Code Settings (`Ctrl+,` or `Cmd+,`)
