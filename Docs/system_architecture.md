@@ -16,7 +16,7 @@ Vitals is a VS Code extension that provides real-time monitoring of application 
 ```mermaid
 flowchart TD
     subgraph "VS Code Extension Host (Node.js)"
-        Ext[extension.ts] -->|Activates| PV[pulseView.ts]
+        Ext[extension.ts] -->|Activates| PV[View.ts]
         PV -->|Uses| API[api.ts]
         PV -->|Manages| Panel[WebviewPanel]
 
@@ -37,8 +37,8 @@ flowchart TD
         end
 
         subgraph "Hooks"
-            Chart -->|usePulseData| Hook1[usePulseData.ts]
-            Logs -->|usePulseData| Hook1
+            Chart -->|useData| Hook1[useData.ts]
+            Logs -->|useData| Hook1
             Alerts -->|useAlerts| Hook2[useAlerts.ts]
         end
     end
@@ -57,7 +57,7 @@ flowchart TD
 - Registers `vitals.openDashboard` command
 - Manages extension lifecycle (activate/deactivate)
 
-### 2. Webview Management Layer (`src/pulseView.ts`)
+### 2. Webview Management Layer (`src/View.ts`)
 
 - Creates and manages VS Code webview panel
 - Handles IPC communication between extension and React frontend
@@ -94,17 +94,17 @@ flowchart TD
 ```text
 User triggers "vitals.openDashboard" command
         ↓
-extension.ts registers command → calls PulseView.createOrShow()
+extension.ts registers command → calls View.createOrShow()
         ↓
-pulseView.ts creates webview panel
+View.ts creates webview panel
         ↓
 React App renders (App.tsx → Dashboard component)
         ↓
-Components call hooks (usePulseData, useAlerts)
+Components call hooks (useData, useAlerts)
         ↓
 Hooks send IPC messages to extension
         ↓
-Extension (pulseView.ts) receives message and calls PrometheusApi
+Extension (View.ts) receives message and calls PrometheusApi
         ↓
 PrometheusApi queries Prometheus endpoint
         ↓

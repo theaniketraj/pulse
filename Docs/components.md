@@ -57,7 +57,7 @@ Main layout component that orchestrates the dashboard UI.
 
 **Data Sources**:
 
-- `usePulseData` hook for metrics and logs
+- `useVitalsData` hook for metrics and logs
 - `useAlerts` hook for alerts
 - Mock KPI data
 
@@ -65,9 +65,9 @@ Main layout component that orchestrates the dashboard UI.
 
 ```bash
 ┌─────────────────────────────────────┐
-│ Vitals    [●Live]          │         │
+│         Vitals     [●Live]          │
 ├─────────────────────────────────────┤
-│ [KPI] [KPI] [KPI] [KPI]             │
+│   [KPI]   [KPI]   [KPI]   [KPI]     │
 ├──────────────────┬──────────────────┤
 │  System Metrics  │  Active Alerts   │
 │                  │                  │
@@ -169,10 +169,10 @@ Renders stream of log entries.
 
 Located in `webview/src/hooks/`
 
-### usePulseData
+### useVitalsData
 
 ```typescript
-function usePulseData(vscode: any): {
+function useVitalsData(vscode: any): {
   metrics: any;
   logs: string[];
   loading: boolean;
@@ -190,7 +190,7 @@ function usePulseData(vscode: any): {
 **Usage**:
 
 ```typescript
-const { metrics, logs, loading, error } = usePulseData(vscode);
+const { metrics, logs, loading, error } = useVitalsData(vscode);
 ```
 
 ### useAlerts
@@ -263,9 +263,9 @@ Data flows through VS Code's IPC:
 ```bash
 MetricChart component mounts
     ↓
-usePulseData hook sends: { command: 'fetchMetrics', query: 'up' }
+useVitalsData hook sends: { command: 'fetchMetrics', query: 'up' }
     ↓
-Extension receives message in pulseView.ts
+Extension receives message in vitalsView.ts
     ↓
 PrometheusApi.query('up') called
     ↓

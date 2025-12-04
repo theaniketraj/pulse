@@ -1,4 +1,4 @@
-/* Mobile Responsive Improvements for Pulse Docs */
+/* Mobile Responsive Improvements for  */
 
 /* Hide navbar when at bottom to show full footer */
 .VPNav {
@@ -31,7 +31,7 @@
 }
 
 /* Ensure footer sits at bottom with no extra space */
-.pulse-footer {
+.-footer {
   margin-bottom: 0 !important;
 }
 

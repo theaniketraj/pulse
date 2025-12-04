@@ -24,7 +24,7 @@ head:
 ### 1. Open Extension Development Window
 
 ```bash
-cd /d/ceie/pulse
+cd /d/ceie/
 code --extensionDevelopmentPath=. --new-window
 ```
 

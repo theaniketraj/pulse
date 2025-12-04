@@ -1,9 +1,9 @@
 # Project Structure
 
-This document provides an overview of the file structure for the Pulse project to help new contributors navigate the codebase.
+This document provides an overview of the file structure for the Vitals project to help new contributors navigate the codebase.
 
-```
-pulse/
+```bash
+vitals/
 ├── .vscode/                # VS Code workspace configuration
 ├── docs/                   # Documentation files
 ├── src/                    # Extension Source Code (Node.js)
@@ -14,7 +14,7 @@ pulse/
 │   ├── utils/              # Utility functions
 │   ├── api.ts              # Prometheus API client
 │   ├── extension.ts        # Extension entry point (activates extension)
-│   └── pulseView.ts        # Webview panel manager (IPC handling)
+│   └── vitalsView.ts        # Webview panel manager (IPC handling)
 ├── webview/                # Webview Source Code (React)
 │   ├── src/
 │   │   ├── components/     # UI Components
@@ -24,7 +24,7 @@ pulse/
 │   │   │   └── MetricChart.tsx  # Metric visualization chart
 │   │   ├── hooks/          # Custom React Hooks
 │   │   │   ├── useAlerts.ts     # Manages alert state
-│   │   │   └── usePulseData.ts  # Manages metrics and logs state
+│   │   │   └── useVitalsData.ts  # Manages metrics and logs state
 │   │   ├── App.css         # Global styles and design system
 │   │   ├── App.tsx         # Root React component
 │   │   └── index.tsx       # React entry point
@@ -44,7 +44,7 @@ pulse/
 Contains the "backend" logic of the VS Code extension. It runs in the Node.js extension host environment.
 
 - **`extension.ts`**: The starting point. Registers commands and providers.
-- **`pulseView.ts`**: The bridge between VS Code and the React UI. It handles message passing (IPC).
+- **`vitalsView.ts`**: The bridge between VS Code and the React UI. It handles message passing (IPC).
 - **`api.ts`**: Handles all HTTP communication with the Prometheus server.
 
 ### `webview/` (Frontend)

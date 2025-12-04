@@ -1,4 +1,4 @@
-# Vitals ���
+# Vitals ���
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Version](https://img.shields.io/visual-studio-marketplace/v/theaniketraj.vitals)](https://marketplace.visualstudio.com/items?itemName=theaniketraj.vitals)
@@ -9,7 +9,7 @@
 
 **Vitals** brings enterprise-grade observability directly into Visual Studio Code. Integrated seamlessly with Prometheus, it transforms your development environment into a powerful monitoring hub, enabling you to catch issues early and optimize performance in real-time.
 
-<!-- ![Pulse Demo](https://raw.githubusercontent.com/theaniketraj/vitals/main/docs/images/demo.gif) -->
+<!-- ![Vitals Demo](https://raw.githubusercontent.com/theaniketraj/vitals/main/docs/images/demo.gif) -->
 
 ---
 
@@ -68,21 +68,21 @@ Premium design that feels native to VS Code:
 
 1. Open **Visual Studio Code**
 2. Open the **Extensions** view (`Ctrl+Shift+X` or `Cmd+Shift+X`)
-3. Search for **"Pulse"**
+3. Search for **"Vitals"**
 4. Click **Install**
 
 ### From VSIX (Manual)
 
 ```bash
 # Download the latest .vsix from releases
-code --install-extension pulse-0.1.0.vsix
+code --install-extension vitals-0.1.0.vsix
 ```
 
 ### From Source
 
 ```bash
 git clone https://github.com/theaniketraj/vitals.git
-cd pulse
+cd vitals
 npm install
 npm run build
 code --install-extension .
@@ -110,9 +110,9 @@ docker run -d -p 9090:9090 prom/prometheus
 **Windows:**
 Download from [prometheus.io/download](https://prometheus.io/download/)
 
-### 2. Configure Pulse
+### 2. Configure Vitals
 
-Open VS Code Settings (`Ctrl+,` or `Cmd+,`) and search for "pulse":
+Open VS Code Settings (`Ctrl+,` or `Cmd+,`) and search for "vitals":
 
 ```json
 {
@@ -210,7 +210,7 @@ The **Alerts** tab displays:
 
 ## 🏗️ Architecture
 
-Pulse uses a clean, modular architecture:
+Vitals uses a clean, modular architecture:
 
 ```bash
 ┌─────────────────────────────────────────────┐
@@ -260,7 +260,7 @@ For detailed architecture docs, see [SYSTEM_ARCHITECTURE.md](./Docs/system_archi
 ```bash
 # Clone the repository
 git clone https://github.com/theaniketraj/vitals.git
-cd pulse
+cd vitals
 
 # Install dependencies
 npm install
@@ -294,11 +294,11 @@ npm run test:e2e
 ### Project Structure
 
 ```bash
-pulse/
+vitals/
 ├── src/
 │   ├── extension.ts         # Extension entry point
 │   ├── api.ts              # Prometheus API client
-│   ├── pulseView.ts        # Webview provider
+│   ├── vitalsView.ts        # Webview provider
 │   ├── data/               # Data fetching & processing
 │   └── utils/              # Utilities & helpers
 ├── webview/
@@ -386,7 +386,7 @@ See [VISION.md](./Docs/vision.md) for the full roadmap.
 
 1. Ensure your application is exporting logs to Prometheus/Loki
 2. Verify log exporter configuration
-3. Check Pulse is configured to read from correct log source
+3. Check Vitals is configured to read from correct log source
 
 For more help, see [TROUBLESHOOTING.md](./Docs/troubleshooting.md) or [open an issue](https://github.com/theaniketraj/vitals/issues).
 
@@ -408,7 +408,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ## 📞 Support
 
-- **Documentation**: [https://theaniketraj.github.io/pulse/](https://theaniketraj.github.io/pulse/)
+- **Documentation**: [https://theaniketraj.github.io/vitals/](https://theaniketraj.github.io/vitals/)
 - **Issues**: [GitHub Issues](https://github.com/theaniketraj/vitals/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/theaniketraj/vitals/discussions)
 - **Email**: [contact@example.com](mailto:contact@example.com)
@@ -417,7 +417,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ## Show Your Support
 
-If you find Pulse helpful, please consider:
+If you find Vitals helpful, please consider:
 
 - Starring the repo on GitHub
 - Sharing with your team
@@ -428,4 +428,4 @@ If you find Pulse helpful, please consider:
 
 **Built with ❤️ by [Aniket Raj](https://theaniketraj.netlify.app)**
 
-## *Pulse - Real-time Observability for Modern Developers*
+## *Vitals - Real-time Observability for Modern Developers*

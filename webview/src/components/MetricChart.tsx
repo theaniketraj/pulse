@@ -66,13 +66,13 @@ const MetricChart: React.FC<MetricChartProps> = ({ metrics, loading, error }) =>
           Plot.line(data, {
             x: 'time',
             y: 'value',
-            stroke: 'var(--pulse-primary)',
+            stroke: 'var(---primary)',
             strokeWidth: 2
           }),
           Plot.dot(data, {
             x: 'time',
             y: 'value',
-            fill: 'var(--pulse-primary)',
+            fill: 'var(---primary)',
             r: 3,
             tip: true,
             title: (d: any) => `${d.time.toLocaleTimeString()}\nValue: ${d.value}`
@@ -114,12 +114,12 @@ const MetricChart: React.FC<MetricChartProps> = ({ metrics, loading, error }) =>
 
       const stop1 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
       stop1.setAttribute("offset", "0%");
-      stop1.setAttribute("stop-color", "var(--pulse-primary)");
+      stop1.setAttribute("stop-color", "var(--vitals-primary)");
       stop1.setAttribute("stop-opacity", "0.5");
 
       const stop2 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
       stop2.setAttribute("offset", "100%");
-      stop2.setAttribute("stop-color", "var(--pulse-primary)");
+      stop2.setAttribute("stop-color", "var(--vitals-primary)");
       stop2.setAttribute("stop-opacity", "0.0");
 
       linearGradient.appendChild(stop1);

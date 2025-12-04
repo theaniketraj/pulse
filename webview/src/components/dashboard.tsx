@@ -2,7 +2,7 @@ import * as React from "react";
 import MetricChart from "./MetricChart";
 import LogViewer from "./LogViewer";
 import AlertPanel from "./AlertPanel";
-import { usePulseData } from "../hooks/usePulseData";
+import { useData } from "../hooks/useData";
 import { useAlerts } from "../hooks/useAlerts";
 
 interface DashboardProps {
@@ -11,7 +11,7 @@ interface DashboardProps {
 
 // Main dashboard component
 const Dashboard: React.FC<DashboardProps> = ({ vscode }) => {
-  const { metrics, logs, loading, error } = usePulseData(vscode);
+  const { metrics, logs, loading, error } = useData(vscode);
   const {
     alerts,
     loading: alertsLoading,

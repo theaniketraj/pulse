@@ -21,7 +21,7 @@ head:
 
 ```bash
 git clone https://github.com/theaniketraj/vitals.git
-cd pulse
+cd vitals
 npm install
 ```
 
@@ -52,10 +52,10 @@ Starts webpack in watch mode for hot reloading during development.
 ## Project Structure
 
 ```bash
-pulse/
+vitals/
 ├── src/                    # Extension source
 │   ├── extension.ts       # Entry point
-│   ├── pulseView.ts       # Webview management
+│   ├── vitalsView.ts       # Webview management
 │   ├── api.ts             # Prometheus API client
 │   ├── data/              # Data processing
 │   ├── utils/             # Utilities
@@ -104,7 +104,7 @@ VS Code has built-in debugging for extension code. Set breakpoints in `src/*.ts`
 
 #### New Prometheus Query
 
-1. Add query handler in `pulseView.ts`:
+1. Add query handler in `vitalsView.ts`:
 
 ```typescript
 case 'fetchNewData':

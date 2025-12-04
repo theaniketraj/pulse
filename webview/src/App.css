@@ -1,15 +1,15 @@
-/* Pulse Design System */
+/*  Design System */
 :root {
   /* Core Colors */
-  --pulse-primary: #3b82f6;
+  ---primary: #3b82f6;
   /* Electric Blue */
-  --pulse-primary-glow: rgba(59, 130, 246, 0.5);
-  --pulse-success: #10b981;
-  --pulse-warning: #f59e0b;
-  --pulse-error: #ef4444;
-  --pulse-bg-card: var(--vscode-editor-background);
+  ---primary-glow: rgba(59, 130, 246, 0.5);
+  ---success: #10b981;
+  ---warning: #f59e0b;
+  ---error: #ef4444;
+  ---bg-card: var(--vscode-editor-background);
   /* Fallback */
-  --pulse-border: var(--vscode-widget-border);
+  ---border: var(--vscode-widget-border);
 
   /* Spacing */
   --spacing-xs: 4px;
@@ -58,7 +58,7 @@ body {
 .card {
   background-color: var(--vscode-editor-background);
   /* Or a slightly lighter/darker shade */
-  border: 1px solid var(--pulse-border);
+  border: 1px solid var(---border);
   border-radius: var(--radius-md);
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -72,7 +72,7 @@ body {
   transform: translateY(-2px);
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
     0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  border-color: var(--pulse-primary);
+  border-color: var(---primary);
 }
 
 .card-header {
@@ -127,13 +127,13 @@ body {
       rgba(255, 255, 255, 0.03));
   padding: var(--spacing-md);
   border-radius: var(--radius-md);
-  border: 1px solid var(--pulse-border);
+  border: 1px solid var(---border);
 }
 
 .kpi-value {
   font-size: 24px;
   font-weight: 700;
-  color: var(--pulse-primary);
+  color: var(---primary);
 }
 
 .kpi-label {
@@ -168,7 +168,7 @@ body {
 }
 
 .chart-status.error {
-  color: var(--pulse-error);
+  color: var(---error);
 }
 
 /* Log Viewer */
@@ -215,15 +215,15 @@ body {
 }
 
 .log-error .log-content {
-  color: var(--pulse-error);
+  color: var(---error);
 }
 
 .log-warn .log-content {
-  color: var(--pulse-warning);
+  color: var(---warning);
 }
 
 .log-info .log-content {
-  color: var(--pulse-primary);
+  color: var(---primary);
 }
 
 .log-empty {
@@ -275,11 +275,11 @@ body {
 }
 
 .alert-card.firing .alert-indicator {
-  background-color: var(--pulse-error);
+  background-color: var(---error);
 }
 
 .alert-card.pending .alert-indicator {
-  background-color: var(--pulse-warning);
+  background-color: var(---warning);
 }
 
 .alert-content {
@@ -309,12 +309,12 @@ body {
 
 .alert-card.firing .alert-badge {
   background-color: rgba(239, 68, 68, 0.1);
-  color: var(--pulse-error);
+  color: var(---error);
 }
 
 .alert-card.pending .alert-badge {
   background-color: rgba(245, 158, 11, 0.1);
-  color: var(--pulse-warning);
+  color: var(---warning);
 }
 
 .alert-details {
@@ -329,7 +329,7 @@ body {
   justify-content: center;
   height: 100%;
   gap: var(--spacing-sm);
-  color: var(--pulse-success);
+  color: var(---success);
   opacity: 0.8;
 }
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 // Hook to fetch metrics and logs from the extension
-export function usePulseData(vscode: any) {
+export function useData(vscode: any) {
     const [metrics, setMetrics] = React.useState<any>(null);
     const [logs, setLogs] = React.useState<string[]>([]);
     const [loading, setLoading] = React.useState<boolean>(false);

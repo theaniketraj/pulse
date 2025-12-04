@@ -16,7 +16,7 @@ The following is a set of guidelines for contributing to Vitals. These are mostl
 
    ```bash
    git clone https://github.com/theaniketraj/vitals.git
-   cd pulse
+   cd vitals
    npm install
    ```
 

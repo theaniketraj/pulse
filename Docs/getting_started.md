@@ -39,7 +39,7 @@ Before you begin, ensure you have:
 
    ```bash
    git clone https://github.com/theaniketraj/vitals.git
-   cd pulse
+   cd vitals
    ```
 
 2. Install dependencies:

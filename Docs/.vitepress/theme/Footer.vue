@@ -1,12 +1,12 @@
 <template>
-  <footer class="pulse-footer">
+  <footer class="vitals-footer">
     <div class="footer-content">
       <div class="footer-grid">
         <!-- About Section -->
         <div class="footer-column">
           <h3>About</h3>
           <ul>
-            <li><a href="/vitals/introduction">What is Pulse?</a></li>
+            <li><a href="/vitals/introduction">What is Vitals?</a></li>
             <li><a href="/vitals/vision">Vision & Roadmap</a></li>
             <li><a href="/vitals/system_architecture">Architecture</a></li>
             <li><a href="/vitals/components">Components</a></li>
@@ -39,9 +39,30 @@
         <div class="footer-column">
           <h3>Community</h3>
           <ul>
-            <li><a href="https://github.com/theaniketraj/pulse" target="_blank" rel="noopener">GitHub</a></li>
-            <li><a href="https://github.com/theaniketraj/vitals/issues" target="_blank" rel="noopener">Report Issues</a></li>
-            <li><a href="https://github.com/theaniketraj/vitals/discussions" target="_blank" rel="noopener">Discussions</a></li>
+            <li>
+              <a
+                href="https://github.com/theaniketraj/vitals"
+                target="_blank"
+                rel="noopener"
+                >GitHub</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://github.com/theaniketraj/vitals/issues"
+                target="_blank"
+                rel="noopener"
+                >Report Issues</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://github.com/theaniketraj/vitals/discussions"
+                target="_blank"
+                rel="noopener"
+                >Discussions</a
+              >
+            </li>
             <li><a href="/vitals/security">Security Policy</a></li>
           </ul>
         </div>
@@ -49,15 +70,31 @@
 
       <!-- Bottom Bar -->
       <div class="footer-bottom">
-        <p>Released under the <a href="https://github.com/theaniketraj/vitals/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a></p>
-        <p>Copyright © 2025 <a href="https://theaniketraj.netlify.app" target="_blank" rel="noopener">Aniket Raj</a></p>
+        <p>
+          Released under the
+          <a
+            href="https://github.com/theaniketraj/vitals/blob/main/LICENSE"
+            target="_blank"
+            rel="noopener"
+            >MIT License</a
+          >
+        </p>
+        <p>
+          Copyright © 2025
+          <a
+            href="https://theaniketraj.netlify.app"
+            target="_blank"
+            rel="noopener"
+            >Aniket Raj</a
+          >
+        </p>
       </div>
     </div>
   </footer>
 </template>
 
 <style scoped>
-.pulse-footer {
+.vitals-footer {
   width: 100%;
   background: var(--vp-c-bg-soft);
   border-top: 1px solid var(--vp-c-divider);
@@ -142,15 +179,15 @@
 }
 
 @media (max-width: 640px) {
-  .pulse-footer {
+  .vitals-footer {
     padding: 32px 16px 24px;
   }
-  
+
   .footer-grid {
     grid-template-columns: 1fr;
     gap: 24px;
   }
-  
+
   .footer-bottom {
     flex-direction: column;
     gap: 8px;

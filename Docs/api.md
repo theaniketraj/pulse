@@ -237,7 +237,7 @@ All API calls include error handling with user-facing messages via `vscode.windo
 
 ## React Hooks
 
-### `usePulseData(vscode)`
+### `useVitalsData(vscode)`
 
 Custom hook for fetching metrics and logs.
 

@@ -15,7 +15,7 @@ head:
 
 ```bash
 git clone https://github.com/theaniketraj/vitals.git
-cd pulse
+cd 
 npm install
 npm run build
 ```

@@ -42,7 +42,7 @@ The easiest way to run Prometheus is via Docker. We will also configure it to sc
 
 ## Step 2: Build and Run the Extension
 
-1. Open the `pulse` project in VS Code.
+1. Open the `` project in VS Code.
 2. Install dependencies (if you haven't already):
 
     ```bash
@@ -73,7 +73,7 @@ In the new **Extension Development Host** window:
 
 ## Step 5: Verification
 
-- **Metrics**: You should see a chart displaying the `up` metric (or whichever query is hardcoded in `usePulseData.ts`). It should show a value of `1`.
+- **Metrics**: You should see a chart displaying the `up` metric (or whichever query is hardcoded in `useData.ts`). It should show a value of `1`.
 - **Alerts**: If you configured any alerts in Prometheus, they will appear in the Alert Panel.
 - **Logs**: The Log Viewer will currently show mock data (as implemented).
 
@@ -84,4 +84,4 @@ In the new **Extension Development Host** window:
   - Check if the extension host can access `localhost`.
 - **Empty Chart**:
   - Wait a few seconds for Prometheus to scrape some data.
-  - Verify the query in `usePulseData.ts` is valid (currently `up`).
+  - Verify the query in `useData.ts` is valid (currently `up`).
