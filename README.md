@@ -13,38 +13,48 @@
 
 ---
 
-## ✨ Key Features
+## Key Features
 
-### 📈 Real-Time Metrics
+### Real-Time Metrics
+
 Visualize critical system and application metrics with beautiful, auto-updating charts:
+
 - **CPU Usage**: Track processor utilization across cores
 - **Memory Consumption**: Monitor RAM usage and trends
 - **Request Latency**: Analyze API response times (p50, p95, p99)
 - **Custom Metrics**: Support for any Prometheus metric
 
-### 🖥️ Live Log Stream
+### Live Log Stream
+
 Stream application logs directly in VS Code with a terminal-like interface:
+
 - **Syntax Highlighting**: Color-coded log levels (INFO, WARN, ERROR)
 - **Real-time Updates**: Watch logs as they happen
 - **Filtering & Search**: Quickly find specific log entries
 - **Scroll & History**: Navigate through log history effortlessly
 
-### 🚨 Instant Alerts
+### Instant Alerts
+
 Stay informed with a dedicated alerts panel:
+
 - **Firing Alerts**: See active alerts with severity indicators
 - **Pending Alerts**: Monitor warnings before they trigger
 - **Alert Details**: View labels, annotations, and timestamps
 - **Smart Notifications**: Optional VS Code notifications for critical alerts
 
-### ⚡ Zero Configuration
+### Zero Configuration
+
 Works out-of-the-box with minimal setup:
+
 - **Auto-discovery**: Detects local Prometheus instances
 - **Quick Start**: Just install and connect
 - **Flexible**: Configure custom Prometheus endpoints
 - **No External Tools**: Everything runs within VS Code
 
-### 🎨 Modern UI
+### Modern UI
+
 Premium design that feels native to VS Code:
+
 - **Theme-Aware**: Automatically adapts to light/dark mode
 - **Responsive Layout**: Optimized for all screen sizes
 - **Smooth Animations**: Polished interactions and transitions
@@ -52,7 +62,7 @@ Premium design that feels native to VS Code:
 
 ---
 
-## 📦 Installation
+## Installation
 
 ### From VS Code Marketplace
 
@@ -80,17 +90,19 @@ code --install-extension .
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Install Prometheus (if not already running)
 
 **macOS (Homebrew):**
+
 ```bash
 brew install prometheus
 prometheus --config.file=/opt/homebrew/etc/prometheus.yml
 ```
 
 **Linux (Docker):**
+
 ```bash
 docker run -d -p 9090:9090 prom/prometheus
 ```
@@ -118,7 +130,7 @@ Open VS Code Settings (`Ctrl+,` or `Cmd+,`) and search for "pulse":
 
 ---
 
-## ⚙️ Configuration
+## Configuration
 
 All settings are available in VS Code Settings (`Ctrl+,`):
 
@@ -148,7 +160,7 @@ All settings are available in VS Code Settings (`Ctrl+,`):
 
 ---
 
-## 📖 Usage
+## Usage
 
 ### Opening the Dashboard
 
@@ -157,6 +169,7 @@ All settings are available in VS Code Settings (`Ctrl+,`):
 3. Press `Enter`
 
 The dashboard opens in a new webview panel showing:
+
 - **Metrics Tab**: Real-time charts and graphs
 - **Logs Tab**: Live log stream
 - **Alerts Tab**: Active and pending alerts
@@ -164,12 +177,14 @@ The dashboard opens in a new webview panel showing:
 ### Viewing Metrics
 
 Navigate to the **Metrics** tab to see:
+
 - CPU usage across all cores
 - Memory consumption trends
 - Request latency percentiles
 - Custom metrics (configure in settings)
 
 **Interactions:**
+
 - **Hover**: See exact values at specific timestamps
 - **Zoom**: Click and drag to zoom into time ranges
 - **Legend**: Click to toggle metric visibility
@@ -177,6 +192,7 @@ Navigate to the **Metrics** tab to see:
 ### Monitoring Logs
 
 The **Logs** tab provides a real-time log viewer:
+
 - Auto-scrolls to latest entries
 - Color-coded by severity (INFO, WARN, ERROR)
 - Search and filter capabilities
@@ -185,6 +201,7 @@ The **Logs** tab provides a real-time log viewer:
 ### Managing Alerts
 
 The **Alerts** tab displays:
+
 - **Firing Alerts** (red): Critical issues requiring attention
 - **Pending Alerts** (yellow): Warnings approaching thresholds
 - Click an alert to see full details
@@ -195,31 +212,32 @@ The **Alerts** tab displays:
 
 Pulse uses a clean, modular architecture:
 
-```
+```bash
 ┌─────────────────────────────────────────────┐
 │         VS Code Extension Host              │
-│  ┌─────────────┐      ┌──────────────┐     │
-│  │  Extension  │─────▶│ Prometheus   │     │
-│  │  Commands   │      │  API Client  │     │
-│  └─────────────┘      └──────────────┘     │
+│  ┌─────────────┐      ┌──────────────┐      │
+│  │  Extension  │ →    │ Prometheus   │      │
+│  │  Commands   │      │  API Client  │      │
+│  └─────────────┘      └──────────────┘      │
 │         │                     │             │
 │         ▼                     ▼             │
-│  ┌──────────────────────────────────┐      │
-│  │      Webview Bridge (IPC)        │      │
-│  └──────────────────────────────────┘      │
+│  ┌──────────────────────────────────┐       │
+│  │      Webview Bridge (IPC)        │       │
+│  └──────────────────────────────────┘       │
 └─────────────────────────────────────────────┘
                    │
                    ▼
 ┌─────────────────────────────────────────────┐
 │            React Webview UI                 │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐  │
-│  │ Metrics  │  │   Logs   │  │  Alerts  │  │
-│  │ Charts   │  │  Viewer  │  │  Panel   │  │
-│  └──────────┘  └──────────┘  └──────────┘  │
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐   │
+│  │ Metrics  │  │   Logs   │  │  Alerts  │   │
+│  │ Charts   │  │  Viewer  │  │  Panel   │   │
+│  └──────────┘  └──────────┘  └──────────┘   │
 └─────────────────────────────────────────────┘
 ```
 
 **Key Components:**
+
 - **Extension Host**: Node.js process handling configuration, commands, and API calls
 - **Webview**: React-based UI rendering metrics, logs, and alerts
 - **IPC Bridge**: Message passing between extension and webview
@@ -229,7 +247,7 @@ For detailed architecture docs, see [SYSTEM_ARCHITECTURE.md](./Docs/system_archi
 
 ---
 
-## 🛠️ Development
+## Development
 
 ### Prerequisites
 
@@ -275,7 +293,7 @@ npm run test:e2e
 
 ### Project Structure
 
-```
+```bash
 pulse/
 ├── src/
 │   ├── extension.ts         # Extension entry point
@@ -297,7 +315,7 @@ See [DEVELOPMENT.md](./Docs/development.md) for comprehensive dev docs.
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 We welcome contributions! Here's how you can help:
 
@@ -308,6 +326,7 @@ We welcome contributions! Here's how you can help:
 5. **Open** a Pull Request
 
 Please read [CONTRIBUTING.md](./Docs/contributing.md) for:
+
 - Code of Conduct
 - Development guidelines
 - PR process
@@ -315,15 +334,17 @@ Please read [CONTRIBUTING.md](./Docs/contributing.md) for:
 
 ---
 
-## 📋 Roadmap
+## Roadmap
 
 ### Current (v0.1.0)
+
 - ✅ Real-time metrics visualization
 - ✅ Live log streaming
 - ✅ Alert management
 - ✅ Prometheus integration
 
 ### Upcoming (v0.2.0)
+
 - 🔄 Custom metric queries
 - 🔄 Alertmanager integration
 - 🔄 Historical data analysis
@@ -340,6 +361,7 @@ See [VISION.md](./Docs/vision.md) for the full roadmap.
 **Problem**: "Unable to connect to Prometheus"
 
 **Solutions:**
+
 1. Verify Prometheus is running: `curl http://localhost:9090/api/v1/status/config`
 2. Check `pulse.prometheusUrl` setting matches your Prometheus endpoint
 3. Ensure no firewall is blocking the connection
@@ -350,6 +372,7 @@ See [VISION.md](./Docs/vision.md) for the full roadmap.
 **Problem**: Dashboard is empty
 
 **Solutions:**
+
 1. Confirm Prometheus has scraped targets: Visit `http://localhost:9090/targets`
 2. Check metrics exist: Query in Prometheus UI
 3. Verify metric names in `pulse.metrics` setting
@@ -360,6 +383,7 @@ See [VISION.md](./Docs/vision.md) for the full roadmap.
 **Problem**: Log tab shows no entries
 
 **Solutions:**
+
 1. Ensure your application is exporting logs to Prometheus/Loki
 2. Verify log exporter configuration
 3. Check Pulse is configured to read from correct log source
@@ -368,13 +392,13 @@ For more help, see [TROUBLESHOOTING.md](./Docs/troubleshooting.md) or [open an i
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - [Prometheus](https://prometheus.io/) - Monitoring system and time series database
 - [Recharts](https://recharts.org/) - Charting library for React
@@ -391,9 +415,10 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ---
 
-## ⭐ Show Your Support
+## Show Your Support
 
 If you find Pulse helpful, please consider:
+
 - Starring the repo on GitHub
 - Sharing with your team
 - Contributing to the project
@@ -403,4 +428,4 @@ If you find Pulse helpful, please consider:
 
 **Built with ❤️ by [Aniket Raj](https://theaniketraj.netlify.app)**
 
-*Pulse - Real-time Observability for Modern Developers*
+## *Pulse - Real-time Observability for Modern Developers*
