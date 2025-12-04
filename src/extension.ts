@@ -4,11 +4,15 @@ import { VitalsView } from "./vitalsView";
 import { CustomGitHubAuth } from "./auth/customGitHubAuth";
 import { AuthWall } from "./auth/authWall";
 import { vitalsApi } from "./api/vitalsApi";
+import { getUsageStats } from "./telemetry/usageStats";
 
 // Called when the extension is activated (e.g., when a command is executed)
 export async function activate(context: vscode.ExtensionContext) {
   // Log activation for debugging
   console.log("🚀 Vitals extension activated");
+
+  // Initialize usage statistics collector
+  const usageStats = getUsageStats(context);
 
   // Check authentication status
   const authStatus = await AuthWall.checkStatus(context);
@@ -37,6 +41,9 @@ export async function activate(context: vscode.ExtensionContext) {
     async () => {
       console.log("📊 Opening Vitals...");
       
+      // Track command execution
+      usageStats.trackCommand('vitals.openDashboard');
+      
       // Enforce authentication wall
       const isAuthenticated = await AuthWall.enforce(context);
       
@@ -62,6 +69,8 @@ export async function activate(context: vscode.ExtensionContext) {
   const signOut = vscode.commands.registerCommand(
     "vitals.signOut",
     async () => {
+      usageStats.trackCommand('vitals.signOut');
+      
       const confirm = await vscode.window.showWarningMessage(
         'Are you sure you want to sign out? You will need to authenticate again to use Vitals.',
         { modal: true },
@@ -70,6 +79,8 @@ export async function activate(context: vscode.ExtensionContext) {
       );
       
       if (confirm === 'Sign Out') {
+        // Save stats before signing out
+        await usageStats.saveStats();
         await AuthWall.reset(context);
         vscode.window.showInformationMessage('Successfully signed out from Vitals');
       }
@@ -80,6 +91,8 @@ export async function activate(context: vscode.ExtensionContext) {
   const showStatus = vscode.commands.registerCommand(
     "vitals.showStatus",
     async () => {
+      usageStats.trackCommand('vitals.showStatus');
+      
       const status = await AuthWall.checkStatus(context);
       
       if (status.isSignedIn && status.user) {

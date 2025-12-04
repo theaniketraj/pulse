@@ -2,18 +2,21 @@ import * as vscode from "vscode";
 import * as path from "path";
 import { getWebviewContent } from "./utils/webviewUtils";
 import { PrometheusApi } from "./api";
+import { getUsageStats } from "./telemetry/usageStats";
 
 // Class to manage the Webview panel for the Vitals dashboard
 export class VitalsView {
   public static currentPanel: VitalsView | undefined;
   private readonly _panel: vscode.WebviewPanel;
   private readonly _extensionPath: string;
+  private readonly _context: vscode.ExtensionContext;
   private _disposables: vscode.Disposable[] = [];
 
   // Constructor to initialize the Webview panel
-  private constructor(panel: vscode.WebviewPanel, extensionPath: string) {
+  private constructor(panel: vscode.WebviewPanel, extensionPath: string, context: vscode.ExtensionContext) {
     this._panel = panel;
     this._extensionPath = extensionPath;
+    this._context = context;
 
     // Set the Webview content (HTML with React bundle)
     this._panel.webview.html = getWebviewContent(
@@ -26,6 +29,9 @@ export class VitalsView {
       async (message) => {
         switch (message.command) {
           case "fetchMetrics":
+            // Track metrics feature usage
+            getUsageStats(this._context).trackFeature('metrics');
+            
             try {
               const config = vscode.workspace.getConfiguration("vitals");
               const prometheusUrl =
@@ -38,6 +44,8 @@ export class VitalsView {
                 data,
               });
             } catch (error: any) {
+              getUsageStats(this._context).trackError('prometheus_metrics_fetch_failed');
+              
               const errorMsg = error.code === 'ECONNREFUSED' 
                 ? 'Cannot connect to Prometheus. Please ensure Prometheus is running at the configured URL.'
                 : error.message;
@@ -51,6 +59,9 @@ export class VitalsView {
             break;
 
           case "fetchAlerts":
+            // Track alerts feature usage
+            getUsageStats(this._context).trackFeature('alerts');
+            
             try {
               const config = vscode.workspace.getConfiguration("vitals");
               const prometheusUrl =
@@ -63,6 +74,7 @@ export class VitalsView {
                 data,
               });
             } catch (error: any) {
+              getUsageStats(this._context).trackError('prometheus_alerts_fetch_failed');
               console.error("Failed to fetch alerts:", error);
               this._panel.webview.postMessage({
                 command: "alertError",
@@ -72,6 +84,9 @@ export class VitalsView {
             break;
 
           case "fetchLogs":
+            // Track logs feature usage
+            getUsageStats(this._context).trackFeature('logs');
+            
             // Mock log data for now as Prometheus doesn't have a standard logs endpoint
             // In a real scenario, this would connect to Loki or another log source
             const mockLogs = [
@@ -126,11 +141,14 @@ export class VitalsView {
     );
 
     // Initialize the panel
-    VitalsView.currentPanel = new VitalsView(panel, context.extensionPath);
+    VitalsView.currentPanel = new VitalsView(panel, context.extensionPath, context);
   }
 
   // Dispose the panel and clean up resources
   public dispose() {
+    // Track dashboard close
+    getUsageStats(this._context).trackDashboardClose();
+    
     VitalsView.currentPanel = undefined;
     this._panel.dispose();
     while (this._disposables.length) {

@@ -68,6 +68,18 @@
           "type": "string",
           "default": "http://localhost:9090",
           "description": "URL of the Prometheus server."
+        },
+        "vitals.enableTelemetry": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable anonymous usage statistics collection to help improve Vitals. See PRIVACY.md for details."
+        },
+        "vitals.telemetrySaveInterval": {
+          "type": "number",
+          "default": 5,
+          "minimum": 1,
+          "maximum": 60,
+          "description": "Interval in minutes to save usage statistics (default: 5 minutes)."
         }
       }
     }
