@@ -1,6 +1,6 @@
 <template>
   <footer class="pulse-footer">
-    <div class="footer-container">
+    <div class="footer-content">
       <div class="footer-grid">
         <!-- About Section -->
         <div class="footer-column">
@@ -49,10 +49,8 @@
 
       <!-- Bottom Bar -->
       <div class="footer-bottom">
-        <div class="footer-info">
-          <p>Released under the <a href="https://github.com/theaniketraj/pulse/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a></p>
-          <p>Copyright © 2025 <a href="https://theaniketraj.netlify.app" target="_blank" rel="noopener">Aniket Raj</a></p>
-        </div>
+        <p>Released under the <a href="https://github.com/theaniketraj/pulse/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a></p>
+        <p>Copyright © 2025 <a href="https://theaniketraj.netlify.app" target="_blank" rel="noopener">Aniket Raj</a></p>
       </div>
     </div>
   </footer>
@@ -60,29 +58,23 @@
 
 <style scoped>
 .pulse-footer {
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
+  width: 100%;
   background: var(--vp-c-bg-soft);
   border-top: 1px solid var(--vp-c-divider);
-  margin-top: 0;
-  margin-bottom: 0;
+  padding: 48px 24px 32px;
+  margin-top: 48px;
 }
 
-.footer-container {
-  max-width: 1440px;
+.footer-content {
+  max-width: 1152px;
   margin: 0 auto;
-  padding: 48px 24px 32px;
 }
 
 .footer-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 40px;
-  margin-bottom: 40px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  margin-bottom: 32px;
 }
 
 .footer-column h3 {
@@ -101,7 +93,7 @@
 }
 
 .footer-column li {
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .footer-column a {
@@ -109,6 +101,7 @@
   text-decoration: none;
   transition: color 0.2s;
   font-size: 14px;
+  line-height: 1.6;
 }
 
 .footer-column a:hover {
@@ -116,54 +109,51 @@
 }
 
 .footer-bottom {
-  padding-top: 32px;
+  padding-top: 24px;
   border-top: 1px solid var(--vp-c-divider);
-}
-
-.footer-info {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 24px;
+  gap: 16px;
   flex-wrap: wrap;
+  text-align: center;
 }
 
-.footer-info p {
+.footer-bottom p {
   margin: 0;
   color: var(--vp-c-text-2);
   font-size: 13px;
 }
 
-.footer-info a {
+.footer-bottom a {
   color: var(--vp-c-text-2);
   text-decoration: none;
   transition: color 0.2s;
 }
 
-.footer-info a:hover {
+.footer-bottom a:hover {
   color: var(--vp-c-brand-1);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 960px) {
   .footer-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 32px;
-  }
-  
-  .footer-container {
-    padding: 32px 16px 24px;
-  }
-  
-  .footer-info {
-    flex-direction: column;
-    gap: 12px;
-    text-align: center;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 640px) {
+  .pulse-footer {
+    padding: 32px 16px 24px;
+  }
+  
   .footer-grid {
     grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  
+  .footer-bottom {
+    flex-direction: column;
+    gap: 8px;
   }
 }
 </style>

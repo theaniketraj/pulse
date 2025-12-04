@@ -17,28 +17,6 @@
   display: none !important; /* Hide default footer, using custom */
 }
 
-/* Full-width footer on doc pages */
-.VPDoc {
-  padding-bottom: 0 !important;
-}
-
-.VPDoc .container,
-.VPDoc .content-container {
-  max-width: 100% !important;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
-
-/* Remove whitespace below footer on home page */
-.Layout.home {
-  padding-bottom: 0 !important;
-}
-
-.VPHome {
-  padding-bottom: 0 !important;
-  margin-bottom: 0 !important;
-}
-
 .VPNavBar .title {
   font-size: 0.9em;
 }
