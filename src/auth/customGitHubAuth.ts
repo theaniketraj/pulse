@@ -19,7 +19,7 @@ export interface OAuthTokenResponse {
 export class CustomGitHubAuth {
   private static readonly TOKEN_KEY = 'vitals.github.accessToken';
   private static readonly USER_KEY = 'vitals.github.user';
-  private static readonly REDIRECT_URI = 'http://localhost:3000/callback';
+  private static readonly REDIRECT_URI = 'http://127.0.0.1:3000/callback';
   private static readonly SCOPES = ['user:email', 'read:user'];
   
   private static server: any;
@@ -134,7 +134,7 @@ export class CustomGitHubAuth {
   private static buildAuthUrl(clientId: string, state: string): string {
     const params = new URLSearchParams({
       client_id: clientId,
-      redirect_uri: this.REDIRECT_URI,
+      // redirect_uri: this.REDIRECT_URI, // Let GitHub use the configured callback URL
       scope: this.SCOPES.join(' '),
       state: state,
       allow_signup: 'true'
@@ -223,7 +223,7 @@ export class CustomGitHubAuth {
         }
       });
 
-      this.server.listen(3000, 'localhost', () => {
+      this.server.listen(3000, '127.0.0.1', () => {
         console.log('OAuth callback server started on port 3000');
         
         // Open authorization URL in browser
@@ -267,8 +267,8 @@ export class CustomGitHubAuth {
       body: JSON.stringify({
         client_id: credentials.clientId,
         client_secret: credentials.clientSecret,
-        code: code,
-        redirect_uri: this.REDIRECT_URI
+        code: code
+        // redirect_uri: this.REDIRECT_URI // Optional, must match authorize request if provided
       })
     });
 
