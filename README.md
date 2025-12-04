@@ -1,29 +1,72 @@
-# Pulse
+# Pulse 📊
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Version](https://img.shields.io/visual-studio-marketplace/v/theaniketraj.pulse)](https://marketplace.visualstudio.com/items?itemName=theaniketraj.pulse)
 [![Installs](https://img.shields.io/visual-studio-marketplace/i/theaniketraj.pulse)](https://marketplace.visualstudio.com/items?itemName=theaniketraj.pulse)
+[![VS Code](https://img.shields.io/badge/VS%20Code-1.85.0%2B-blue)](https://code.visualstudio.com/)
 
-**Pulse** is a powerful Visual Studio Code extension that brings real-time application observability directly into your editor. Integrated seamlessly with Prometheus, it allows developers to monitor metrics, view logs, and track alerts without ever leaving their coding environment.
+> **Real-time Observability for VS Code** - Monitor application metrics, logs, and alerts without leaving your editor.
+
+**Pulse** brings enterprise-grade observability directly into Visual Studio Code. Integrated seamlessly with Prometheus, it transforms your development environment into a powerful monitoring hub, enabling you to catch issues early and optimize performance in real-time.
 
 <!-- ![Pulse Demo](https://raw.githubusercontent.com/theaniketraj/pulse/main/docs/images/demo.gif) -->
 
-## Key Features
+---
 
-- **Real-Time Metrics**: Visualize critical system and application metrics (CPU, Memory, Request Latency) with dynamic, auto-updating charts.
-- **Live Log Stream**: View application logs in a terminal-like interface with syntax highlighting and filtering.
-- **Active Alerts**: Stay informed with a dedicated panel for firing and pending Prometheus alerts.
-- **Seamless Integration**: Works out-of-the-box with any Prometheus-compatible data source.
-- **Modern UI**: A premium, responsive design that adapts to your VS Code theme and layout.
+## ✨ Key Features
 
-## Installation
+### 📈 Real-Time Metrics
+Visualize critical system and application metrics with beautiful, auto-updating charts:
+- **CPU Usage**: Track processor utilization across cores
+- **Memory Consumption**: Monitor RAM usage and trends
+- **Request Latency**: Analyze API response times (p50, p95, p99)
+- **Custom Metrics**: Support for any Prometheus metric
+
+### 🖥️ Live Log Stream
+Stream application logs directly in VS Code with a terminal-like interface:
+- **Syntax Highlighting**: Color-coded log levels (INFO, WARN, ERROR)
+- **Real-time Updates**: Watch logs as they happen
+- **Filtering & Search**: Quickly find specific log entries
+- **Scroll & History**: Navigate through log history effortlessly
+
+### 🚨 Instant Alerts
+Stay informed with a dedicated alerts panel:
+- **Firing Alerts**: See active alerts with severity indicators
+- **Pending Alerts**: Monitor warnings before they trigger
+- **Alert Details**: View labels, annotations, and timestamps
+- **Smart Notifications**: Optional VS Code notifications for critical alerts
+
+### ⚡ Zero Configuration
+Works out-of-the-box with minimal setup:
+- **Auto-discovery**: Detects local Prometheus instances
+- **Quick Start**: Just install and connect
+- **Flexible**: Configure custom Prometheus endpoints
+- **No External Tools**: Everything runs within VS Code
+
+### 🎨 Modern UI
+Premium design that feels native to VS Code:
+- **Theme-Aware**: Automatically adapts to light/dark mode
+- **Responsive Layout**: Optimized for all screen sizes
+- **Smooth Animations**: Polished interactions and transitions
+- **Accessibility**: Full keyboard navigation and screen reader support
+
+---
+
+## 📦 Installation
 
 ### From VS Code Marketplace
 
-1. Open **VS Code**.
-2. Go to the **Extensions** view (`Ctrl+Shift+X`).
-3. Search for **"Pulse"**.
-4. Click **Install**.
+1. Open **Visual Studio Code**
+2. Open the **Extensions** view (`Ctrl+Shift+X` or `Cmd+Shift+X`)
+3. Search for **"Pulse"**
+4. Click **Install**
+
+### From VSIX (Manual)
+
+```bash
+# Download the latest .vsix from releases
+code --install-extension pulse-0.1.0.vsix
+```
 
 ### From Source
 
@@ -32,77 +75,332 @@ git clone https://github.com/theaniketraj/pulse.git
 cd pulse
 npm install
 npm run build
+code --install-extension .
 ```
-
-## Configuration
-
-Pulse connects to a Prometheus server to fetch data. By default, it looks for a local instance.
-
-1. Open **Settings** (`Ctrl+,`).
-2. Search for `pulse.prometheusUrl`.
-3. Set your Prometheus URL:
-
-   ```json
-   {
-     "pulse.prometheusUrl": "http://localhost:9090"
-   }
-   ```
-
-## Usage
-
-1. Open the **Command Palette** (`Ctrl+Shift+P`).
-2. Run the command: `Open Pulse`.
-3. The dashboard will open in a new panel, displaying your configured metrics and logs.
-
-## Architecture
-
-Pulse is built with a modular architecture separating the VS Code extension host from the React-based webview.
-
-- **Extension Host**: Handles configuration, commands, and API communication (Node.js).
-- **Webview**: Renders the UI using React, Recharts/Observable Plot, and custom hooks.
-- **Data Flow**: The extension polls Prometheus and sends data to the webview via IPC.
-
-For a deep dive, check out [SYSTEM_ARCHITECTURE.md](./docs/SYSTEM_ARCHITECTURE.md).
-
-## Development
-
-We welcome contributions! To get started with local development:
-
-1. **Clone the repo**:
-
-   ```bash
-   git clone https://github.com/theaniketraj/pulse.git
-   ```
-
-2. **Install dependencies**:
-
-   ```bash
-   npm install
-   ```
-
-3. **Run in Watch Mode**:
-
-   ```bash
-   npm run watch
-   ```
-
-4. **Launch Extension**:
-   Press `F5` in VS Code to open the Extension Development Host.
-
-See [DEVELOPMENT.md](./docs/DEVELOPMENT.md) for detailed instructions.
-
-## Contributing
-
-Please read [CONTRIBUTING.md](./docs/CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
-
-## Security
-
-For security concerns, please refer to [SECURITY.md](SECURITY.md).
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-_Built with ❤️ by [Aniket Raj](https://theaniketraj.netlify.app)_
+## 🚀 Quick Start
+
+### 1. Install Prometheus (if not already running)
+
+**macOS (Homebrew):**
+```bash
+brew install prometheus
+prometheus --config.file=/opt/homebrew/etc/prometheus.yml
+```
+
+**Linux (Docker):**
+```bash
+docker run -d -p 9090:9090 prom/prometheus
+```
+
+**Windows:**
+Download from [prometheus.io/download](https://prometheus.io/download/)
+
+### 2. Configure Pulse
+
+Open VS Code Settings (`Ctrl+,` or `Cmd+,`) and search for "pulse":
+
+```json
+{
+  "pulse.prometheusUrl": "http://localhost:9090",
+  "pulse.refreshInterval": 5000,
+  "pulse.enableNotifications": true
+}
+```
+
+### 3. Open Pulse
+
+- **Command Palette**: `Ctrl+Shift+P` → `Pulse: Open Dashboard`
+- **Keyboard Shortcut**: `Ctrl+Alt+P` (customize in Settings)
+- **Activity Bar**: Click the Pulse icon in the sidebar
+
+---
+
+## ⚙️ Configuration
+
+All settings are available in VS Code Settings (`Ctrl+,`):
+
+| Setting | Default | Description |
+|---------|---------|-------------|
+| `pulse.prometheusUrl` | `http://localhost:9090` | Prometheus server endpoint |
+| `pulse.refreshInterval` | `5000` | Metrics refresh interval (ms) |
+| `pulse.enableNotifications` | `true` | Show VS Code notifications for alerts |
+| `pulse.maxLogLines` | `1000` | Maximum log lines to display |
+| `pulse.theme` | `auto` | Color theme: `auto`, `light`, `dark` |
+
+### Example Configuration
+
+```json
+{
+  "pulse.prometheusUrl": "https://prometheus.example.com",
+  "pulse.refreshInterval": 3000,
+  "pulse.enableNotifications": true,
+  "pulse.maxLogLines": 5000,
+  "pulse.metrics": [
+    "node_cpu_seconds_total",
+    "node_memory_MemAvailable_bytes",
+    "http_request_duration_seconds"
+  ]
+}
+```
+
+---
+
+## 📖 Usage
+
+### Opening the Dashboard
+
+1. **Command Palette** (`Ctrl+Shift+P`)
+2. Type `Pulse: Open Dashboard`
+3. Press `Enter`
+
+The dashboard opens in a new webview panel showing:
+- **Metrics Tab**: Real-time charts and graphs
+- **Logs Tab**: Live log stream
+- **Alerts Tab**: Active and pending alerts
+
+### Viewing Metrics
+
+Navigate to the **Metrics** tab to see:
+- CPU usage across all cores
+- Memory consumption trends
+- Request latency percentiles
+- Custom metrics (configure in settings)
+
+**Interactions:**
+- **Hover**: See exact values at specific timestamps
+- **Zoom**: Click and drag to zoom into time ranges
+- **Legend**: Click to toggle metric visibility
+
+### Monitoring Logs
+
+The **Logs** tab provides a real-time log viewer:
+- Auto-scrolls to latest entries
+- Color-coded by severity (INFO, WARN, ERROR)
+- Search and filter capabilities
+- Export logs to file
+
+### Managing Alerts
+
+The **Alerts** tab displays:
+- **Firing Alerts** (red): Critical issues requiring attention
+- **Pending Alerts** (yellow): Warnings approaching thresholds
+- Click an alert to see full details
+
+---
+
+## 🏗️ Architecture
+
+Pulse uses a clean, modular architecture:
+
+```
+┌─────────────────────────────────────────────┐
+│         VS Code Extension Host              │
+│  ┌─────────────┐      ┌──────────────┐     │
+│  │  Extension  │─────▶│ Prometheus   │     │
+│  │  Commands   │      │  API Client  │     │
+│  └─────────────┘      └──────────────┘     │
+│         │                     │             │
+│         ▼                     ▼             │
+│  ┌──────────────────────────────────┐      │
+│  │      Webview Bridge (IPC)        │      │
+│  └──────────────────────────────────┘      │
+└─────────────────────────────────────────────┘
+                   │
+                   ▼
+┌─────────────────────────────────────────────┐
+│            React Webview UI                 │
+│  ┌──────────┐  ┌──────────┐  ┌──────────┐  │
+│  │ Metrics  │  │   Logs   │  │  Alerts  │  │
+│  │ Charts   │  │  Viewer  │  │  Panel   │  │
+│  └──────────┘  └──────────┘  └──────────┘  │
+└─────────────────────────────────────────────┘
+```
+
+**Key Components:**
+- **Extension Host**: Node.js process handling configuration, commands, and API calls
+- **Webview**: React-based UI rendering metrics, logs, and alerts
+- **IPC Bridge**: Message passing between extension and webview
+- **Data Layer**: Prometheus API client with polling and caching
+
+For detailed architecture docs, see [SYSTEM_ARCHITECTURE.md](./Docs/system_architecture.md).
+
+---
+
+## 🛠️ Development
+
+### Prerequisites
+
+- Node.js 18+ and npm
+- Visual Studio Code 1.85.0+
+- Git
+
+### Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/theaniketraj/pulse.git
+cd pulse
+
+# Install dependencies
+npm install
+
+# Build the extension
+npm run build
+```
+
+### Running Locally
+
+```bash
+# Start development mode with hot reload
+npm run watch
+
+# In VS Code, press F5 to launch Extension Development Host
+```
+
+### Testing
+
+```bash
+# Run unit tests
+npm test
+
+# Run integration tests
+npm run test:integration
+
+# Test with local Prometheus
+npm run test:e2e
+```
+
+### Project Structure
+
+```
+pulse/
+├── src/
+│   ├── extension.ts         # Extension entry point
+│   ├── api.ts              # Prometheus API client
+│   ├── pulseView.ts        # Webview provider
+│   ├── data/               # Data fetching & processing
+│   └── utils/              # Utilities & helpers
+├── webview/
+│   ├── src/
+│   │   ├── App.tsx         # Main React app
+│   │   ├── components/     # UI components
+│   │   └── hooks/          # Custom React hooks
+│   └── public/             # Static assets
+├── Docs/                   # Documentation
+└── package.json
+```
+
+See [DEVELOPMENT.md](./Docs/development.md) for comprehensive dev docs.
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions! Here's how you can help:
+
+1. **Fork** the repository
+2. **Create** a feature branch (`git checkout -b feature/amazing-feature`)
+3. **Commit** your changes (`git commit -m 'Add amazing feature'`)
+4. **Push** to the branch (`git push origin feature/amazing-feature`)
+5. **Open** a Pull Request
+
+Please read [CONTRIBUTING.md](./Docs/contributing.md) for:
+- Code of Conduct
+- Development guidelines
+- PR process
+- Coding standards
+
+---
+
+## 📋 Roadmap
+
+### Current (v0.1.0)
+- ✅ Real-time metrics visualization
+- ✅ Live log streaming
+- ✅ Alert management
+- ✅ Prometheus integration
+
+### Upcoming (v0.2.0)
+- 🔄 Custom metric queries
+- 🔄 Alertmanager integration
+- 🔄 Historical data analysis
+- 🔄 Multi-datasource support
+
+See [VISION.md](./Docs/vision.md) for the full roadmap.
+
+---
+
+## 🐛 Troubleshooting
+
+### Connection Issues
+
+**Problem**: "Unable to connect to Prometheus"
+
+**Solutions:**
+1. Verify Prometheus is running: `curl http://localhost:9090/api/v1/status/config`
+2. Check `pulse.prometheusUrl` setting matches your Prometheus endpoint
+3. Ensure no firewall is blocking the connection
+4. Try disabling SSL verification for self-signed certificates
+
+### No Metrics Displayed
+
+**Problem**: Dashboard is empty
+
+**Solutions:**
+1. Confirm Prometheus has scraped targets: Visit `http://localhost:9090/targets`
+2. Check metrics exist: Query in Prometheus UI
+3. Verify metric names in `pulse.metrics` setting
+4. Increase `pulse.refreshInterval` for slow networks
+
+### Logs Not Streaming
+
+**Problem**: Log tab shows no entries
+
+**Solutions:**
+1. Ensure your application is exporting logs to Prometheus/Loki
+2. Verify log exporter configuration
+3. Check Pulse is configured to read from correct log source
+
+For more help, see [TROUBLESHOOTING.md](./Docs/troubleshooting.md) or [open an issue](https://github.com/theaniketraj/pulse/issues).
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 🙏 Acknowledgments
+
+- [Prometheus](https://prometheus.io/) - Monitoring system and time series database
+- [Recharts](https://recharts.org/) - Charting library for React
+- [VS Code Extension API](https://code.visualstudio.com/api) - Extensibility platform
+
+---
+
+## 📞 Support
+
+- **Documentation**: [https://theaniketraj.github.io/pulse/](https://theaniketraj.github.io/pulse/)
+- **Issues**: [GitHub Issues](https://github.com/theaniketraj/pulse/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/theaniketraj/pulse/discussions)
+- **Email**: [contact@example.com](mailto:contact@example.com)
+
+---
+
+## ⭐ Show Your Support
+
+If you find Pulse helpful, please consider:
+- Starring the repo on GitHub
+- Sharing with your team
+- Contributing to the project
+- Writing a review on the VS Code Marketplace
+
+---
+
+**Built with ❤️ by [Aniket Raj](https://theaniketraj.netlify.app)**
+
+*Pulse - Real-time Observability for Modern Developers*
