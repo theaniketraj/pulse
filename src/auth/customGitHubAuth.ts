@@ -31,22 +31,43 @@ export class CustomGitHubAuth {
    */
   static async signIn(context: vscode.ExtensionContext): Promise<GitHubUser | undefined> {
     try {
+      console.log('🔑 Starting GitHub sign-in flow...');
+      
       // Check if credentials are configured
       const credentials = await SecureStorage.getCredentials(context);
       if (!credentials) {
+        console.log('❌ OAuth credentials not configured');
+        
         const configure = await vscode.window.showErrorMessage(
-          'GitHub OAuth credentials not configured. Configure now?',
-          'Configure',
+          'GitHub OAuth credentials are required. You need to create a GitHub OAuth App and configure the Client ID and Secret.',
+          { modal: true },
+          'Configure Now',
+          'Learn How',
           'Cancel'
         );
         
-        if (configure === 'Configure') {
+        if (configure === 'Configure Now') {
           await this.configureCredentials(context);
-          return this.signIn(context); // Retry after configuration
+          // After configuration, user needs to try signing in again
+          // Don't auto-retry to prevent infinite loop
+          const retry = await vscode.window.showInformationMessage(
+            'Credentials saved! Ready to sign in?',
+            'Sign In',
+            'Later'
+          );
+          if (retry === 'Sign In') {
+            return this.signIn(context);
+          }
+          return undefined;
+        } else if (configure === 'Learn How') {
+          vscode.env.openExternal(vscode.Uri.parse('https://github.com/theaniketraj/vitals/blob/main/GITHUB_AUTH_SETUP.md'));
+          return undefined;
         }
         return undefined;
       }
 
+      console.log('✅ OAuth credentials found');
+      
       // Generate state for CSRF protection
       const state = crypto.randomBytes(32).toString('hex');
       await context.globalState.update('oauth.state', state);

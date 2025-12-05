@@ -155,7 +155,7 @@ VS Code automatically refreshes tokens. If issues persist:
 
 ### File Structure
 
-```
+```bash
 src/
   auth/
     githubAuth.ts          # GitHub authentication provider

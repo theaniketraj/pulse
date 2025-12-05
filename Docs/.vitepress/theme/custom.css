@@ -12,21 +12,8 @@
   pointer-events: none;
 }
 
-/* Force footer to display on all pages */
-.VPFooter {
-  display: none !important; /* Hide default footer, using custom */
-}
-
 /* Remove whitespace below footer on landing page */
 .VPHome {
-  padding-bottom: 0 !important;
-}
-
-.Layout {
-  padding-bottom: 0 !important;
-}
-
-.VPContent {
   padding-bottom: 0 !important;
 }
 
@@ -351,3 +338,79 @@
     transition: transform 0.25s ease;
   }
 }
+
+/* 
+   Layout Fixes: 
+   1. Make Sidebar and Content side-by-side in flow (Flexbox)
+   2. Ensure Sidebar scrolls with content (not fixed)
+   3. Ensure Footer is pushed down by the taller of Sidebar or Content
+*/
+
+/* Global Layout - Mobile First (Column) */
+.Layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+@media (min-width: 960px) {
+  /* Desktop: Switch to Row/Wrap layout */
+  .Layout {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    align-items: flex-start !important;
+  }
+
+  /* Sidebar: Part of the flow, side-by-side with content */
+  .VPSidebar {
+    position: relative !important;
+    top: 0 !important;
+    margin-top: var(--vp-nav-height) !important;
+    width: var(--vp-sidebar-width) !important;
+    height: auto !important;
+    min-height: calc(100vh - var(--vp-nav-height));
+    flex-shrink: 0;
+    left: 0 !important;
+    transform: none !important;
+    z-index: 1;
+  }
+  
+  /* Content: Side-by-side with Sidebar */
+  .VPContent {
+    flex-grow: 1;
+    width: calc(100% - var(--vp-sidebar-width)) !important;
+    padding-left: 0 !important; /* Remove padding, using flex layout instead */
+    margin-top: var(--vp-nav-height) !important;
+    padding-top: 0 !important; /* Reset padding-top as we use margin */
+    padding-bottom: 0 !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  /* Make "On this page" (Outline) scroll with content */
+  .VPDocAside {
+    position: static !important;
+    display: block !important;
+  }
+  
+  .VPDocAsideOutline {
+    position: static !important;
+  }
+  
+  /* Ensure the container allows flow */
+  .VPDoc {
+    overflow: visible !important;
+    padding-bottom: 0 !important;
+  }
+}
+
+/* Footer adjustments */
+.VPFooter {
+  display: block !important;
+  width: 100% !important;
+  position: relative !important;
+  z-index: 10;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+

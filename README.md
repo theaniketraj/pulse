@@ -1,11 +1,16 @@
+<div align="center">
+
 # Vitals
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+![Vitals Logo](https://github.com/theaniketraj/vitals/blob/main/icon.png?raw=true)
+
+[![Deploy Documentation](https://github.com/theaniketraj/vitals/actions/workflows/deploy-docs.yml/badge.svg)](https://github.com/theaniketraj/vitals/actions/workflows/deploy-docs.yml)
 [![Version](https://img.shields.io/visual-studio-marketplace/v/theaniketraj.vitals)](https://marketplace.visualstudio.com/items?itemName=theaniketraj.vitals)
 [![Installs](https://img.shields.io/visual-studio-marketplace/i/theaniketraj.vitals)](https://marketplace.visualstudio.com/items?itemName=theaniketraj.vitals)
-[![VS Code](https://img.shields.io/badge/VS%20Code-1.85.0%2B-blue)](https://code.visualstudio.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/theaniketraj/vitals/blob/main/LICENSE)
 
 > **Real-time Observability for VS Code** - Monitor application metrics, logs, and alerts without leaving your editor.
+</div>
 
 **Vitals** brings enterprise-grade observability directly into Visual Studio Code. Integrated seamlessly with Prometheus, it transforms your development environment into a powerful monitoring hub, enabling you to catch issues early and optimize performance in real-time.
 

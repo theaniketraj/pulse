@@ -67,18 +67,28 @@ export class AuthWall {
     const user = await CustomGitHubAuth.signIn(context);
 
     if (!user) {
-      const retry = await vscode.window.showErrorMessage(
-        'GitHub authentication failed. Would you like to try again?',
-        'Retry',
-        'Configure OAuth First',
-        'Cancel'
+      console.log('❌ GitHub authentication failed or cancelled');
+      
+      const retry = await vscode.window.showWarningMessage(
+        'GitHub authentication is required to use Vitals.',
+        'Try Again',
+        'Configure OAuth',
+        'Later'
       );
 
-      if (retry === 'Retry') {
+      if (retry === 'Try Again') {
         return this.showAuthWall(context);
-      } else if (retry === 'Configure OAuth First') {
+      } else if (retry === 'Configure OAuth') {
         await vscode.commands.executeCommand('vitals.configureCredentials');
-        return this.showAuthWall(context);
+        // Don't auto-retry after config to prevent loop
+        const signIn = await vscode.window.showInformationMessage(
+          'OAuth credentials configured. Ready to sign in?',
+          'Sign In Now',
+          'Later'
+        );
+        if (signIn === 'Sign In Now') {
+          return this.showAuthWall(context);
+        }
       }
 
       return false;
@@ -99,12 +109,16 @@ export class AuthWall {
     }
 
     // Show success message
-    await vscode.window.showInformationMessage(
-      `Successfully signed in as ${user.name || user.login}! You can now use Vitals.`,
+    vscode.window.showInformationMessage(
+      `✅ Successfully signed in as ${user.name || user.login}!`,
       'Open Dashboard'
     ).then(selection => {
       if (selection === 'Open Dashboard') {
-        vscode.commands.executeCommand('vitals.openDashboard');
+        // Use setTimeout to break out of the current call stack
+        // This prevents the infinite loop when opening dashboard after auth
+        setTimeout(() => {
+          vscode.commands.executeCommand('vitals.openDashboard');
+        }, 100);
       }
     });
 
@@ -115,13 +129,22 @@ export class AuthWall {
    * Enforce authentication wall - blocks until user authenticates
    */
   static async enforce(context: vscode.ExtensionContext): Promise<boolean> {
+    console.log('🔐 AuthWall.enforce() called');
+    
     // Check if already authenticated
-    if (await this.isAuthenticated(context)) {
+    const isAuth = await this.isAuthenticated(context);
+    console.log(`🔐 isAuthenticated check: ${isAuth}`);
+    
+    if (isAuth) {
+      console.log('✅ User already authenticated');
       return true;
     }
 
     // Show auth wall
-    return this.showAuthWall(context);
+    console.log('⚠️ User not authenticated, showing auth wall');
+    const result = await this.showAuthWall(context);
+    console.log(`🔐 showAuthWall result: ${result}`);
+    return result;
   }
 
   /**

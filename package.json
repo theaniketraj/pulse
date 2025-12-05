@@ -59,6 +59,11 @@
         "command": "vitals.showStatus",
         "title": "Show Authentication Status",
         "category": "Vitals"
+      },
+      {
+        "command": "vitals.configurePrometheus",
+        "title": "Configure Prometheus URL",
+        "category": "Vitals"
       }
     ],
     "configuration": {
@@ -67,7 +72,8 @@
         "vitals.prometheusUrl": {
           "type": "string",
           "default": "http://localhost:9090",
-          "description": "URL of the Prometheus server."
+          "description": "URL of the Prometheus server. Leave as default to use the demo instance (pre-populated with sample metrics), or change to your own Prometheus URL.",
+          "markdownDescription": "URL of the Prometheus server.\n\n**Demo Mode** (default): Uses a hosted demo instance with sample metrics - perfect for trying Vitals.\n\n**Custom Mode**: Enter your own Prometheus URL (e.g., `http://localhost:9090`) to monitor your applications.\n\n[Learn more about Prometheus setup](https://github.com/theaniketraj/vitals/blob/main/PROMETHEUS_SETUP.md)"
         },
         "vitals.enableTelemetry": {
           "type": "boolean",

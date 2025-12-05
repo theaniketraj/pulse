@@ -39,21 +39,27 @@ export async function activate(context: vscode.ExtensionContext) {
   const openDashboard = vscode.commands.registerCommand(
     "vitals.openDashboard",
     async () => {
-      console.log("📊 Opening Vitals...");
+      console.log("📊 Opening Vitals dashboard...");
       
       // Track command execution
       usageStats.trackCommand('vitals.openDashboard');
       
       // Enforce authentication wall
+      console.log("🔐 Checking authentication...");
       const isAuthenticated = await AuthWall.enforce(context);
+      console.log(`🔐 Authentication result: ${isAuthenticated}`);
       
       if (!isAuthenticated) {
+        console.log("❌ User not authenticated, aborting dashboard open");
         return;
       }
+      
+      console.log("✅ User authenticated, creating dashboard...");
       
       // Log dashboard opened event
       const user = await CustomGitHubAuth.getCurrentUser(context);
       if (user) {
+        console.log(`👤 Current user: ${user.login}`);
         vitalsApi.logEvent(
           user.id.toString(),
           'dashboard_opened'
@@ -61,7 +67,9 @@ export async function activate(context: vscode.ExtensionContext) {
       }
       
       // Create a new webview panel for the dashboard
+      console.log("🎨 Creating webview panel...");
       VitalsView.createOrShow(context);
+      console.log("✅ Dashboard should now be visible");
     }
   );  
 
@@ -149,8 +157,85 @@ export async function activate(context: vscode.ExtensionContext) {
     }
   );
 
+  // Register command to configure Prometheus URL
+  const configurePrometheus = vscode.commands.registerCommand(
+    "vitals.configurePrometheus",
+    async () => {
+      // Track command execution
+      usageStats.trackCommand('vitals.configurePrometheus');
+      
+      // Get current Prometheus URL
+      const config = vscode.workspace.getConfiguration('vitals');
+      const currentUrl = config.get<string>('prometheusUrl') || 'http://localhost:9090';
+      const defaultUrl = config.inspect('prometheusUrl')?.defaultValue as string;
+      
+      // Determine if using demo mode
+      const isDemoMode = currentUrl === defaultUrl;
+      
+      // Show input box with guidance
+      const newUrl = await vscode.window.showInputBox({
+        prompt: 'Enter your Prometheus server URL',
+        value: currentUrl,
+        placeHolder: 'http://localhost:9090',
+        validateInput: (value) => {
+          if (!value) {
+            return 'URL cannot be empty';
+          }
+          try {
+            new URL(value);
+            return null;
+          } catch {
+            return 'Please enter a valid URL (e.g., http://localhost:9090)';
+          }
+        },
+        ignoreFocusOut: true,
+        title: isDemoMode 
+          ? '🎯 Currently using Demo Mode - Enter your Prometheus URL to connect to your own instance'
+          : '🔗 Configure Prometheus URL'
+      });
+      
+      if (newUrl && newUrl !== currentUrl) {
+        await config.update('prometheusUrl', newUrl, vscode.ConfigurationTarget.Global);
+        
+        const wasDemo = currentUrl === defaultUrl;
+        const nowDemo = newUrl === defaultUrl;
+        
+        if (wasDemo && !nowDemo) {
+          vscode.window.showInformationMessage(
+            `✅ Switched to custom Prometheus: ${newUrl}`
+          );
+        } else if (!wasDemo && nowDemo) {
+          vscode.window.showInformationMessage(
+            '✅ Switched back to demo mode'
+          );
+        } else {
+          vscode.window.showInformationMessage(
+            `✅ Prometheus URL updated: ${newUrl}`
+          );
+        }
+        
+        // Suggest reopening dashboard if it's open
+        vscode.window.showInformationMessage(
+          'Reopen the Vitals dashboard to see updated metrics',
+          'Reopen Dashboard'
+        ).then(selection => {
+          if (selection === 'Reopen Dashboard') {
+            vscode.commands.executeCommand('vitals.openDashboard');
+          }
+        });
+      }
+    }
+  );
+
   // Add the commands to the extension's context subscriptions
-  context.subscriptions.push(openDashboard, signOut, showStatus, configureCredentials, signIn);
+  context.subscriptions.push(
+    openDashboard, 
+    signOut, 
+    showStatus, 
+    configureCredentials, 
+    signIn,
+    configurePrometheus
+  );
 
   console.log('✅ Commands registered successfully');
 }

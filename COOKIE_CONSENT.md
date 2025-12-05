@@ -171,7 +171,7 @@ export default {
 - **Accept Duration**: 365 days (1 year)
 - **Decline Duration**: 7 days (re-prompt after)
 - **Auto-Renewal**: On each visit if accepted
-- **Expiry Behavior**: 
+- **Expiry Behavior**:
   - Accepted: Re-prompt after 1 year
   - Declined: Re-prompt after 7 days
 
@@ -277,7 +277,7 @@ async function trackAnalytics(eventName, properties) {
 
 ## Files Structure
 
-```
+```bash
 docs/
 ├── .vitepress/
 │   ├── config.mts              # VitePress config with SW

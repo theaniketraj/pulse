@@ -17,6 +17,30 @@ const Dashboard: React.FC<DashboardProps> = ({ vscode }) => {
     loading: alertsLoading,
     error: alertsError,
   } = useAlerts(vscode);
+  
+  const [prometheusUrl, setPrometheusUrl] = React.useState<string>('');
+  const [isDemoMode, setIsDemoMode] = React.useState<boolean>(false);
+
+  React.useEffect(() => {
+    // Request Prometheus URL from extension
+    vscode.postMessage({ command: 'getPrometheusUrl' });
+    
+    // Listen for response
+    const messageHandler = (event: MessageEvent) => {
+      const message = event.data;
+      if (message.command === 'prometheusUrl') {
+        setPrometheusUrl(message.url);
+        setIsDemoMode(message.isDemoMode);
+      }
+    };
+    
+    window.addEventListener('message', messageHandler);
+    return () => window.removeEventListener('message', messageHandler);
+  }, [vscode]);
+
+  const handleConfigurePrometheus = () => {
+    vscode.postMessage({ command: 'configurePrometheus' });
+  };
 
   // Mock KPI data for now
   const kpis = [
@@ -33,9 +57,24 @@ const Dashboard: React.FC<DashboardProps> = ({ vscode }) => {
         <div className="header-title">
           <h1>Vitals</h1>
         </div>
-        <div className="live-badge">
-          <span className="live-dot"></span>
-          Live
+        <div className="header-actions">
+          {isDemoMode && (
+            <div className="demo-mode-badge" title="Using demo Prometheus with sample metrics">
+              <span className="demo-icon">🎯</span>
+              <span className="demo-text">Demo Mode</span>
+              <button 
+                className="connect-btn" 
+                onClick={handleConfigurePrometheus}
+                title="Connect to your own Prometheus instance"
+              >
+                Connect Prometheus
+              </button>
+            </div>
+          )}
+          <div className="live-badge">
+            <span className="live-dot"></span>
+            Live
+          </div>
         </div>
       </header>
 

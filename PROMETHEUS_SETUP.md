@@ -20,7 +20,7 @@ cd prometheus-2.50.1.windows-amd64
 The extension includes a basic `prometheus.yml` configuration. Copy it to your Prometheus directory:
 
 ```bash
-cp d:/ceie/pulse/tmp/prometheus.yml ./prometheus.yml
+cp d:/ceie/vitals/tmp/prometheus.yml ./prometheus.yml
 ```
 
 Or use this minimal configuration:
@@ -69,7 +69,7 @@ If you prefer Docker:
 docker run -d \
   --name prometheus \
   -p 9090:9090 \
-  -v d:/ceie/pulse/tmp/prometheus.yml:/etc/prometheus/prometheus.yml \
+  -v d:/ceie/vitals/tmp/prometheus.yml:/etc/prometheus/prometheus.yml \
   prom/prometheus
 ```
 
