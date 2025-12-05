@@ -1,0 +1,13 @@
+{
+  "name": "vitals-demo-app",
+  "version": "1.0.0",
+  "description": "Demo application with Prometheus metrics for Vitals extension",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "prom-client": "^15.1.0"
+  }
+}

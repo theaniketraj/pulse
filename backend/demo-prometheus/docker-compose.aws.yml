@@ -1,0 +1,51 @@
+version: "3.8"
+
+services:
+  # Prometheus server - minimal config for AWS
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: vitals-prometheus
+    volumes:
+      - ./prometheus.aws.yml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/prometheus
+    ports:
+      - "9090:9090"
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--storage.tsdb.retention.time=7d"
+      - "--web.enable-lifecycle"
+      - "--web.enable-admin-api"
+    restart: unless-stopped
+    networks:
+      - vitals-network
+
+  # Node.js demo app with metrics
+  demo-app:
+    image: node:18-alpine
+    container_name: vitals-demo-app
+    working_dir: /app
+    volumes:
+      - ./demo-app:/app
+    ports:
+      - "3001:3001"
+    command: sh -c "npm install --production && node index.js"
+    restart: unless-stopped
+    networks:
+      - vitals-network
+    environment:
+      - NODE_ENV=production
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  vitals-network:
+    driver: bridge
+
+volumes:
+  prometheus-data:
+    driver: local

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vitals Demo Endpoints Test</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+
+        .endpoint {
+            background: white;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .endpoint h3 {
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+
+        .endpoint a {
+            display: inline-block;
+            padding: 8px 16px;
+            background: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin: 5px 5px 5px 0;
+        }
+
+        .endpoint a:hover {
+            background: #0052a3;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .status.up {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status.down {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .status.checking {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        pre {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-size: 12px;
+        }
+
+        .test-btn {
+            padding: 10px 20px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .test-btn:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>🔍 Vitals Demo Endpoints Test</h1>
+    <p>Click the links below to test each endpoint. Status will be checked automatically.</p>
+
+    <button class="test-btn" onclick="checkAllEndpoints()">🔄 Check All Endpoints</button>
+
+    <div class="endpoint">
+        <h3>
+            Prometheus UI
+            <span class="status checking" id="status-prometheus">Checking...</span>
+        </h3>
+        <a href="http://localhost:9090" target="_blank">Open Prometheus →</a>
+        <a href="http://localhost:9090/targets" target="_blank">View Targets →</a>
+        <a href="http://localhost:9090/graph" target="_blank">Query Graph →</a>
+    </div>
+
+    <div class="endpoint">
+        <h3>
+            Demo App - Metrics
+            <span class="status checking" id="status-demo-metrics">Checking...</span>
+        </h3>
+        <a href="http://localhost:3001/metrics" target="_blank">View Metrics →</a>
+        <a href="#" onclick="testEndpoint('http://localhost:3001/metrics'); return false;">Test Fetch →</a>
+        <pre id="demo-metrics-output">Click "Test Fetch" to see output...</pre>
+    </div>
+
+    <div class="endpoint">
+        <h3>
+            Demo App - Health
+            <span class="status checking" id="status-demo-health">Checking...</span>
+        </h3>
+        <a href="http://localhost:3001/health" target="_blank">View Health →</a>
+        <a href="#" onclick="testEndpoint('http://localhost:3001/health'); return false;">Test Fetch →</a>
+        <pre id="demo-health-output">Click "Test Fetch" to see output...</pre>
+    </div>
+
+    <div class="endpoint">
+        <h3>
+            Demo App - API Endpoints
+            <span class="status checking" id="status-demo-api">Checking...</span>
+        </h3>
+        <a href="http://localhost:3001/api/users" target="_blank">/api/users →</a>
+        <a href="http://localhost:3001/api/data" target="_blank">/api/data →</a>
+        <a href="#" onclick="testEndpoint('http://localhost:3001/api/users'); return false;">Test /api/users →</a>
+    </div>
+
+    <div class="endpoint">
+        <h3>
+            Node Exporter
+            <span class="status checking" id="status-node">Checking...</span>
+        </h3>
+        <a href="http://localhost:9100/metrics" target="_blank">View Metrics →</a>
+    </div>
+
+    <div class="endpoint">
+        <h3>
+            Redis Exporter
+            <span class="status checking" id="status-redis">Checking...</span>
+        </h3>
+        <a href="http://localhost:9121/metrics" target="_blank">View Metrics →</a>
+    </div>
+
+    <div class="endpoint">
+        <h3>
+            PostgreSQL Exporter
+            <span class="status checking" id="status-postgres">Checking...</span>
+        </h3>
+        <a href="http://localhost:9187/metrics" target="_blank">View Metrics →</a>
+    </div>
+
+    <div class="endpoint">
+        <h3>
+            Grafana
+            <span class="status checking" id="status-grafana">Checking...</span>
+        </h3>
+        <a href="http://localhost:3000" target="_blank">Open Grafana →</a>
+        <p style="font-size: 14px; color: #666; margin: 10px 0 0 0;">
+            Default credentials: <strong>admin</strong> / <strong>admin</strong>
+        </p>
+    </div>
+
+    <script>
+        const endpoints = [
+            { id: 'prometheus', url: 'http://localhost:9090/api/v1/status/config' },
+            { id: 'demo-metrics', url: 'http://localhost:3001/metrics' },
+            { id: 'demo-health', url: 'http://localhost:3001/health' },
+            { id: 'demo-api', url: 'http://localhost:3001/api/users' },
+            { id: 'node', url: 'http://localhost:9100/metrics' },
+            { id: 'redis', url: 'http://localhost:9121/metrics' },
+            { id: 'postgres', url: 'http://localhost:9187/metrics' },
+            { id: 'grafana', url: 'http://localhost:3000/api/health' }
+        ];
+
+        async function checkEndpoint(id, url) {
+            const statusEl = document.getElementById(`status-${id}`);
+            statusEl.textContent = 'Checking...';
+            statusEl.className = 'status checking';
+
+            try {
+                const response = await fetch(url, {
+                    method: 'GET',
+                    mode: 'no-cors' // Use no-cors to avoid CORS issues for status check
+                });
+
+                // With no-cors, we can't read the response, but if no error is thrown, it's likely up
+                statusEl.textContent = 'Accessible';
+                statusEl.className = 'status up';
+            } catch (error) {
+                statusEl.textContent = 'Not Accessible';
+                statusEl.className = 'status down';
+                console.error(`Error checking ${url}:`, error);
+            }
+        }
+
+        async function testEndpoint(url) {
+            const outputId = url.includes('health') ? 'demo-health-output' : 'demo-metrics-output';
+            const outputEl = document.getElementById(outputId);
+
+            outputEl.textContent = 'Fetching...';
+
+            try {
+                const response = await fetch(url);
+                const text = await response.text();
+
+                if (url.includes('health')) {
+                    outputEl.textContent = JSON.stringify(JSON.parse(text), null, 2);
+                } else {
+                    // Show first 50 lines of metrics
+                    const lines = text.split('\n').slice(0, 50);
+                    outputEl.textContent = lines.join('\n') + '\n\n... (truncated)';
+                }
+            } catch (error) {
+                outputEl.textContent = `Error: ${error.message}\n\nThis might be a CORS issue. Try opening the link directly in a new tab.`;
+            }
+        }
+
+        function checkAllEndpoints() {
+            endpoints.forEach(({ id, url }) => checkEndpoint(id, url));
+        }
+
+        // Check all endpoints on page load
+        window.addEventListener('load', () => {
+            setTimeout(checkAllEndpoints, 500);
+        });
+    </script>
+</body>
+
+</html>
