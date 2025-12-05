@@ -2,7 +2,7 @@
 
 # Vitals
 
-![Vitals Logo](https://github.com/theaniketraj/vitals/blob/main/icon.png?raw=true)
+![Vitals Logo](https://github.com/theaniketraj/vitals/blob/main/Docs/icon_small.png?raw=true)
 
 [![Deploy Documentation](https://github.com/theaniketraj/vitals/actions/workflows/deploy-docs.yml/badge.svg)](https://github.com/theaniketraj/vitals/actions/workflows/deploy-docs.yml)
 [![Version](https://img.shields.io/visual-studio-marketplace/v/theaniketraj.vitals)](https://marketplace.visualstudio.com/items?itemName=theaniketraj.vitals)
