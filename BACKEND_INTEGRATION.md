@@ -65,7 +65,7 @@ The extension now automatically logs:
 
 ## 📊 Data Flow
 
-```
+```bash
 User Signs In
     ↓
 GitHub OAuth ✅

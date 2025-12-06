@@ -416,7 +416,6 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 - **Documentation**: [https://theaniketraj.github.io/vitals/](https://theaniketraj.github.io/vitals/)
 - **Issues**: [GitHub Issues](https://github.com/theaniketraj/vitals/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/theaniketraj/vitals/discussions)
-- **Email**: [contact@example.com](mailto:contact@example.com)
 
 ---
 
