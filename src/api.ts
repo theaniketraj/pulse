@@ -23,9 +23,11 @@ export class PrometheusApi {
 
       return response.data;
     } catch (error: any) {
-      console.error("Failed to fetch alerts:", error);
       if (axios.isAxiosError(error)) {
-        throw new Error(`Network error: ${error.message}`);
+        const message = error.code === 'ECONNREFUSED' 
+          ? `Connection refused at ${this.baseUrl}. Is Prometheus running?`
+          : error.message;
+        throw new Error(`Network error: ${message}`);
       }
       throw error;
     }
@@ -53,10 +55,12 @@ export class PrometheusApi {
 
       return response.data;
     } catch (error: any) {
-      console.error("Failed to fetch metrics:", error);
       // Re-throw with a user-friendly message if possible
       if (axios.isAxiosError(error)) {
-        throw new Error(`Network error: ${error.message}`);
+        const message = error.code === 'ECONNREFUSED' 
+          ? `Connection refused at ${this.baseUrl}. Is Prometheus running?`
+          : error.message;
+        throw new Error(`Network error: ${message}`);
       }
       throw error;
     }

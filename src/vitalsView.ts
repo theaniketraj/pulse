@@ -66,14 +66,10 @@ export class VitalsView {
             } catch (error: any) {
               getUsageStats(this._context).trackError('prometheus_metrics_fetch_failed');
               
-              const errorMsg = error.code === 'ECONNREFUSED' 
-                ? 'Cannot connect to Prometheus. Please ensure Prometheus is running at the configured URL.'
-                : error.message;
-              
-              console.error('Prometheus fetch error:', error);
+              console.log(`Prometheus fetch error: ${error.message}`);
               this._panel.webview.postMessage({
                 command: "error",
-                message: errorMsg,
+                message: error.message,
               });
             }
             break;
@@ -95,7 +91,7 @@ export class VitalsView {
               });
             } catch (error: any) {
               getUsageStats(this._context).trackError('prometheus_alerts_fetch_failed');
-              console.error("Failed to fetch alerts:", error);
+              console.log(`Failed to fetch alerts: ${error.message}`);
               this._panel.webview.postMessage({
                 command: "alertError",
                 message: error.message,
@@ -103,7 +99,7 @@ export class VitalsView {
             }
             break;
 
-          case "fetchLogs":
+          case "fetchLogs": {
             // Track logs feature usage
             getUsageStats(this._context).trackFeature('logs');
             
@@ -121,6 +117,7 @@ export class VitalsView {
               data: mockLogs,
             });
             break;
+          }
         }
       },
       undefined,
