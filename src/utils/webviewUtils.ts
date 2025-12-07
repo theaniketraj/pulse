@@ -1,9 +1,16 @@
 import * as vscode from "vscode";
+// import * as fs from "node:fs";
 
 export function getWebviewContent(
   webview: vscode.Webview,
   extensionUri: vscode.Uri
 ): string {
+  // TEMPORARY: Load integration test suite
+  // To revert, comment out these two lines and uncomment the block below
+  // const testFilePath = vscode.Uri.joinPath(extensionUri, "connectivity-test.html").fsPath;
+  // return fs.readFileSync(testFilePath, "utf-8");
+
+  /* Original Webview Content */
   const scriptUri = webview.asWebviewUri(
     vscode.Uri.joinPath(extensionUri, "webview", "build", "bundle.js")
   );
