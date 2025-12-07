@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/theaniketraj/vitals/issues"
   },
-  "homepage": "https://github.com/theaniketraj/vitals/blob/main/README.md",
+  "homepage": "https://theaniketraj.github.io/vitals/",
   "icon": "icon.png",
   "engines": {
     "vscode": "^1.94.0"
@@ -78,7 +78,7 @@
         "vitals.enableTelemetry": {
           "type": "boolean",
           "default": true,
-          "description": "Enable anonymous usage statistics collection to help improve Vitals. See PRIVACY.md for details."
+          "markdownDescription": "Enable anonymous usage statistics collection to help improve Vitals. \n\n[Learn more](https://github.com/theaniketraj/vitals/blob/main/PRIVACY.md)"
         },
         "vitals.telemetrySaveInterval": {
           "type": "number",

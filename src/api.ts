@@ -2,10 +2,85 @@ import axios from "axios";
 import * as vscode from "vscode";
 
 export class PrometheusApi {
-  private baseUrl: string;
+  private readonly baseUrl: string;
+  private readonly timeout = 5000;
+  private readonly maxRetries = 3;
 
   constructor(baseUrl: string) {
     this.baseUrl = baseUrl.replace(/\/$/, ""); // Remove trailing slash if present
+  }
+
+  private async requestWithRetry(url: string, params?: any): Promise<any> {
+    let lastError: any;
+
+    for (let attempt = 1; attempt <= this.maxRetries; attempt++) {
+      try {
+        return await this.performRequest(url, params);
+      } catch (error: any) {
+        lastError = error;
+        
+        if (this.shouldStopRetrying(error)) {
+            throw this.enhanceError(error);
+        }
+
+        // If it's the last attempt, throw the error
+        if (attempt === this.maxRetries) {
+          throw this.enhanceError(error);
+        }
+
+        await this.delay(attempt);
+      }
+    }
+    throw this.enhanceError(lastError);
+  }
+
+  private async performRequest(url: string, params?: any) {
+    const response = await axios.get(url, {
+      params,
+      timeout: this.timeout,
+    });
+
+    if (response.data.status !== "success") {
+      throw new Error(`Prometheus API error: ${response.data.error}`);
+    }
+
+    return response.data;
+  }
+
+  private shouldStopRetrying(error: any): boolean {
+    if (!axios.isAxiosError(error)) {
+        return true; // Don't retry on non-network errors (e.g. application errors)
+    }
+    if (error.response) {
+        const status = error.response.status;
+        // Don't retry on client errors (4xx) except 429 or 408
+        return status >= 400 && status < 500 && status !== 429 && status !== 408;
+    }
+    return false;
+  }
+
+  private async delay(attempt: number) {
+    const delayMs = Math.pow(2, attempt) * 1000;
+    await new Promise((resolve) => setTimeout(resolve, delayMs));
+  }
+
+  private enhanceError(error: any): Error {
+    if (axios.isAxiosError(error)) {
+      let message = error.message;
+      if (error.code === 'ECONNREFUSED') {
+        message = `Connection refused at ${this.baseUrl}. Is Prometheus running?`;
+      } else if (error.code === 'ECONNABORTED') {
+        message = `Request timed out after ${this.timeout}ms connecting to ${this.baseUrl}`;
+      } else if (error.response) {
+          message = `Request failed with status ${error.response.status}: ${error.response.statusText}`;
+      }
+      return new Error(`Network error: ${message}`);
+    }
+    // Handle AggregateError if it occurs
+    if (error instanceof AggregateError) {
+        return new Error(`Multiple errors occurred: ${error.errors.map((e: any) => e.message).join(', ')}`);
+    }
+    return error;
   }
 
   /**
@@ -13,24 +88,8 @@ export class PrometheusApi {
    * @returns The JSON response from Prometheus alerts endpoint.
    */
   public async getAlerts(): Promise<any> {
-    try {
-      const url = `${this.baseUrl}/api/v1/alerts`;
-      const response = await axios.get(url);
-
-      if (response.data.status !== "success") {
-        throw new Error(`Prometheus API error: ${response.data.error}`);
-      }
-
-      return response.data;
-    } catch (error: any) {
-      if (axios.isAxiosError(error)) {
-        const message = error.code === 'ECONNREFUSED' 
-          ? `Connection refused at ${this.baseUrl}. Is Prometheus running?`
-          : error.message;
-        throw new Error(`Network error: ${message}`);
-      }
-      throw error;
-    }
+    const url = `${this.baseUrl}/api/v1/alerts`;
+    return this.requestWithRetry(url);
   }
 
   /**
@@ -42,28 +101,8 @@ export class PrometheusApi {
     if (!query) {
       throw new Error("Query cannot be empty");
     }
-
-    try {
-      const url = `${this.baseUrl}/api/v1/query`;
-      const response = await axios.get(url, {
-        params: { query },
-      });
-
-      if (response.data.status !== "success") {
-        throw new Error(`Prometheus API error: ${response.data.error}`);
-      }
-
-      return response.data;
-    } catch (error: any) {
-      // Re-throw with a user-friendly message if possible
-      if (axios.isAxiosError(error)) {
-        const message = error.code === 'ECONNREFUSED' 
-          ? `Connection refused at ${this.baseUrl}. Is Prometheus running?`
-          : error.message;
-        throw new Error(`Network error: ${message}`);
-      }
-      throw error;
-    }
+    const url = `${this.baseUrl}/api/v1/query`;
+    return this.requestWithRetry(url, { query });
   }
 }
 
