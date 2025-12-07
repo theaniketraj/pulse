@@ -109,7 +109,6 @@ export class VitalsView {
               `[INFO] Application started at ${new Date().toISOString()}`,
               `[INFO] Connected to database`,
               `[WARN] High memory usage detected`,
-              `[ERROR] Connection timeout to service-b`,
               `[INFO] Request processed in 45ms`,
             ];
             this._panel.webview.postMessage({

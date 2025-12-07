@@ -6,11 +6,13 @@ interface LogViewerProps {
 }
 
 const LogViewer: React.FC<LogViewerProps> = ({ logs }) => {
-  const logsEndRef = React.useRef<HTMLDivElement>(null);
+  const listRef = React.useRef<HTMLDivElement>(null);
 
   // Auto-scroll to bottom
   React.useEffect(() => {
-    logsEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (listRef.current) {
+      listRef.current.scrollTop = listRef.current.scrollHeight;
+    }
   }, [logs]);
 
   const getLogClass = (log: string) => {
@@ -25,7 +27,7 @@ const LogViewer: React.FC<LogViewerProps> = ({ logs }) => {
       {logs.length === 0 ? (
         <div className="log-empty">Waiting for logs...</div>
       ) : (
-        <div className="log-list">
+        <div className="log-list" ref={listRef}>
           {logs.map((log, index) => (
             <div key={index} className={`log-entry ${getLogClass(log)}`}>
               <span className="log-line-number">
@@ -34,7 +36,6 @@ const LogViewer: React.FC<LogViewerProps> = ({ logs }) => {
               <span className="log-content">{log}</span>
             </div>
           ))}
-          <div ref={logsEndRef} />
         </div>
       )}
     </div>
