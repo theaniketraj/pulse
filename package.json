@@ -66,6 +66,24 @@
         "category": "Vitals"
       }
     ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "vitals-sidebar",
+          "title": "Vitals",
+          "icon": "icon.png"
+        }
+      ]
+    },
+    "views": {
+      "vitals-sidebar": [
+        {
+          "type": "webview",
+          "id": "vitals.dashboardView",
+          "name": "Dashboard"
+        }
+      ]
+    },
     "configuration": {
       "title": "Vitals",
       "properties": {

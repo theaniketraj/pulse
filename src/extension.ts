@@ -1,6 +1,6 @@
 // Main entry point for the VS Code extension
 import * as vscode from "vscode";
-import { VitalsView } from "./vitalsView";
+import { VitalsViewProvider } from "./vitalsView";
 import { CustomGitHubAuth } from "./auth/customGitHubAuth";
 import { AuthWall } from "./auth/authWall";
 import { vitalsApi } from "./api/vitalsApi";
@@ -13,6 +13,12 @@ export async function activate(context: vscode.ExtensionContext) {
 
   // Initialize usage statistics collector
   const usageStats = getUsageStats(context);
+
+  // Register the WebviewViewProvider
+  const provider = new VitalsViewProvider(context.extensionUri, context);
+  context.subscriptions.push(
+    vscode.window.registerWebviewViewProvider(VitalsViewProvider.viewType, provider)
+  );
 
   // Check authentication status
   const authStatus = await AuthWall.checkStatus(context);
@@ -54,7 +60,7 @@ export async function activate(context: vscode.ExtensionContext) {
         return;
       }
       
-      console.log("✅ User authenticated, creating dashboard...");
+      console.log("✅ User authenticated, showing dashboard view...");
       
       // Log dashboard opened event
       const user = await CustomGitHubAuth.getCurrentUser(context);
@@ -66,10 +72,9 @@ export async function activate(context: vscode.ExtensionContext) {
         ).catch(err => console.error('Failed to log event:', err));
       }
       
-      // Create a new webview panel for the dashboard
-      console.log("🎨 Creating webview panel...");
-      VitalsView.createOrShow(context);
-      console.log("✅ Dashboard should now be visible");
+      // Focus the dashboard view
+      provider.show();
+      console.log("✅ Dashboard view focused");
     }
   );  
 
