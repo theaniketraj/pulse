@@ -52,19 +52,57 @@ const MetricChart: React.FC<MetricChartProps> = ({ metrics, loading, error }) =>
         }]
       );
 
+      // Calculate interval for bar width
+      // Default to 5 seconds to avoid giant blocks when only a single data point exists
+      let barWidthMs = 5000; 
+      
+      if (data.length > 1) {
+        const times = data.map((d: any) => d.time.getTime()).sort((a: number, b: number) => a - b);
+        let minDiff = Infinity;
+        for (let i = 1; i < times.length; i++) {
+          const diff = times[i] - times[i-1];
+          if (diff < minDiff && diff > 0) minDiff = diff;
+        }
+        if (minDiff !== Infinity) barWidthMs = minDiff;
+      }
+      
+      // Use 90% of the interval for the bar width to leave a small gap
+      const widthMs = barWidthMs * 0.9;
+
+      // Ensure minimum x-axis span of 1 minute to prevent single bars from filling the chart
+      const times = data.map((d: any) => d.time.getTime());
+      const minTime = Math.min(...times);
+      const maxTime = Math.max(...times);
+      let domainMin = minTime;
+      let domainMax = maxTime;
+      
+      // If we have data, ensure at least 1 minute span
+      if (data.length > 0) {
+          const minSpan = 60 * 1000; // 1 minute
+          const currentSpan = maxTime - minTime;
+          if (currentSpan < minSpan) {
+              const padding = (minSpan - currentSpan) / 2;
+              domainMin -= padding;
+              domainMax += padding;
+          }
+          // Also ensure we have enough room for the bar width at the edges
+          domainMin = Math.min(domainMin, minTime - widthMs);
+          domainMax = Math.max(domainMax, maxTime + widthMs);
+      }
+
       // Clear previous chart
       ref.current.innerHTML = '';
 
       plot = Plot.plot({
         marks: [
-          Plot.ruleY(data, {
-            x: 'time',
+          Plot.rectY(data, {
+            x1: (d: any) => new Date(d.time.getTime() - widthMs / 2),
+            x2: (d: any) => new Date(d.time.getTime() + widthMs / 2),
             y: 'value',
-            stroke: 'var(---primary)',
-            strokeWidth: 2,
+            fill: 'var(---primary)',
             tip: true,
             title: (d: any) => {
-              const metricName = d.metric ? Object.values(d.metric).join(' ') : 'Value';
+              const metricName = d.metric ? Object.values(d.metric).map(String).join(' ') : 'Value';
               return `${metricName}\nTime: ${d.time.toLocaleTimeString()}\nValue: ${d.value}`;
             }
           }),
@@ -73,7 +111,9 @@ const MetricChart: React.FC<MetricChartProps> = ({ metrics, loading, error }) =>
         x: {
           label: null,
           tickFormat: '%H:%M:%S',
-          grid: false
+          grid: false,
+          domain: data.length > 0 ? [new Date(domainMin), new Date(domainMax)] : undefined,
+          inset: 6
         },
         y: {
           label: null,
@@ -93,31 +133,6 @@ const MetricChart: React.FC<MetricChartProps> = ({ metrics, loading, error }) =>
           overflow: 'visible'
         }
       });
-
-      // Add gradient definition
-      const svg = plot as SVGSVGElement;
-      const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
-      const linearGradient = document.createElementNS("http://www.w3.org/2000/svg", "linearGradient");
-      linearGradient.setAttribute("id", "gradient");
-      linearGradient.setAttribute("x1", "0%");
-      linearGradient.setAttribute("y1", "0%");
-      linearGradient.setAttribute("x2", "0%");
-      linearGradient.setAttribute("y2", "100%");
-
-      const stop1 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
-      stop1.setAttribute("offset", "0%");
-      stop1.setAttribute("stop-color", "var(--vitals-primary)");
-      stop1.setAttribute("stop-opacity", "0.5");
-
-      const stop2 = document.createElementNS("http://www.w3.org/2000/svg", "stop");
-      stop2.setAttribute("offset", "100%");
-      stop2.setAttribute("stop-color", "var(--vitals-primary)");
-      stop2.setAttribute("stop-opacity", "0.0");
-
-      linearGradient.appendChild(stop1);
-      linearGradient.appendChild(stop2);
-      defs.appendChild(linearGradient);
-      svg.prepend(defs);
 
       ref.current.appendChild(plot);
     }
