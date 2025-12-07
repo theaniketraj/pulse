@@ -105,6 +105,22 @@ export class PrometheusApi {
     const url = `${this.baseUrl}/api/v1/query`;
     return this.requestWithRetry(url, { query });
   }
+
+  /**
+   * Fetches metrics over a range of time from the Prometheus API.
+   * @param query The PromQL query string.
+   * @param start Start timestamp in seconds.
+   * @param end End timestamp in seconds.
+   * @param step Query resolution step width in seconds.
+   * @returns The JSON response from Prometheus.
+   */
+  public async queryRange(query: string, start: number, end: number, step: number): Promise<any> {
+    if (!query) {
+      throw new Error("Query cannot be empty");
+    }
+    const url = `${this.baseUrl}/api/v1/query_range`;
+    return this.requestWithRetry(url, { query, start, end, step });
+  }
 }
 
 export enum MessageTypes {

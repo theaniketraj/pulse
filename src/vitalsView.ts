@@ -73,7 +73,12 @@ export class VitalsViewProvider implements vscode.WebviewViewProvider {
               config.get<string>("prometheusUrl") || "https://prometheus.demo.do.prometheus.io:9090";
             const api = new PrometheusApi(prometheusUrl);
 
-            const data = await api.query(message.query);
+            // Calculate range for the last 30 minutes
+            const end = Math.floor(Date.now() / 1000);
+            const start = end - 30 * 60; // 30 minutes ago
+            const step = 15; // 15 seconds resolution
+
+            const data = await api.queryRange(message.query, start, end, step);
             webviewView.webview.postMessage({
               command: "updateMetrics",
               data,

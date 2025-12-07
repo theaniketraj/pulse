@@ -19,7 +19,8 @@ export function useVitalsData(vscode: any) {
     setError(null);
 
     const fetchData = () => {
-      vscode.postMessage({ command: "fetchMetrics", query: "up" });
+      // Use a more interesting metric for the chart (Request Rate History)
+      vscode.postMessage({ command: "fetchMetrics", query: "sum(rate(prometheus_http_requests_total[5m]))" });
       vscode.postMessage({ command: "fetchKPIs" });
       vscode.postMessage({ command: "fetchLogs" });
     };
