@@ -57,26 +57,18 @@ const MetricChart: React.FC<MetricChartProps> = ({ metrics, loading, error }) =>
 
       plot = Plot.plot({
         marks: [
-          Plot.areaY(data, {
-            x: 'time',
-            y: 'value',
-            fill: 'url(#gradient)',
-            fillOpacity: 0.3
-          }),
-          Plot.line(data, {
+          Plot.ruleY(data, {
             x: 'time',
             y: 'value',
             stroke: 'var(---primary)',
-            strokeWidth: 2
-          }),
-          Plot.dot(data, {
-            x: 'time',
-            y: 'value',
-            fill: 'var(---primary)',
-            r: 3,
+            strokeWidth: 2,
             tip: true,
-            title: (d: any) => `${d.time.toLocaleTimeString()}\nValue: ${d.value}`
-          })
+            title: (d: any) => {
+              const metricName = d.metric ? Object.values(d.metric).join(' ') : 'Value';
+              return `${metricName}\nTime: ${d.time.toLocaleTimeString()}\nValue: ${d.value}`;
+            }
+          }),
+          Plot.ruleY([0], { stroke: "var(--vscode-widget-border)" })
         ],
         x: {
           label: null,

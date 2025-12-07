@@ -495,3 +495,16 @@ body {
   color: var(--vscode-foreground);
   background-color: rgba(255, 255, 255, 0.1);
 }
+
+/* Observable Plot Tooltip Styling */
+figure svg g[aria-label="tip"] path {
+  fill: var(--vscode-editor-background) !important;
+  stroke: var(--vscode-widget-border) !important;
+  stroke-width: 1px !important;
+}
+
+figure svg g[aria-label="tip"] text {
+  fill: var(--vscode-editor-foreground) !important;
+  font-family: var(--vscode-font-family) !important;
+  font-size: 11px !important;
+}
