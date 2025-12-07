@@ -33,6 +33,7 @@ export function useAlerts(vscode: any) {
           details: alert.annotations?.description || alert.annotations?.summary,
         }));
         setAlerts(formattedAlerts);
+        setError(null); // Clear error on success
         setLoading(false);
       } else if (message.command === "alertError") {
         setError(message.message);

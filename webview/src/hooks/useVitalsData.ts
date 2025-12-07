@@ -38,6 +38,7 @@ export function useVitalsData(vscode: any) {
       const message = event.data;
       if (message.command === "updateMetrics") {
         setMetrics(message.data);
+        setError(null); // Clear error on success
         setLoading(false);
       } else if (message.command === "updateKPIs") {
         setKpis(message.data);
