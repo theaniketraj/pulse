@@ -7,7 +7,8 @@ export class PrometheusApi {
   private readonly maxRetries = 3;
 
   constructor(baseUrl: string) {
-    this.baseUrl = baseUrl.replace(/\/$/, ""); // Remove trailing slash if present
+    // Remove trailing slash and any path like /query or /api/v1/query
+    this.baseUrl = baseUrl.replace(/\/$/, "").replace(/\/query$/, "").replace(/\/api\/v1\/query$/, "");
   }
 
   private async requestWithRetry(url: string, params?: any): Promise<any> {

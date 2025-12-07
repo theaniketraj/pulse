@@ -90,7 +90,7 @@ export class VitalsViewProvider implements vscode.WebviewViewProvider {
           try {
             const config = vscode.workspace.getConfiguration("vitals");
             const prometheusUrl =
-              config.get<string>("prometheusUrl") || "http://localhost:9090";
+              config.get<string>("prometheusUrl") || "http://localhost:9090/query";
             const api = new PrometheusApi(prometheusUrl);
 
             const data = await api.getAlerts();
@@ -107,6 +107,59 @@ export class VitalsViewProvider implements vscode.WebviewViewProvider {
               command: "alertError",
               message: error.message,
             });
+          }
+          break;
+
+        case "fetchKPIs":
+          try {
+            const config = vscode.workspace.getConfiguration("vitals");
+            const prometheusUrl =
+              config.get<string>("prometheusUrl") || "https://prometheus.demo.do.prometheus.io:9090";
+            const api = new PrometheusApi(prometheusUrl);
+
+            // Fetch KPIs in parallel
+            // Note: These queries are generic and might need adjustment for specific environments
+            // For demo (RobustPerception), we use prometheus_http_requests_total
+            const [reqRate, errRate, latency] = await Promise.all([
+              api.query('rate(prometheus_http_requests_total[5m])'),
+              api.query('rate(prometheus_http_requests_total{code=~"5.."}[5m]) / rate(prometheus_http_requests_total[5m])'),
+              api.query('rate(prometheus_http_request_duration_seconds_sum[5m]) / rate(prometheus_http_request_duration_seconds_count[5m])')
+            ]);
+
+            // Helper to extract scalar value
+            const getValue = (result: any, decimals = 2) => {
+                try {
+                    const val = result?.data?.result?.[0]?.value?.[1];
+                    return val ? Number.parseFloat(val).toFixed(decimals) : "0";
+                } catch {
+                    return "0";
+                }
+            };
+
+            // Calculate aggregate values (summing up for rate)
+            const getSumValue = (result: any, decimals = 2) => {
+                try {
+                    if (!result?.data?.result) return "0";
+                    const sum = result.data.result.reduce((acc: number, curr: any) => {
+                        return acc + (Number.parseFloat(curr?.value?.[1]) || 0);
+                    }, 0);
+                    return sum.toFixed(decimals);
+                } catch {
+                    return "0";
+                }
+            };
+
+            webviewView.webview.postMessage({
+              command: "updateKPIs",
+              data: {
+                requestRate: `${getSumValue(reqRate)}/s`,
+                errorRate: `${(Number.parseFloat(getValue(errRate)) * 100).toFixed(2)}%`,
+                avgLatency: `${(Number.parseFloat(getValue(latency)) * 1000).toFixed(0)}ms`
+              },
+            });
+          } catch (error: any) {
+            console.log(`Failed to fetch KPIs: ${error.message}`);
+            // Don't show error to user for KPIs to avoid clutter, just log it
           }
           break;
 

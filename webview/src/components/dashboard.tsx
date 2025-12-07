@@ -11,7 +11,7 @@ interface DashboardProps {
 
 // Main dashboard component
 const Dashboard: React.FC<DashboardProps> = ({ vscode }) => {
-  const { metrics, logs, loading, error } = useVitalsData(vscode);
+  const { metrics, kpis: fetchedKpis, logs, loading, error } = useVitalsData(vscode);
   const {
     alerts,
     loading: alertsLoading,
@@ -42,11 +42,11 @@ const Dashboard: React.FC<DashboardProps> = ({ vscode }) => {
     vscode.postMessage({ command: 'configurePrometheus' });
   };
 
-  // Mock KPI data for now
+  // KPI data
   const kpis = [
-    { label: "Request Rate", value: "1.2k/s" },
-    { label: "Error Rate", value: "0.05%" },
-    { label: "Avg Latency", value: "45ms" },
+    { label: "Request Rate", value: fetchedKpis?.requestRate || "0/s" },
+    { label: "Error Rate", value: fetchedKpis?.errorRate || "0%" },
+    { label: "Avg Latency", value: fetchedKpis?.avgLatency || "0ms" },
     { label: "Active Alerts", value: alerts?.length || 0 },
   ];
 
