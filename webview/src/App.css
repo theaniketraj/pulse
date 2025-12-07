@@ -477,3 +477,21 @@ body {
   font-weight: 500;
   color: var(--vscode-descriptionForeground);
 }
+
+.icon-btn {
+  background: transparent;
+  border: none;
+  color: var(--vscode-descriptionForeground);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.icon-btn:hover {
+  color: var(--vscode-foreground);
+  background-color: rgba(255, 255, 255, 0.1);
+}

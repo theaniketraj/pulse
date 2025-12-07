@@ -55,6 +55,14 @@ export class VitalsViewProvider implements vscode.WebviewViewProvider {
           vscode.commands.executeCommand("vitals.configurePrometheus");
           break;
 
+        case "openGitHubRepo":
+          vscode.env.openExternal(vscode.Uri.parse("https://github.com/theaniketraj/vitals"));
+          break;
+
+        case "openSettings":
+          vscode.commands.executeCommand("workbench.action.openSettings", "@ext:theaniketraj.vitals");
+          break;
+
         case "fetchMetrics":
           // Track metrics feature usage
           getUsageStats(this._context).trackFeature("metrics");
