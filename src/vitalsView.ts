@@ -32,22 +32,21 @@ export class VitalsViewProvider implements vscode.WebviewViewProvider {
       this._extensionUri
     );
 
+    // Listen for configuration changes
+    const configListener = vscode.workspace.onDidChangeConfiguration((e) => {
+      if (e.affectsConfiguration("vitals.prometheusUrl")) {
+        this.sendPrometheusConfig(webviewView.webview);
+      }
+    });
+
+    webviewView.onDidDispose(() => {
+      configListener.dispose();
+    });
+
     webviewView.webview.onDidReceiveMessage(async (message) => {
       switch (message.command) {
         case "getPrometheusUrl": {
-          // Send Prometheus URL and demo mode status to webview
-          const config = vscode.workspace.getConfiguration("vitals");
-          const prometheusUrl =
-            config.get<string>("prometheusUrl") || "http://localhost:9090";
-          const defaultUrl = config.inspect("prometheusUrl")
-            ?.defaultValue as string;
-          const isDemoMode = prometheusUrl === defaultUrl;
-
-          webviewView.webview.postMessage({
-            command: "prometheusUrl",
-            url: prometheusUrl,
-            isDemoMode: isDemoMode,
-          });
+          this.sendPrometheusConfig(webviewView.webview);
           break;
         }
 
@@ -137,5 +136,20 @@ export class VitalsViewProvider implements vscode.WebviewViewProvider {
       if (this._view) {
           this._view.show?.(true);
       }
+  }
+
+  private sendPrometheusConfig(webview: vscode.Webview) {
+    const config = vscode.workspace.getConfiguration("vitals");
+    const prometheusUrl =
+      config.get<string>("prometheusUrl") || "http://localhost:9090";
+    const defaultUrl = config.inspect("prometheusUrl")
+      ?.defaultValue as string;
+    const isDemoMode = prometheusUrl === defaultUrl;
+
+    webview.postMessage({
+      command: "prometheusUrl",
+      url: prometheusUrl,
+      isDemoMode: isDemoMode,
+    });
   }
 }
