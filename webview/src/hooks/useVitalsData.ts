@@ -11,6 +11,8 @@ export function useVitalsData(vscode: any) {
   const [logs, setLogs] = React.useState<string[]>([]);
   const [loading, setLoading] = React.useState<boolean>(false);
   const [error, setError] = React.useState<string | null>(null);
+  const [connectionStatus, setConnectionStatus] = React.useState<'connected' | 'error'>('connected');
+  const [connectionError, setConnectionError] = React.useState<string | null>(null);
 
   React.useEffect(() => {
     if (!vscode) return;
@@ -44,6 +46,13 @@ export function useVitalsData(vscode: any) {
       } else if (message.command === "error") {
         setError(message.message);
         setLoading(false);
+      } else if (message.command === "updateStatus") {
+        setConnectionStatus(message.status);
+        if (message.status === 'error') {
+            setConnectionError(message.error);
+        } else {
+            setConnectionError(null);
+        }
       }
     };
 
@@ -54,5 +63,5 @@ export function useVitalsData(vscode: any) {
     };
   }, [vscode]);
 
-  return { metrics, kpis, logs, loading, error };
+  return { metrics, kpis, logs, loading, error, connectionStatus, connectionError };
 }

@@ -421,6 +421,18 @@ body {
   animation: pulse 2s infinite;
 }
 
+.live-badge.error {
+  color: var(---error);
+  background-color: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.2);
+}
+
+.live-badge.error .live-dot {
+  background-color: var(---error);
+  animation: none;
+  box-shadow: none;
+}
+
 @keyframes pulse {
   0% {
     transform: scale(0.95);

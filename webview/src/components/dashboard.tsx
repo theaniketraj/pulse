@@ -11,7 +11,7 @@ interface DashboardProps {
 
 // Main dashboard component
 const Dashboard: React.FC<DashboardProps> = ({ vscode }) => {
-  const { metrics, kpis: fetchedKpis, logs, loading, error } = useVitalsData(vscode);
+  const { metrics, kpis: fetchedKpis, logs, loading, error, connectionStatus, connectionError } = useVitalsData(vscode);
   const {
     alerts,
     loading: alertsLoading,
@@ -79,9 +79,12 @@ const Dashboard: React.FC<DashboardProps> = ({ vscode }) => {
               </button>
             </div>
           )}
-          <div className="live-badge">
+          <div 
+            className={`live-badge ${connectionStatus === 'error' ? 'error' : ''}`} 
+            title={connectionStatus === 'error' ? connectionError || 'Connection failed' : 'Connected to Prometheus'}
+          >
             <span className="live-dot"></span>
-            Live
+            {connectionStatus === 'error' ? 'Network Error' : 'Live'}
           </div>
           <button className="icon-btn" onClick={handleOpenGitHub} title="View on GitHub">
             <svg height="16" width="16" viewBox="0 0 16 16" fill="currentColor">

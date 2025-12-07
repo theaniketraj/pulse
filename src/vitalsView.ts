@@ -154,6 +154,12 @@ export class VitalsViewProvider implements vscode.WebviewViewProvider {
                 }
             };
 
+            // Send success status
+            webviewView.webview.postMessage({
+                command: "updateStatus",
+                status: "connected"
+            });
+
             webviewView.webview.postMessage({
               command: "updateKPIs",
               data: {
@@ -164,7 +170,13 @@ export class VitalsViewProvider implements vscode.WebviewViewProvider {
             });
           } catch (error: any) {
             console.log(`Failed to fetch KPIs: ${error.message}`);
-            // Don't show error to user for KPIs to avoid clutter, just log it
+            
+            // Send error status
+            webviewView.webview.postMessage({
+                command: "updateStatus",
+                status: "error",
+                error: error.message
+            });
           }
           break;
 
