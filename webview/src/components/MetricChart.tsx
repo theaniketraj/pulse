@@ -111,6 +111,7 @@ const MetricChart: React.FC<MetricChartProps> = ({ metrics, loading, error }) =>
         x: {
           label: null,
           tickFormat: '%H:%M:%S',
+          ticks: width / 80,
           grid: false,
           domain: data.length > 0 ? [new Date(domainMin), new Date(domainMax)] : undefined,
           inset: 6
