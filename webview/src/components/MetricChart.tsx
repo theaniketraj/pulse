@@ -102,14 +102,14 @@ const MetricChart: React.FC<MetricChartProps> = ({ metrics, loading, error }) =>
             fill: 'var(---primary)',
             tip: true,
             title: (d: any) => {
-              const metricName = d.metric ? Object.values(d.metric).map(String).join(' ') : 'Value';
-              return `${metricName}\nTime: ${d.time.toLocaleTimeString()}\nValue: ${d.value}`;
+              const metricName = d.metric ? Object.values(d.metric).map(String).join(' ') : 'Request Rate';
+              return `${metricName}\nTime: ${d.time.toLocaleTimeString()}\nValue: ${d.value.toFixed(4)} req/s`;
             }
           }),
           Plot.ruleY([0], { stroke: "var(--vscode-widget-border)" })
         ],
         x: {
-          label: null,
+          label: "Time",
           tickFormat: '%H:%M:%S',
           ticks: width / 80,
           grid: false,
@@ -117,7 +117,7 @@ const MetricChart: React.FC<MetricChartProps> = ({ metrics, loading, error }) =>
           inset: 6
         },
         y: {
-          label: null,
+          label: "Request Rate (req/s)",
           grid: true
         },
         width: width,
