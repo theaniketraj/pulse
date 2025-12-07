@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vitals Extension Integration Test</title>
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --bg-card: #1e1e1e;
+            --text-main: #e0e0e0;
+            --text-muted: #858585;
+            --border: #333;
+            --radius-md: 8px;
+            --spacing-md: 16px;
+            --font-family: "Segoe UI", "Inter", sans-serif;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: #121212;
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 16px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .status-badge {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            background: #333;
+            color: #aaa;
+        }
+
+        .status-badge.running {
+            background: rgba(59, 130, 246, 0.2);
+            color: var(--primary);
+        }
+
+        .status-badge.success {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--success);
+        }
+
+        .status-badge.failed {
+            background: rgba(239, 68, 68, 0.2);
+            color: var(--error);
+        }
+
+        .controls {
+            margin-bottom: 24px;
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Stepper */
+        .stepper {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 6px;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .step.active {
+            border-color: var(--primary);
+            background: rgba(59, 130, 246, 0.05);
+        }
+
+        .step.success {
+            border-color: var(--success);
+        }
+
+        .step.error {
+            border-color: var(--error);
+        }
+
+        .step-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #888;
+        }
+
+        .step.active .step-icon {
+            background: var(--primary);
+            color: white;
+        }
+
+        .step.success .step-icon {
+            background: var(--success);
+            color: white;
+        }
+
+        .step.error .step-icon {
+            background: var(--error);
+            color: white;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-title {
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+
+        .step-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .step-time {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-family: monospace;
+        }
+
+        /* Console Log */
+        .console {
+            background: #000;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px;
+            height: 300px;
+            overflow-y: auto;
+            font-family: "Consolas", "Monaco", monospace;
+            font-size: 0.85rem;
+        }
+
+        .log-entry {
+            margin-bottom: 4px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .log-time {
+            color: #666;
+            min-width: 70px;
+        }
+
+        .log-msg {
+            color: #ccc;
+            word-break: break-all;
+        }
+
+        .log-msg.info {
+            color: #3b82f6;
+        }
+
+        .log-msg.success {
+            color: #10b981;
+        }
+
+        .log-msg.error {
+            color: #ef4444;
+        }
+
+        .log-msg.warn {
+            color: #f59e0b;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Extension Integration Test</h1>
+            <div id="globalStatus" class="status-badge">Ready</div>
+        </header>
+
+        <div class="controls">
+            <button id="startBtn" onclick="runTests()">Run Integration Tests</button>
+        </div>
+
+        <div class="stepper" id="stepper">
+            <!-- Steps will be injected here -->
+        </div>
+
+        <div class="console" id="console">
+            <div class="log-entry"><span class="log-time">--:--:--</span><span class="log-msg">System ready. Click 'Run
+                    Integration Tests' to begin.</span></div>
+        </div>
+    </div>
+
+    <script>
+        const steps = [
+            { id: 'env', title: 'Environment Check', desc: 'Verifying VS Code Webview Context' },
+            { id: 'config', title: 'Configuration Fetch', desc: 'Testing "getPrometheusUrl" command' },
+            { id: 'kpis', title: 'KPIs & Connection', desc: 'Testing "fetchKPIs" and "updateStatus"' },
+            { id: 'metrics', title: 'System Metrics', desc: 'Testing "fetchMetrics" with query' },
+            { id: 'alerts', title: 'Active Alerts', desc: 'Testing "fetchAlerts"' },
+            { id: 'logs', title: 'Logs Stream', desc: 'Testing "fetchLogs"' }
+        ];
+
+        const stepperEl = document.getElementById('stepper');
+        const consoleEl = document.getElementById('console');
+        const statusBadge = document.getElementById('globalStatus');
+        const startBtn = document.getElementById('startBtn');
+
+        let vscode;
+
+        // Initialize UI
+        function initUI() {
+            stepperEl.innerHTML = steps.map((step, index) => `
+            <div class="step" id="step-${step.id}">
+                <div class="step-icon">${index + 1}</div>
+                <div class="step-content">
+                    <div class="step-title">${step.title}</div>
+                    <div class="step-desc">${step.desc}</div>
+                </div>
+                <div class="step-time" id="time-${step.id}"></div>
+            </div>
+        `).join('');
+        }
+
+        function log(msg, type = 'normal') {
+            const time = new Date().toLocaleTimeString();
+            const entry = document.createElement('div');
+            entry.className = 'log-entry';
+            entry.innerHTML = `<span class="log-time">${time}</span><span class="log-msg ${type}">${msg}</span>`;
+            consoleEl.appendChild(entry);
+            consoleEl.scrollTop = consoleEl.scrollHeight;
+        }
+
+        function updateStep(id, status, timeTaken = null) {
+            const el = document.getElementById(`step-${id}`);
+            const icon = el.querySelector('.step-icon');
+            const timeEl = document.getElementById(`time-${id}`);
+
+            el.classList.remove('active', 'success', 'error');
+            el.classList.add(status);
+
+            if (status === 'active') {
+                icon.innerHTML = '<span style="animation: spin 1s linear infinite">↻</span>';
+            } else if (status === 'success') {
+                icon.innerHTML = '✓';
+                if (timeTaken) timeEl.textContent = `${timeTaken}ms`;
+            } else if (status === 'error') {
+                icon.innerHTML = '✗';
+            }
+        }
+
+        async function wait(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        // Helper to send message and wait for response
+        function testCommand(command, payload, expectedResponseCmds, timeout = 10000) {
+            return new Promise((resolve, reject) => {
+                if (!vscode) {
+                    reject(new Error("VS Code API not available"));
+                    return;
+                }
+
+                const timer = setTimeout(() => {
+                    window.removeEventListener('message', handler);
+                    reject(new Error(`Timeout waiting for ${expectedResponseCmds.join(' or ')}`));
+                }, timeout);
+
+                const handler = (event) => {
+                    const msg = event.data;
+
+                    if (expectedResponseCmds.includes(msg.command)) {
+                        // Success
+                        clearTimeout(timer);
+                        window.removeEventListener('message', handler);
+                        resolve(msg);
+                    } else if (msg.command === 'error' || msg.command === 'alertError') {
+                        // Explicit error from backend
+                        clearTimeout(timer);
+                        window.removeEventListener('message', handler);
+                        reject(new Error(msg.message || "Unknown backend error"));
+                    } else if (msg.command === 'updateStatus' && msg.status === 'error') {
+                        // Connection error
+                        clearTimeout(timer);
+                        window.removeEventListener('message', handler);
+                        reject(new Error(msg.error || "Connection failed"));
+                    }
+                };
+
+                window.addEventListener('message', handler);
+                log(`Sending: ${command}`, 'info');
+                vscode.postMessage({ command, ...payload });
+            });
+        }
+
+        async function runTests() {
+            startBtn.disabled = true;
+            statusBadge.className = 'status-badge running';
+            statusBadge.textContent = 'Running...';
+            consoleEl.innerHTML = ''; // Clear log
+
+            // Reset steps
+            steps.forEach(s => {
+                const el = document.getElementById(`step-${s.id}`);
+                el.className = 'step';
+                el.querySelector('.step-icon').textContent = steps.indexOf(s) + 1;
+                document.getElementById(`time-${s.id}`).textContent = '';
+            });
+
+            log('Starting integration tests...', 'info');
+
+            try {
+                // Step 1: Environment
+                await runStep('env', async () => {
+                    if (typeof acquireVsCodeApi === 'undefined') {
+                        throw new Error("Not running in VS Code Webview context");
+                    }
+                    vscode = acquireVsCodeApi();
+                    log('VS Code API acquired.', 'success');
+                });
+
+                // Step 2: Configuration
+                await runStep('config', async () => {
+                    const res = await testCommand('getPrometheusUrl', {}, ['prometheusUrl']);
+                    log(`Prometheus URL: ${res.url}`, 'success');
+                    if (res.isDemoMode) log('Running in Demo Mode', 'warn');
+                });
+
+                // Step 3: KPIs & Connection
+                await runStep('kpis', async () => {
+                    // fetchKPIs sends updateStatus AND updateKPIs. We wait for updateKPIs as it implies success.
+                    const res = await testCommand('fetchKPIs', {}, ['updateKPIs']);
+                    log(`KPIs received: ReqRate=${res.data.requestRate}, ErrRate=${res.data.errorRate}`, 'success');
+                });
+
+                // Step 4: Metrics
+                await runStep('metrics', async () => {
+                    const query = "sum(rate(prometheus_http_requests_total[5m]))";
+                    const res = await testCommand('fetchMetrics', { query }, ['updateMetrics']);
+
+                    if (!res.data || !res.data.data || !res.data.data.result) {
+                        throw new Error("Invalid metrics payload structure");
+                    }
+
+                    const resultCount = res.data.data.result.length;
+                    log(`Metrics received. Series count: ${resultCount}`, 'success');
+                });
+
+                // Step 5: Alerts
+                await runStep('alerts', async () => {
+                    const res = await testCommand('fetchAlerts', {}, ['updateAlerts']);
+                    const alertCount = res.data?.data?.alerts?.length || 0;
+                    log(`Alerts received. Count: ${alertCount}`, 'success');
+                });
+
+                // Step 6: Logs
+                await runStep('logs', async () => {
+                    const res = await testCommand('fetchLogs', {}, ['updateLogs']);
+                    const logCount = res.data?.length || 0;
+                    log(`Logs received. Count: ${logCount}`, 'success');
+                });
+
+                statusBadge.className = 'status-badge success';
+                statusBadge.textContent = 'Passed';
+                log('All integration tests passed successfully.', 'success');
+
+            } catch (e) {
+                statusBadge.className = 'status-badge failed';
+                statusBadge.textContent = 'Failed';
+                log(`Test failed: ${e.message}`, 'error');
+            } finally {
+                startBtn.disabled = false;
+            }
+        }
+
+        async function runStep(id, action) {
+            updateStep(id, 'active');
+            const start = Date.now();
+            try {
+                await action();
+                const duration = Date.now() - start;
+                updateStep(id, 'success', duration);
+                await wait(500); // Visual pause
+            } catch (e) {
+                updateStep(id, 'error');
+                throw e;
+            }
+        }
+
+        // Add spin animation
+        const style = document.createElement('style');
+        style.innerHTML = `
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+    `;
+        document.head.appendChild(style);
+
+        initUI();
+    </script>
+
+</body>
+
+</html>
