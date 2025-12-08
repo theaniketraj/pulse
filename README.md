@@ -80,7 +80,7 @@ Premium design that feels native to VS Code:
 
 ```bash
 # Download the latest .vsix from releases
-code --install-extension vitals-0.2.0.vsix
+code --install-extension vitals-0.2.1.vsix
 ```
 
 ### From Source
@@ -341,14 +341,14 @@ Please read [CONTRIBUTING](./docs/contributing.md) for:
 
 ## Roadmap
 
-### Current (v0.2.0)
+### Current (v0.2.1)
 
 - ✅ Real-time metrics visualization
 - ✅ Live log streaming
 - ✅ Alert management
 - ✅ Prometheus integration
 
-### Upcoming (v0.2.0)
+### Upcoming (v0.3.0)
 
 - 🔄 Custom metric queries
 - 🔄 Alertmanager integration

@@ -127,7 +127,7 @@ export default withMermaid(
         { text: "Architecture", link: "/system_architecture" },
         { text: "API", link: "/api" },
         {
-          text: "v0.2.0",
+          text: "v0.2.1",
           items: [
             {
               text: "Changelog",

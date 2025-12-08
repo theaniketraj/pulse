@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.2.1] - 08 Dec 2025
+
+- **Authentication**:
+  - Switched to VS Code's native GitHub authentication for a seamless sign-in experience.
+  - Removed manual OAuth configuration requirement.
+  - Improved authentication flow robustness and error handling.
+- **Bug Fixes**:
+  - Fixed an issue where the dashboard would not open immediately after signing in.
+  - Fixed version references across documentation.
+
 ## [0.2.0] - 08 Dec 2025
 
 - **Connectivity Diagnostics**: Built-in integration test suite to verify backend connectivity and extension health.
