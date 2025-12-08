@@ -203,9 +203,12 @@ export class VitalsViewProvider implements vscode.WebviewViewProvider {
   }
   
   public show() {
-      if (this._view) {
-          this._view.show?.(true);
-      }
+    if (this._view) {
+      this._view.show?.(true);
+    } else {
+      // Fallback to command if view is not yet resolved
+      vscode.commands.executeCommand('vitals.dashboardView.focus');
+    }
   }
 
   private sendPrometheusConfig(webview: vscode.Webview) {
