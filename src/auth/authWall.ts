@@ -72,23 +72,11 @@ export class AuthWall {
       const retry = await vscode.window.showWarningMessage(
         'GitHub authentication is required to use Vitals.',
         'Try Again',
-        'Configure OAuth',
         'Later'
       );
 
       if (retry === 'Try Again') {
         return this.showAuthWall(context);
-      } else if (retry === 'Configure OAuth') {
-        await vscode.commands.executeCommand('vitals.configureCredentials');
-        // Don't auto-retry after config to prevent loop
-        const signIn = await vscode.window.showInformationMessage(
-          'OAuth credentials configured. Ready to sign in?',
-          'Sign In Now',
-          'Later'
-        );
-        if (signIn === 'Sign In Now') {
-          return this.showAuthWall(context);
-        }
       }
 
       return false;

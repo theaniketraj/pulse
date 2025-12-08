@@ -42,11 +42,7 @@
         "title": "Sign In with GitHub",
         "category": "Vitals"
       },
-      {
-        "command": "vitals.configureCredentials",
-        "title": "Configure GitHub OAuth Credentials",
-        "category": "Vitals"
-      },
+
       {
         "command": "vitals.signOut",
         "title": "Sign Out from GitHub",

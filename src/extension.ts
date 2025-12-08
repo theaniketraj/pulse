@@ -137,13 +137,7 @@ export async function activate(context: vscode.ExtensionContext) {
     }
   );
 
-  // Register configure credentials command
-  const configureCredentials = vscode.commands.registerCommand(
-    "vitals.configureCredentials",
-    async () => {
-      await CustomGitHubAuth.configureCredentials(context);
-    }
-  );
+
 
   // Register sign in command (for returning users who signed out)
   const signIn = vscode.commands.registerCommand(
@@ -241,7 +235,6 @@ export async function activate(context: vscode.ExtensionContext) {
     openDashboard, 
     signOut, 
     showStatus, 
-    configureCredentials, 
     signIn,
     configurePrometheus
   );
