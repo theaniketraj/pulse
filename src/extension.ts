@@ -5,11 +5,15 @@ import { CustomGitHubAuth } from "./auth/customGitHubAuth";
 import { AuthWall } from "./auth/authWall";
 import { vitalsApi } from "./api/vitalsApi";
 import { getUsageStats } from "./telemetry/usageStats";
+import { checkVersionUpdate } from "./utils/updateNotifier";
 
 // Called when the extension is activated (e.g., when a command is executed)
 export async function activate(context: vscode.ExtensionContext) {
   // Log activation for debugging
   console.log("🚀 Vitals extension activated");
+
+  // Check for updates
+  checkVersionUpdate(context);
 
   // Initialize usage statistics collector
   const usageStats = getUsageStats(context);
