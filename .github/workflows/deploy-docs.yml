@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'Docs/**'
+      - 'docs/**'
       - 'package.json'
       - 'package-lock.json'
       - '.github/workflows/deploy-docs.yml'
@@ -33,38 +33,38 @@ jobs:
         run: npm ci
 
       - name: Build documentation
-        run: npx vitepress build Docs
+        run: npx vitepress build docs
 
       - name: Debug - Show build output structure
         run: |
           echo "=== Build output directory structure ==="
-          ls -la Docs/.vitepress/dist/
+          ls -la docs/.vitepress/dist/
           echo ""
           echo "=== First 30 lines of index.html ==="
-          head -30 Docs/.vitepress/dist/index.html
+          head -30 docs/.vitepress/dist/index.html
           echo ""
           echo "=== Asset paths in index.html ==="
-          grep -o 'href="[^"]*"' Docs/.vitepress/dist/index.html | head -10
-          grep -o 'src="[^"]*"' Docs/.vitepress/dist/index.html | head -10
+          grep -o 'href="[^"]*"' docs/.vitepress/dist/index.html | head -10
+          grep -o 'src="[^"]*"' docs/.vitepress/dist/index.html | head -10
           echo ""
           echo "=== Check for critical files ==="
-          ls -la Docs/.vitepress/dist/index.html || echo "index.html NOT FOUND"
-          ls -la Docs/.vitepress/dist/vp-icons.css || echo "vp-icons.css NOT FOUND"
-          ls -la Docs/.vitepress/dist/assets/ || echo "assets/ NOT FOUND"
+          ls -la docs/.vitepress/dist/index.html || echo "index.html NOT FOUND"
+          ls -la docs/.vitepress/dist/vp-icons.css || echo "vp-icons.css NOT FOUND"
+          ls -la docs/.vitepress/dist/assets/ || echo "assets/ NOT FOUND"
           echo ""
           echo "=== VitePress config base setting ==="
-          grep -A 2 "base:" Docs/.vitepress/config.mts || echo "No base setting found"
+          grep -A 2 "base:" docs/.vitepress/config.mts || echo "No base setting found"
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: Docs/.vitepress/dist
+          publish_dir: docs/.vitepress/dist
           cname: false
 
       - name: Debug - Show deployment summary
         run: |
           echo "=== Deployment completed ==="
           echo "Expected URL: https://theaniketraj.github.io/vitals/"
-          echo "Files deployed from: Docs/.vitepress/dist"
+          echo "Files deployed from: docs/.vitepress/dist"
           echo "Target branch: gh-pages"
