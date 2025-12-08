@@ -56,7 +56,7 @@ export class UsageStatsCollector {
       alertsViewed: 0,
       platform: `${os.platform()}-${os.arch()}`,
       vscodeVersion: vscode.version,
-      extensionVersion: context.extension?.packageJSON?.version || '0.1.0',
+      extensionVersion: context.extension?.packageJSON?.version || '0.2.0',
       errors: []
     };
 
