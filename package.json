@@ -30,9 +30,6 @@
     "prometheus"
   ],
   "main": "./dist/extension.js",
-  "activationEvents": [
-    "*"
-  ],
   "contributes": {
     "commands": [
       {

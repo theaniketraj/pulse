@@ -1,0 +1,56 @@
+.vscode/**
+.vscode-test/**
+.github/**
+.git/**
+.gitignore
+.gitattributes
+.editorconfig
+
+# Source code (bundled)
+src/**
+webview/src/**
+webview/tsconfig.json
+
+# Dependencies (bundled)
+node_modules/**
+webview/node_modules/**
+
+# Build configs
+webpack.config.js
+webpack.config.webview.js
+tsconfig.json
+jest.config.js
+
+# Tests
+test/**
+src/test/**
+*.test.ts
+*.test.js
+test-*.js
+test-consent.html
+extension-test.js
+connectivity-test.html
+
+# Documentation source
+docs/**
+_site/**
+aws/**
+backend/**
+
+# Scripts
+*.sh
+
+# Temp
+tmp/**
+coverage/**
+
+# Misc Docs (Keep README, LICENSE, CHANGELOG, PRIVACY, PROMETHEUS_SETUP)
+BACKEND_INTEGRATION.md
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
+COOKIE_CONSENT.md
+DEPLOYMENT_DEBUG.md
+GITHUB_AUTH_SETUP.md
+PREMIUM_FEATURES.md
+PROJECT_STRUCTURE.md
+SECURITY.md
