@@ -4,8 +4,10 @@ webview/node_modules/
 
 # Build outputs
 dist/
+out/
 webview/build/
 _site/
+*.vsix
 
 # VitePress (case-insensitive)
 [Dd]ocs/.vitepress/cache/
@@ -14,11 +16,13 @@ _site/
 
 # Development
 .vscode/
+.vscode-test/
 tmp/
 *.log
 .DS_Store
 commit-changes.sh
 test-consent.html
+coverage/
 
 # Environment
 .env
@@ -27,5 +31,9 @@ test-consent.html
 # AWS
 .aws/
 backend/.serverless/
+
+# System
+Thumbs.db
+Desktop.ini
 
 # Logs
