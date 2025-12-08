@@ -248,7 +248,7 @@ Vitals uses a clean, modular architecture:
 - **IPC Bridge**: Message passing between extension and webview
 - **Data Layer**: Prometheus API client with polling and caching
 
-For detailed architecture docs, see [SYSTEM_ARCHITECTURE](./Docs/system_architecture.md).
+For detailed architecture docs, see [SYSTEM_ARCHITECTURE](./docs/system_architecture.md).
 
 ---
 
@@ -316,7 +316,7 @@ vitals/
 └── package.json
 ```
 
-See [DEVELOPMENT](./Docs/development.md) for comprehensive dev docs.
+See [DEVELOPMENT](./docs/development.md) for comprehensive dev docs.
 
 ---
 
@@ -330,7 +330,7 @@ We welcome contributions! Here's how you can help:
 4. **Push** to the branch (`git push origin feature/amazing-feature`)
 5. **Open** a Pull Request
 
-Please read [CONTRIBUTING](./Docs/contributing.md) for:
+Please read [CONTRIBUTING](./docs/contributing.md) for:
 
 - Code of Conduct
 - Development guidelines
@@ -355,7 +355,7 @@ Please read [CONTRIBUTING](./Docs/contributing.md) for:
 - 🔄 Historical data analysis
 - 🔄 Multi-datasource support
 
-See [VISION](./Docs/vision.md) for the full roadmap.
+See [VISION](./docs/vision.md) for the full roadmap.
 
 ---
 
@@ -393,7 +393,7 @@ See [VISION](./Docs/vision.md) for the full roadmap.
 2. Verify log exporter configuration
 3. Check Vitals is configured to read from correct log source
 
-For more help, see [TROUBLESHOOTING](./Docs/troubleshooting.md) or [open an issue](https://github.com/theaniketraj/vitals/issues).
+For more help, see [TROUBLESHOOTING](./docs/troubleshooting.md) or [open an issue](https://github.com/theaniketraj/vitals/issues).
 
 ---
 
