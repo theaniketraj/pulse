@@ -13,8 +13,6 @@ We use this section to tell people about which versions of our project are curre
 
 We take security seriously. If you discover a security vulnerability within Vitals, please do **not** create a public GitHub issue.
 
-Instead, please report it via email to `security@example.com` (Replace with actual email or private contact method).
-
 ### Process
 
 1. **Report**: You send a detailed report of the vulnerability.
